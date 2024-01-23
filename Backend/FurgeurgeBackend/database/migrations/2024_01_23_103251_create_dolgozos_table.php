@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dolgozos', function (Blueprint $table) {
-            $table->id();
+        Schema::create('dolgozok', function (Blueprint $table) {
+            $table->id('felhasznalo_id');
+            $table->dateTime('Belepes');
+            $table->dateTime('Kilepes')->nullable();
             $table->timestamps();
         });
     }

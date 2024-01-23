@@ -22,6 +22,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kosars');
+        Schema::create('kosar', function (Blueprint $table) {
+            $table->string('Etel'); // Feltételezve, hogy ez egy szöveges azonosító
+            $table->foreignId('felhasználó_id')->constrained()->onDelete('cascade');
+            $table->integer('Mennyiség');
+        });
     }
 };

@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('eteleinks', function (Blueprint $table) {
+        Schema::create('eteleink', function (Blueprint $table) {
             $table->id();
+            $table->string('Elnevezes');
+            $table->string('Etelkategoria');
+            $table->integer('Ar');
             $table->timestamps();
         });
     }

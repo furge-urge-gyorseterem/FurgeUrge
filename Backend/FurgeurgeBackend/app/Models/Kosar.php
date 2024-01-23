@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Kosar extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'Étel',
+        'felhasználó_id',
+        'Mennyiség',
+    ];
 }
