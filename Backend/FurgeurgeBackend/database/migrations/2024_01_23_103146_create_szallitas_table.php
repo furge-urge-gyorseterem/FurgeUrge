@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('szallitas', function (Blueprint $table) {
-            $table->foreignId('Megrendelés_id')->constrained()->onDelete('cascade');
+           // $table->foreignId('Megrendelés_id')->constrained()->onDelete('cascade');
             $table->dateTime('Szállítás_Kezdete');
             $table->dateTime('Szállítás_Vége')->nullable();
             $table->decimal('Szállítás_költség', 8, 2);
             $table->string('Státusz');
-            $table->foreignId('Megrendelő_id')->constrained('users')->onDelete('cascade'); // Feltételezve, hogy van 'users' táblád
-            $table->foreignId('Futár_id')->constrained('futarok')->onDelete('cascade'); // Feltételezve, hogy van 'futarok' táblád
+         //   $table->foreignId('Megrendelő_id')->constrained('users')->onDelete('cascade'); // Feltételezve, hogy van 'users' táblád
+           // $table->foreignId('Futár_id')->constrained('futarok')->onDelete('cascade'); // Feltételezve, hogy van 'futarok' táblád
         });
     }
 

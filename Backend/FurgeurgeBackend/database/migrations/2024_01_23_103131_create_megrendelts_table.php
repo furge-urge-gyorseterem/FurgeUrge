@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('megrendelt', function (Blueprint $table) {
-            $table->foreignId('Rendelés_id')->constrained()->onDelete('cascade');
-            $table->foreignId('Felhasználó_id')->constrained()->onDelete('cascade');
+            //$table->foreignId('Rendelés_id')->constrained()->onDelete('cascade');
+           // $table->foreignId('Felhasználó_id')->constrained()->onDelete('cascade');
             $table->string('Kaja');
         });
     }

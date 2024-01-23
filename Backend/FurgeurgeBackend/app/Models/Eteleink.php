@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Eteleink extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'Elnevezés';
     protected $fillable = [
         'Elnevezés',
         'Ételkategória',
