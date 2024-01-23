@@ -12,15 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->id('Felhasználó_id');
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
             $table->string('Telefonszám')->nullable();
             $table->text('Lakcím')->nullable();
-            $table->string('Státusz')->default('aktív');
+            $table->string('Státusz')->default('vendég');
+            $table->foreign('Státusz')->references('FelhasználóStátusz')->on('felhasznalostatuszs'); 
             $table->timestamps();
-            $table->softDeletes(); // Ha szükséges, a soft delete funkció hozzáadása
+            $table->softDeletes(); 
         });
     }
 

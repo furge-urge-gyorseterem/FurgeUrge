@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('etelkategoriaks', function (Blueprint $table) {
-            $table->string('Etelkategoriak');
+            $table->string('Kategoria')->primary(); // Elsődleges kulcsként használjuk
+            $table->timestamps(); // Ha szükséges
         });
     }
 

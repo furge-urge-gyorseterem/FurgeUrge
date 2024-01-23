@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('etelstatuszs', function (Blueprint $table) {
-            $table->string('ÉtelStátusz');
+        Schema::create('dolgozok', function (Blueprint $table) {
+            $table->foreignId('Dolgozó_id')->references('felhasználó_id')->on('users');
+            $table->dateTime('Belepes');
+            $table->dateTime('Kilepes')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -21,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('etelstatuszs');
+        Schema::dropIfExists('dolgozos');
     }
 };

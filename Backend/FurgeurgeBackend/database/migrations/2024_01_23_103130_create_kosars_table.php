@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('kosars', function (Blueprint $table) {
-            $table->id();
+            $table->string('Elnevezes');
+            $table->foreign('Elnevezes')->references('Elnevezes')->on('eteleink');         
+            $table->foreignId('felhasználó_id')->references('felhasználó_id')->on('users');
+            $table->integer('Mennyiség');
             $table->timestamps();
         });
     }
@@ -23,9 +26,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::create('kosar', function (Blueprint $table) {
-            $table->string('Etel'); // Feltételezve, hogy ez egy szöveges azonosító
-            $table->foreignId('felhasználó_id')->constrained()->onDelete('cascade');
-            $table->integer('Mennyiség');
+         
         });
     }
 };
