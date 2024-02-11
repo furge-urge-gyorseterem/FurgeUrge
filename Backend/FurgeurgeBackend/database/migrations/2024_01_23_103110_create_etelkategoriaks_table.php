@@ -15,6 +15,26 @@ return new class extends Migration
             $table->string('Kategoria')->primary(); // Elsődleges kulcsként használjuk
             $table->timestamps(); // Ha szükséges
         });
+        DB::table('EtelKategoriaks')->insert([
+            'Kategoria' => 'Desszert', 
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('EtelKategoriaks')->insert([
+            'Kategoria' => 'Leves', 
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('EtelKategoriaks')->insert([
+            'Kategoria' => 'Főétel', 
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('EtelKategoriaks')->insert([
+            'Kategoria' => 'Üditő', 
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 
     /**
