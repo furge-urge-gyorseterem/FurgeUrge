@@ -17,8 +17,8 @@ return new class extends Migration
             $table->dateTime('Szállítás_Vége')->nullable();
             $table->integer('Szállítás_költség');
             $table->string('Státusz');
-            $table->foreignId('Ügyfél')->references('Felhasználó_id')->on('users'); // Feltételezve, hogy van 'users' táblád
-            $table->foreignId('Futár')->references('Felhasználó_id')->on('users'); // Feltételezve, hogy van 'futarok' táblád
+            $table->foreignId('Ügyfél')->references('Felhasználó_id')->on('users');
+            $table->foreignId('Futár')->references('Felhasználó_id')->on('users');
         });
     }
 

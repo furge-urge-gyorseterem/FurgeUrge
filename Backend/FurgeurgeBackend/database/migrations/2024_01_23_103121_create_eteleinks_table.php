@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('eteleink', function (Blueprint $table) {
             $table->string('Elnevezes')->primary(); 
             $table->string('Etelkategoria');
-            $table->foreign('Etelkategoria')->references('Kategoria')->on('etelkategoriaks'); // Idegen kulcsként használjuk
+            
+            $table->foreign('Etelkategoria')->references('Kategoria')->on('etelkategoriaks');
            
             $table->integer('Ar');
+            $table->boolean('Elérhető')->default(true);
             $table->timestamps();
         });
         
