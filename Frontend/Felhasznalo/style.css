@@ -1,0 +1,49 @@
+.items-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; 
+  }
+  
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    width: calc(50% - 20px); 
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr; 
+    grid-template-areas: "image title footer";
+    align-items: center; 
+  }
+  
+  .card-header, .card-body, .card-footer {
+    padding: 10px;
+  }
+  
+  .card-header {
+    grid-area: image;
+  }
+  
+  .card-header img {
+    width: 50%;
+    height: auto;
+    margin: auto;
+  }
+  
+  .card-body {
+    grid-area: title;
+    background-color: #f9f9f9;
+  }
+  
+  .card-footer {
+    grid-area: footer;
+    background-color: #4CAF50;
+  }
+  
+  .card-footer button {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+  }
+  

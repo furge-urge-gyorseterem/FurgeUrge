@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -19,12 +20,14 @@ return new class extends Migration
            
             $table->integer('Ar');
             $table->boolean('Elérhető')->default(true);
+            $table->string('Leírás');
             $table->timestamps();
         });
         DB::table('eteleink')->insert([
             'Elnevezes' => 'Bolognai Spagetti',
             'Etelkategoria' => 'Főétel',
             'Ar' => 1000,
+            'Leírás' =>"Igen",
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -33,7 +36,8 @@ return new class extends Migration
         DB::table('eteleink')->insert([
             'Elnevezes' => 'ASD Leves',
             'Etelkategoria' => 'Leves', 
-            'Ar' => 500, 
+            'Ar' => 500,
+            'Leírás' =>"Igen", 
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -41,7 +45,8 @@ return new class extends Migration
         DB::table('eteleink')->insert([
             'Elnevezes' => 'Csoki torta',
             'Etelkategoria' => 'Desszert', 
-            'Ar' => 700, 
+            'Ar' => 700,
+            'Leírás' =>"Igen", 
             'created_at' => now(),
             'updated_at' => now(),
         ]);

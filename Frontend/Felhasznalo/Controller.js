@@ -1,5 +1,5 @@
 import DataService from './DataService.js';
-import Megjelenit from './TablazatMegjelenit.js';
+import Megjelenit from './ÉtlapMegjelenít.js';
 class Controller{
     constructor(){
 

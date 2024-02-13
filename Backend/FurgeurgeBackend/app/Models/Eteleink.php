@@ -14,5 +14,7 @@ class Eteleink extends Model
         'Elnevezés',
         'Ételkategória',
         'Ár',
+        'Elérhető',
+        'Leírás'
     ];
 }
