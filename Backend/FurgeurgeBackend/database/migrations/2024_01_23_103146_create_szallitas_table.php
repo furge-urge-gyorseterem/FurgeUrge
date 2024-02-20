@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -12,7 +13,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('szallitas', function (Blueprint $table) {
-            $table->foreignId('Megrendelés_id')->references('id')->on('megrendelt');
+            $table->integer("Rendeles_Azon")->primary();
+            $table->foreign('Rendeles_Azon')->references('Azon')->on('megrendelt');
             $table->dateTime('Szállítás_Kezdete');
             $table->dateTime('Szállítás_Vége')->nullable();
             $table->integer('Szállítás_költség');

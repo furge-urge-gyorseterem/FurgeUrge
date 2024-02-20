@@ -26,9 +26,6 @@ class DatabaseSeeder extends Seeder
             EteleinkSeeder::class,
             MegrendeleskSeeder::class,
             SzallitasSeeder::class,
-
-          
-            
         ]);
 
 
