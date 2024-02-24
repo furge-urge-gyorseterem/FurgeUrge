@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\EteleinkController;
+use App\Http\Controllers\MegrendeltController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/eteleink', [EteleinkController::class, 'index']);
+Route::post('/order/create', [MegrendeltController::class, 'createOrder']);
