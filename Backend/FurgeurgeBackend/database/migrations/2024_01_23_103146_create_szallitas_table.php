@@ -14,13 +14,14 @@ return new class extends Migration
     {
         Schema::create('szallitas', function (Blueprint $table) {
             $table->integer("Rendeles_Azon")->primary();
-            $table->foreign('Rendeles_Azon')->references('Azon')->on('megrendelt');
+            $table->foreign('Rendeles_Azon')->references('Azon')->on('megrendelts');
             $table->dateTime('Szállítás_Kezdete');
             $table->dateTime('Szállítás_Vége')->nullable();
             $table->integer('Szállítás_költség');
             $table->string('Státusz');
-            $table->foreignId('Ügyfél')->references('Felhasználó_id')->on('users');
-            $table->foreignId('Futár')->references('Felhasználó_id')->on('users');
+            $table->foreignId('Megrendelő_id')->references('Felhasználó_id')->on('users');
+            $table->foreignId('Futár_id')->references('Felhasználó_id')->on('users');
+            $table->timestamps();
         });
     }
 

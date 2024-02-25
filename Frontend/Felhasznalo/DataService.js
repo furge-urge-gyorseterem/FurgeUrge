@@ -17,5 +17,16 @@ class DataService {
           // always executed
         });
     }
+    postData(url, data, callback, errorCallback){
+      axios.post(url, data)
+          .then(response => {
+              console.log("Data:", response.data);
+              callback(response.data);
+          })
+          .catch(error => {
+              errorCallback(error);
+          });
+  }
+
 }
 export default DataService

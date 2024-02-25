@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Szallitas extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'Megrendelés_Azon';
+    protected $primaryKey = 'Rendeles_Azon';
     protected $fillable = [
-        'Megrendelés_Azon',
+        'Rendeles_Azon',
         'Szállítás_Kezdete',
         'Szállítás_Vége',
         'Szállítás_költség',
