@@ -24,7 +24,23 @@ return new class extends Migration
             $table->timestamps();
         });
         DB::table('eteleink')->insert([
-            'Elnevezes' => 'Bolognai Spagetti',
+            'Elnevezes' => 'Szalámis Pizza',
+            'Etelkategoria' => 'Főétel',
+            'Ar' => 1000,
+            'Leírás' =>"Igen",
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('eteleink')->insert([
+            'Elnevezes' => 'Sajtburger',
+            'Etelkategoria' => 'Főétel',
+            'Ar' => 1000,
+            'Leírás' =>"Igen",
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('eteleink')->insert([
+            'Elnevezes' => 'pizza tekercs',
             'Etelkategoria' => 'Főétel',
             'Ar' => 1000,
             'Leírás' =>"Igen",

@@ -1,0 +1,65 @@
+:root{
+    --base-color:rgba(72, 72, 72, 0.952);
+
+}
+
+
+
+.Meal {
+  height: 30px;
+  width: 80%;
+  margin: auto;
+  margin-top: 0.5%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8%;
+  color: white;
+ 
+}
+.Data {
+  display: flex;
+  flex-wrap: wrap;
+  width: 70%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.FoodName {
+  background-color:var(--base-color);
+  width: 65%;
+}
+
+.Cost {
+  background-color: var(--base-color);
+  width: 35%;
+}
+
+.Options {
+  background-color: var(--base-color);
+  width: 20%;
+  padding: 0; 
+  border-top-right-radius: 60px;
+  border-bottom-right-radius: 60px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.Options div {
+  width: calc(100% / 2);
+  height: 100%;
+
+  margin: 0;
+  float: left;
+  box-sizing: border-box;
+  cursor: pointer;
+  color:black;
+  background-color: hsl(0, 0%, 75%);
+}
+.delete {
+  border-top-right-radius: 60px;
+  border-bottom-right-radius: 60px;
+
+}
+.edit{
+    border-right: 0.1px solid rgb(162, 162, 162);
+}
+.edit:hover{ background-color: hsl(0, 0%, 85%);}
+.delete:hover{ background-color: hsl(0, 0%, 85%);}
