@@ -9,8 +9,9 @@ class Eteleink extends Model
 {
     use HasFactory;
     protected $table = 'eteleink';
-    protected $primaryKey = 'Elnevezés';
+   
     protected $fillable = [
+        'Elnevezes',
         'Elnevezés',
         'Ételkategória',
         'Ár',

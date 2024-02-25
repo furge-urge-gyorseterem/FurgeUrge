@@ -1,9 +1,15 @@
 
 import './DMTool.css';
-import MealList from './Components/MealManagment/MealList/MealList';
+
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import  { useState, } from 'react';
+
+import MealList from '../MealList/MealList';
+
 
 function DMTool() {
 const DMToolKategoris =["All","Leves","Főétel","Desszert"]
+const [tabIndex, setTabIndex] = useState(0);
 
 
 
@@ -15,8 +21,15 @@ const DMToolKategoris =["All","Leves","Főétel","Desszert"]
 
   return (
     <div className="DMTool">
-    {DMToolKategoris.map(item=>(<Tab>{item}</Tab>))}
+         <Tabs className="" selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
+     <TabList className="costumTablist">
+    {DMToolKategoris.map(item=>(<Tab className="costumTab">{item}</Tab>))}
+    </TabList>    
+    
+    {DMToolKategoris.map(item=>(<TabPanel> <MealList kategoria={item}/> </TabPanel>))}
+ 
    
+    </Tabs>
   
     </div>
   );

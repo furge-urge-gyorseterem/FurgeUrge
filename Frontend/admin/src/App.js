@@ -1,12 +1,15 @@
 
 import './App.css';
-import Meal from './Components/MealManagment/Meal/Meal';
-import MealList from './Components/MealManagment/MealList/MealList';
+import DMTool from './Components/MealManagment/DishManagmentTool/DMTool';
+import VNBAR from './Components/VerticalNavBar/VNBar';
+
+
 
 function App() {
   return (
     <div className="App">
-    <MealList kategoria="Főétel"/>
+      <VNBAR/>
+   <DMTool/>
    
   
     </div>

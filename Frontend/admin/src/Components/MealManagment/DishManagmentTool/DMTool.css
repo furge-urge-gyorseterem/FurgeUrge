@@ -1,0 +1,53 @@
+.DMTool {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  width: 70%;
+}
+.MealList {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.costumTablist {
+  list-style-type: none;
+
+  padding: 0;
+  margin-bottom: -0.015%;
+  display: flex;
+  gap: 1%;
+  background: none; /* Válaszd ki a megfelelő hátteret */
+}
+.costumTab:focus {
+  outline: none;
+}
+.react-tabs__tab-panel {
+  margin-top: 0;
+}
+
+/* Individual tab styling */
+.costumTab {
+  padding: 10px 20px;
+  cursor: pointer;
+  background: rgba(
+    121,
+    121,
+    121,
+    0.493
+  ); /* Átlátszó hátterű, amikor nem aktív */
+  color: #ffffff; /* Szövegszín */
+  border: none;
+  border-radius: 10px 10px 0%  0%;
+}
+.costumTab[aria-selected="true"] {
+  background: rgba(67, 70, 45, 0.566); /* Aktív tab háttérszíne */
+  color: #ffffff; /* Aktív tab szövegszíne */
+ 
+}
+/* Hover state for tabs */
+.costumTab:hover {
+  background-color:  hsla(67, 22%, 23%, 0.766); /* Szín, amikor ráviszed az egeret */
+}
+.react-tabs__tab-panel {
+  background-color: rgba(67, 70, 45, 0.566);
+  border-radius: 0 30px 30px  30px;
+
+}

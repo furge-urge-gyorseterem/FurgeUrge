@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('kedvenceks', function (Blueprint $table) {
            
             $table->foreignId('Felhasznáó')->references('Felhasználó_id')->on('users');
-            $table->string('Kedvenc');
-            $table->foreign('Kedvenc')->references('Elnevezes')->on('eteleink');
+         
+            $table->foreignId('Kedvenc')->references('id')->on('eteleink');
             
             $table->timestamps();
         });

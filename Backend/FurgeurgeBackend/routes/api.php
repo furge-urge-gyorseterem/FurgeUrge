@@ -20,4 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/eteleink', [EteleinkController::class, 'index']);
+Route::delete('/eteleink/{elnevezes}', [EteleinkController::class, 'delete']);
 Route::post('/order/create', [MegrendeltController::class, 'createOrder']);

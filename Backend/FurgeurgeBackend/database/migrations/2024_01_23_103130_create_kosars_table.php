@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('kosars', function (Blueprint $table) {
-            $table->string('Elnevezes');
-            $table->foreign('Elnevezes')->references('Elnevezes')->on('eteleink');         
+           
+            $table->String('Elnevezes')->references('Elnevezes')->on('eteleink');         
             $table->foreignId('felhasználó_id')->references('felhasználó_id')->on('users');
             $table->integer('Mennyiség');
             $table->timestamps();

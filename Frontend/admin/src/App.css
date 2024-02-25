@@ -3,4 +3,9 @@ body{
 }
 .App{
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1%;
+  width: 100%;
+ 
 }
