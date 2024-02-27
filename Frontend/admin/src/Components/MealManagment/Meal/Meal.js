@@ -5,6 +5,7 @@ function Meal(props) {
     const destroy=()=>{
         props.destroy(props.food.id)
     }
+    
 
   return (
     <div className="Meal">

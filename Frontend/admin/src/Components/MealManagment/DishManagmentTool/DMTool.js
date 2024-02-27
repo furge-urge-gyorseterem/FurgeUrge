@@ -8,6 +8,7 @@ import MealList from '../MealList/MealList';
 
 
 function DMTool() {
+  
 const DMToolKategoris =["All","Leves","Főétel","Desszert"]
 const [tabIndex, setTabIndex] = useState(0);
 

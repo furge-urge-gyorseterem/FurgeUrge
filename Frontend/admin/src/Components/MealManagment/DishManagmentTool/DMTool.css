@@ -6,6 +6,18 @@
   padding-top: 20px;
   padding-bottom: 20px;
 }
+.SearchBar{
+ width: 35%;
+
+
+}
+.Search{
+  border-radius: 60px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.315), 0 6px 20px 0 rgba(0, 0, 0, 0.264);
+  width: 40%;
+  height: 20px;
+  background-color: rgb(215, 215, 215);
+}
 
 .costumTablist {
   list-style-type: none;
