@@ -13,12 +13,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('eteleink', function (Blueprint $table) {
-            $table->id();
+            $table->id('Etel_Azon');
             $table->string('Elnevezes'); 
             $table->string('Etelkategoria');
-            
             $table->foreign('Etelkategoria')->references('Kategoria')->on('etelkategoriaks');
-           
             $table->integer('Ar');
             $table->boolean('Elérhető')->default(true);
             $table->string('Leírás');

@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\EteleinkController;
 use App\Http\Controllers\MegrendeltController;
+use App\Http\Controllers\SzallitasController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,4 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/eteleink', [EteleinkController::class, 'index']);
 Route::delete('/eteleink/{elnevezes}', [EteleinkController::class, 'delete']);
-Route::post('/order/create', [MegrendeltController::class, 'createOrder']);
+Route::post('/szallitas/add', [SzallitasController::class, 'addDelivery']);
+Route::get('/szallitas/maxazon', [SzallitasController::class, 'getHighestOrderId']);
+Route::post('/megrendeltek', [MegrendeltController::class, 'store']);

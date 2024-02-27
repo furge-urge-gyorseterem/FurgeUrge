@@ -13,21 +13,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('megrendelts', function (Blueprint $table) {
-            $table->integer('Azon');
-            $table->foreignId('Felhasználó_id')->references('Felhasználó_id')->on('users')->onDelete('cascade');
-            $table->string('etel');
+            $table->unsignedBigInteger('Rendeles_Azon');
+            $table->foreign('Rendeles_Azon')->references('Rendeles_Azon')->on('szallitas');
+            $table->unsignedBigInteger('Etel_Azon'); // Consider changing this to match the type in 'eteleink' if necessary
+            $table->foreign('Etel_Azon')->references('Etel_Azon')->on('eteleink');
             $table->integer('mennyiseg');
             $table->timestamps();
-            $table->primary(['Azon', 'etel']);
+            $table->primary(['Rendeles_Azon', 'Etel_Azon']);
         });
-        DB::table('megrendelts')->insert([
-            'Azon' => 1,
-            'Felhasználó_id' => 1, 
-            'etel' => 'ASD leves',
-            'mennyiseg' => 2,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        
 
        
         

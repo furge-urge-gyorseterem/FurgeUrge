@@ -4,23 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Megrendelt;
+use App\Models\Szallitas;
+use Illuminate\Support\Facades\DB;
+
 class MegrendeltController extends Controller
 {
-    public function createOrder(Request $request)
+    public function store(Request $request)
     {
-        $maxAzon = Megrendelt::max('Azon');
-
-    // If there are no orders yet, start with 1; otherwise, increment the max Azon by 1
-    $newAzon = $maxAzon ? $maxAzon + 1 : 1;
-
-    $order = Megrendelt::create([
-        'Azon' => $newAzon,
-        'Felhasználó_id' => 1, // Assuming you have user authentication
-        'etel' => $request->etel,
-        'mennyiseg' => $request->mennyiseg, // Use the provided quantity
-    ]);
-
-        return response()->json($order, 201); // Return the created order as JSON
+        $megrendelt = new Megrendelt();
+        $megrendelt->Rendeles_Azon = $request->input('Rendeles_Azon'); // Győződj meg róla, hogy ez az érték létezik a kérésben
+        $megrendelt->Etel_Azon = $request->input('Etel_Azon');
+        $megrendelt->mennyiseg = $request->input('mennyiseg');
+        $megrendelt->save();
+    
+        return response()->json($megrendelt, 201);
     }
-
+    
 }

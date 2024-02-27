@@ -34,6 +34,14 @@ class Controller {
             console.error("Error creating order", error);
             // Additional error handling
         });
+        const data2 = { etel: "Szalámis Pizza", mennyiseg: 3 }
+        this.dataService.postData(url, data2, (response) => {
+            console.log("Order created successfully", response);
+            // Additional success handling
+        }, (error) => {
+            console.error("Error creating order", error);
+            // Additional error handling
+        });
     }
 }
 export default Controller;

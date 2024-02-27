@@ -11,11 +11,14 @@ class Szallitas extends Model
     protected $primaryKey = 'Rendeles_Azon';
     protected $fillable = [
         'Rendeles_Azon',
+        'Megrendelő_id',
+        'Futár_id',
+        'Státusz',
         'Szállítás_Kezdete',
         'Szállítás_Vége',
         'Szállítás_költség',
-        'Státusz',
-        'Megrendelő_id',
-        'Futár_id',
+       
+        
     ];
+
 }

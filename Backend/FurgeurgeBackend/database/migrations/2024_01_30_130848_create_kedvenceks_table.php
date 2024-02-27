@@ -15,7 +15,7 @@ return new class extends Migration
            
             $table->foreignId('Felhasznáó')->references('Felhasználó_id')->on('users');
          
-            $table->foreignId('Kedvenc')->references('id')->on('eteleink');
+            $table->foreignId('Kedvenc')->references('Etel_Azon')->on('eteleink');
             
             $table->timestamps();
         });

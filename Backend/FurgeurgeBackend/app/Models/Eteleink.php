@@ -12,7 +12,7 @@ class Eteleink extends Model
    
     protected $fillable = [
         'Elnevezes',
-        'Elnevezés',
+        'Etel_Azon',
         'Ételkategória',
         'Ár',
         'Elérhető',
