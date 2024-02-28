@@ -46,4 +46,32 @@
     color: white;
     cursor: pointer;
   }
+  .kosar {
+    display: flex;
+  }
+  
+  .kosar > div {
+    margin-right: 20px;
+  }
+
+  
+  .kosar-termeknevek div,
+  .kosar-arak div,
+  .kosar-darabszamok div,
+  .kosar-mennyiseg-valtoztato div {
+    min-width: 120px; 
+    margin-bottom: 5px; 
+    text-align: left; 
+    padding-bottom: 20px;
+  }
+  
+  .kosar-mennyiseg-valtoztato div {
+    width: 60px; 
+    padding-bottom: 15px;
+  }
+  
+  .kosar-mennyiseg-valtoztato button {
+    width: 25px; 
+    margin: 0 5px; 
+  }
   
