@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-
+use Carbon\Carbon;
 return new class extends Migration
 {
     /**
@@ -24,6 +24,32 @@ return new class extends Migration
             
             $table->timestamps();
         });
+        DB::table('szallitas')->insert([
+            [
+                'Megrendelő_id' => 1, 
+                'Futár_id' => 3, 
+                'Státusz' => 'Kiszállítva',
+                'Szállítás_Kezdete' => Carbon::parse('2024-02-05 17:00'),
+                'Szállítás_Vége' => Carbon::parse('2024-02-05 17:30'),
+                'Szállítás_költség' => 500, 
+            ],
+            [
+                'Megrendelő_id' => 1, 
+                'Futár_id' => 3, 
+                'Státusz' => 'Kiszállítva', 
+                'Szállítás_Kezdete' => Carbon::parse('2024-02-05 15:00'),
+                'Szállítás_Vége' => Carbon::parse('2024-02-05 16:30'),
+                'Szállítás_költség' => 700, 
+            ],
+            [
+                'Megrendelő_id' => 1, 
+                'Futár_id' => 3, 
+                'Státusz' => 'Készítés folyamatban',
+                'Szállítás_Kezdete' => Carbon::now(),
+                'Szállítás_Vége' => null,
+                'Szállítás_költség' => 500, 
+            ],
+        ]);
     }
 
     /**
