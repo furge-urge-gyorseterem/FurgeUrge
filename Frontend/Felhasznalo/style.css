@@ -48,8 +48,22 @@
   }
   .kosar {
     display: flex;
-  }
-  
+
+}
+.kosar-akcio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px; /* Add margin on top if needed */
+}
+.rendeles-gomb {
+  width: 100px; 
+  height: 50px; 
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+}
   .kosar > div {
     margin-right: 20px;
   }

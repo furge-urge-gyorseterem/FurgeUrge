@@ -75,6 +75,9 @@ class Controller {
       const mennyisegValtoztatoDiv = $("<div>").append(minuszGomb, pluszGomb);
       kosarMennyisegValtoztatoDiv.append(mennyisegValtoztatoDiv);
     });
+    
+    // Append total amount before the "Rendelés" button
+    
 
     kosarDiv.append(
       kosarTermeknevekDiv,
@@ -82,16 +85,25 @@ class Controller {
       kosarDarabszamokDiv,
       kosarMennyisegValtoztatoDiv
     );
+    
 
+    const actionDiv = $('<div class="kosar-akcio"></div>');
+
+    // If there are items in the cart, append the "Rendelés" button and total to actionDiv
     if (Object.keys(this.kosarTartalom).length > 0) {
       const rendelesGomb = $("<button>")
         .text("Rendelés")
         .addClass("rendeles-gomb")
         .on("click", this.veglegesites.bind(this));
-      kosarDiv.append(rendelesGomb);
-    }
-  }
+      const totalAmount = this.calculateTotal();
+      const totalDiv = $('<div class="kosar-osszeg">Összeg: ' + totalAmount + ' Ft</div>');
 
+      actionDiv.append(rendelesGomb, totalDiv);
+    }
+
+
+    kosarDiv.append(actionDiv);
+  }
   // Egy új függvény a darabszám változtatására
   kosarDarabValtoztat(termekNeve, valtozas) {
     if (valtozas === "novel") {
@@ -111,7 +123,13 @@ class Controller {
     this.kosarUIFrissites(); // Frissítjük a kosár UI-t
 
   }
-
+  calculateTotal() {
+    let total = 0;
+    for (let key in this.kosarTartalom) {
+        total += this.kosarTartalom[key].ar * this.kosarTartalom[key].darab;
+    }
+    return total;
+}
   megjelenites(list) {
     const szuloElem = $(".tarolo");
     const megjelenito = new Megjelenit(list, szuloElem);
@@ -120,10 +138,11 @@ class Controller {
     console.log(uzenet);
   }
   veglegesites() {
+    const totalKosarOsszeg = this.calculateTotal();
     const szallitas = {
       Megrendelő_id: 1,
       Futár_id: 2,
-      Szállítás_költség: 1500,
+      Szállítás_költség: totalKosarOsszeg,
     }
     this.szallitasHozzaadas(szallitas)
 
