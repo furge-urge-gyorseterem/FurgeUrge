@@ -33,7 +33,12 @@ return new class extends Migration
             'updated_at' => now(),
         ]);
         DB::table('etelkategoriaks')->insert([
-            'Kategoria' => 'Üditő', 
+            'Kategoria' => 'Hamburger', 
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('etelkategoriaks')->insert([
+            'Kategoria' => 'Pizza', 
             'created_at' => now(),
             'updated_at' => now(),
         ]);

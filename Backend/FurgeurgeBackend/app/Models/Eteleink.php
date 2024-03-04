@@ -9,6 +9,7 @@ class Eteleink extends Model
 {
     use HasFactory;
     protected $table = 'eteleink';
+    protected $primaryKey = 'Etel_Azon';
    
     protected $fillable = [
         'Elnevezes',

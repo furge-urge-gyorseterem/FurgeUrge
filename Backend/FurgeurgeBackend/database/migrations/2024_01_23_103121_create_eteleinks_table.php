@@ -65,6 +65,24 @@ return new class extends Migration
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        DB::table('eteleink')->insert([
+            'Elnevezes' => 'Medoxid hamburger',
+            'Etelkategoria' => 'Hamburger', 
+            'Ar' => 1900,
+            'Leírás' =>"Igen", 
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('eteleink')->insert([
+            'Elnevezes' => 'Medoxid pizza',
+            'Etelkategoria' => 'Pizza', 
+            'Ar' => 2700,
+            'Leírás' =>"Igen", 
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
         
     }
 
