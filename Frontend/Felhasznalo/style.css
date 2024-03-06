@@ -1,9 +1,42 @@
+main{
+  width: 80%;
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: 'h h h'
+                       'n n n'
+                       'a a as'
+                       'a a as'
+                       'f f f';
+}
 .items-container {
     display: flex;
     flex-wrap: wrap;
     gap: 20px; 
   }
-  
+  header{
+    grid-area: h;
+  }
+  nav{
+    grid-area: n;
+  }
+  article{
+    grid-area: a;
+    width: 700px;
+  }
+  aside{
+    grid-area: as;
+    width:300px;
+    padding-right: 50px;
+  }
+  ul li{
+    display: inline;
+    padding-right: 10px;
+  }
+  .Profil, .Kilepes{
+    float: right;
+  }
   .card {
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -66,6 +99,7 @@
 }
   .kosar > div {
     margin-right: 20px;
+    width: 100px;
   }
 
   

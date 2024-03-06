@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\EteleinkController;
+use App\Http\Controllers\EtelkategoriakController;
 use App\Http\Controllers\MegrendeltController;
 use App\Http\Controllers\SzallitasController;
 use Illuminate\Http\Request;
@@ -21,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/eteleink', [EteleinkController::class, 'index']);
+Route::get('/kategoria', [EtelkategoriakController::class, 'kategoria']);
 Route::delete('/eteleink/{elnevezes}', [EteleinkController::class, 'delete']);
 Route::post('/szallitas/add', [SzallitasController::class, 'addDelivery']);
 Route::get('/szallitas/maxazon', [SzallitasController::class, 'getHighestOrderId']);

@@ -6,11 +6,18 @@ class Controller {
     this.kosarTartalom = {};
     this.dataService = new DataService();
     this.dataService.getAxiosData(
+      "http://localhost:8000/api/kategoria",
+      this.megjeleniteskategoria,
+      this.hibakezeles,
+      console.log("igen2")
+    );
+    this.dataService.getAxiosData(
       "http://localhost:8000/api/eteleink",
       this.megjelenites,
       this.hibakezeles,
       console.log("igen2")
     );
+
     this.kosarelem = $(".kosarbaad");
 
     console.log("igen");
@@ -48,8 +55,9 @@ class Controller {
 
   kosarUIFrissites() {
     const kosarDiv = $(".kosar");
+    const rendelesosszeg = $(".rendeles-osszeg");
     kosarDiv.empty();
-
+    rendelesosszeg.empty();
     const kosarTermeknevekDiv = $('<div class="kosar-termeknevek"></div>');
     const kosarArakDiv = $('<div class="kosar-arak"></div>');
     const kosarDarabszamokDiv = $('<div class="kosar-darabszamok"></div>');
@@ -101,8 +109,7 @@ class Controller {
       actionDiv.append(rendelesGomb, totalDiv);
     }
 
-
-    kosarDiv.append(actionDiv);
+    rendelesosszeg.append(actionDiv)
   }
   // Egy új függvény a darabszám változtatására
   kosarDarabValtoztat(termekNeve, valtozas) {
@@ -133,6 +140,18 @@ class Controller {
   megjelenites(list) {
     const szuloElem = $(".tarolo");
     const megjelenito = new Megjelenit(list, szuloElem);
+  }
+  megjeleniteskategoria(list) {
+    const ul = $('.etelkategoriak');
+  
+    list.forEach(Kategoria => {
+      const li = $('<li></li>').text(Kategoria.Kategoria);
+
+      ul.prepend(li);
+    });
+  
+    // No need to append the ul to the document since it's already in place,
+    // just populated it with the new <li> items.
   }
   hibakezeles(uzenet) {
     console.log(uzenet);
