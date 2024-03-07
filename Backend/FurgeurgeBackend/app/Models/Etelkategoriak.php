@@ -8,8 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Etelkategoriak extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'Etelkategoriak';
+    protected $primaryKey = 'Azon';
     protected $fillable = [
+        'Azon',
         'Etelkategoriak',
     ];
+    public function etelek()
+{
+    return $this->hasMany(Eteleink::class, 'Etelkategoria', 'Kategoria');
+}
 }

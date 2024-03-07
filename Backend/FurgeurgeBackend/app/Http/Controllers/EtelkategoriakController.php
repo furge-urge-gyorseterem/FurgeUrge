@@ -8,7 +8,7 @@ class EtelkategoriakController extends Controller
 {
     public function kategoria()
     {
-        $Kategoriak = Etelkategoriak::all(); // Retrieve all records
+        $Kategoriak = Etelkategoriak::orderBy('Azon', 'desc')->get(); // Retrieve all records ordered by 'Azon' in descending order
         return response()->json($Kategoriak); // Return the records as JSON
     }
 }

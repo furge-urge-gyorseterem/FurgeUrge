@@ -19,4 +19,8 @@ class Eteleink extends Model
         'Elérhető',
         'Leírás'
     ];
+    public function kategoria()
+{
+    return $this->belongsTo(Etelkategoriak::class, 'Etelkategoria', 'Kategoria');
+}
 }

@@ -12,7 +12,7 @@ class Controller {
       console.log("igen2")
     );
     this.dataService.getAxiosData(
-      "http://localhost:8000/api/eteleink",
+      "http://localhost:8000/api/etelek",
       this.megjelenites,
       this.hibakezeles,
       console.log("igen2")
@@ -40,6 +40,7 @@ class Controller {
       // Frissítsd a kosár UI-t
       this.kosarUIFrissites();
     });
+   
   }
   kosarbaHozzaadas(termekNeve, termekAra, termekID) {
     if (this.kosarTartalom[termekNeve]) {

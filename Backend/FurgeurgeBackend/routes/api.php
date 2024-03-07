@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+Route::get('/etelek', [EteleinkController::class, 'eteleKategoria'])->name('etelek.eteleKategoria');
 Route::get('/eteleink', [EteleinkController::class, 'index']);
 Route::get('/kategoria', [EtelkategoriakController::class, 'kategoria']);
 Route::delete('/eteleink/{elnevezes}', [EteleinkController::class, 'delete']);
