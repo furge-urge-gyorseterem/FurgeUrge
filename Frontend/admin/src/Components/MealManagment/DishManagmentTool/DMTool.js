@@ -21,7 +21,7 @@ function DMTool() {
 			await setCategories(['Összes', ...new Set(data.map((category) => category.Etelkategoria))]);
 		} catch (error) {
 			console.log(error);
-		}
+		} 
 	};
 
   const removeMeal = async (id) => {
@@ -46,7 +46,7 @@ function DMTool() {
 
 	useEffect(() => {
 		fetchMeals();
-	}, []);
+	}, );
 
 
 

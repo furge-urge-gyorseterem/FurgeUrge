@@ -5,9 +5,12 @@ const httpClient = axios.create({
 });
 
 const getMeals = () => httpClient.get('/eteleink');
-const deleteMeal = (id) => httpClient.delete(`/eteleink/${id}`)
+const deleteMeal = (id) => httpClient.delete(`/eteleink/${id}`);
+
+const getWorkers = () => httpClient.get('/Dolgozok');
 
 export const useMealApi = () => ({
 	getMeals,
-	deleteMeal
+	deleteMeal,
+	getWorkers
 });
