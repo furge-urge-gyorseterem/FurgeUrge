@@ -19,7 +19,50 @@ class Controller {
     );
 
     this.kosarelem = $(".kosarbaad");
+    $(document).ready(function(){
+      var navOriginalPos = $('nav').offset().top;
+      var kosarOriginalPos = $('.kosar-container').offset().top;
+      var kosarHeight = $('.kosar-container').outerHeight();
+      var navHeight = $('nav').outerHeight();
+      
 
+      $(window).scroll(function() {
+        var scrollDistance = $(window).scrollTop();
+
+        if (scrollDistance >= navOriginalPos) {
+            $('.kosar-container').css({
+                position: 'fixed',
+                top: '60px',
+                right: 'calc(25% - 170px)',
+                width: '450px' 
+            });
+        } else {
+            $('.kosar-container').css({
+                position: 'static',
+                top: '',
+                left: '',
+                right: '',
+                width: '' 
+            });
+        }
+    });
+      $(window).scroll(function(){
+          if ($(window).scrollTop() > navOriginalPos) {
+              $('nav').addClass('fixed');
+              $('nav').addClass('fixed fixed-nav');
+              $('body').css('padding-top', navHeight + 'px');
+
+              $('main').css('padding-top', kosarHeight + 'px');
+          } else {
+              $('nav').removeClass('fixed');
+              $('nav').removeClass('fixed fixed-nav');
+
+              $('main').css('padding-top', '0');
+              $('body').css('padding-top', '0');
+          }
+          
+      });
+  });
     console.log("igen");
     $(document).on("click", ".kosarbaad", (event) => {
       event.preventDefault();
