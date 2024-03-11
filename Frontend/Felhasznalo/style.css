@@ -137,15 +137,11 @@ main{
     margin: 0 5px; 
   }
   .fixed {
-    position: fixed;
-    top: 0;
-    z-index: 1000;
+    position: -webkit-sticky; /* for Safari support */
+    position: sticky;
+    top: 0; /* Set to the distance from the top you want the navbar to stick at */
+    z-index: 10;
+
 }
 
-.fixed-nav {
-    left: 0;
-    right: 0;
-    max-width: 1200px;
-    margin: auto;
-}
 
