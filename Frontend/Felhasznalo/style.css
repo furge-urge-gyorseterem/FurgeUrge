@@ -1,4 +1,8 @@
+body{
+  background-color: #264E36
+}
 main{
+  background-color: #258037;
   width: 80%;
   max-width: 1200px;
   margin: auto;
@@ -25,9 +29,10 @@ main{
 
   nav{
     grid-area: n;
-    background-color: grey;
+    background-color: #f59c02;
   }
   article{
+    padding-left: 15px;
     grid-area: a;
     width: 700px;
   }
@@ -39,10 +44,12 @@ main{
 
   }
   .kosar-container{
+
     border: 1px solid gray;
     padding-left: 10px;
     padding-top: 10px;
-    
+   background-color: #EEB127; 
+   width: 450px;
   }
   ul li{
     display: inline;
@@ -52,6 +59,7 @@ main{
     float: right;
   }
   .card {
+    background-color: #EEB127;
     border: 1px solid #ddd;
     border-radius: 5px;
     overflow: hidden;
@@ -67,30 +75,34 @@ main{
   }
   
   .card-header {
+    background-color: #EEB127;
     grid-area: image;
+    height: 100%;
   }
   
   .card-header img {
-    width: 50%;
+    padding-top: 15px;
+    width: 125%;
     height: auto;
     margin: auto;
+    padding-right: 5px;
   }
   
   .card-body {
     grid-area: title;
-    background-color: #f9f9f9;
   }
   
   .card-footer {
     grid-area: footer;
-    background-color: #4CAF50;
+    height: 100%;
+    background-color:  #EEB127;
   }
   
-  .card-footer button {
-    width: 100%;
-    border: none;
-    background-color: transparent;
-    color: white;
+  .kosarbaad {
+    width: 100% !important;
+    height: 50%;
+
+    background-color: #f59c02;
     cursor: pointer;
   }
   .kosar {
@@ -137,11 +149,20 @@ main{
     margin: 0 5px; 
   }
   .fixed {
-    position: -webkit-sticky; /* for Safari support */
     position: sticky;
-    top: 0; /* Set to the distance from the top you want the navbar to stick at */
+    top: 0; 
     z-index: 10;
 
 }
 
 
+.star {
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  width: 50px; /* You can adjust as needed */
+  height: 50px; /* You can adjust as needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto; /* Center the star within the footer */
+  cursor: pointer;
+}

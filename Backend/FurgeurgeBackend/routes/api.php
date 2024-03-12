@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\EteleinkController;
 use App\Http\Controllers\EtelkategoriakController;
+use App\Http\Controllers\KedvencekController;
 use App\Http\Controllers\MegrendeltController;
 use App\Http\Controllers\SzallitasController;
 use Illuminate\Http\Request;
@@ -27,3 +28,6 @@ Route::delete('/eteleink/{elnevezes}', [EteleinkController::class, 'delete']);
 Route::post('/szallitas/add', [SzallitasController::class, 'addDelivery']);
 Route::get('/szallitas/maxazon', [SzallitasController::class, 'getHighestOrderId']);
 Route::post('/megrendeltek', [MegrendeltController::class, 'store']);
+Route::post('/kedvencek', [KedvencekController::class, 'store']);
+Route::delete('/kedvencek/{felhasznaloAzon}/{etelAzon}', [KedvencekController::class, 'destroy']);
+Route::get('/kedvencek/{felhasznaloAzon}', [KedvencekController::class, 'showFavorites']);

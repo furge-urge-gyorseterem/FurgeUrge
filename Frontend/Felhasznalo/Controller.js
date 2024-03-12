@@ -4,63 +4,96 @@ import Megjelenit from "./ÉtlapMegjelenít.js";
 class Controller {
   constructor() {
     this.kosarTartalom = {};
+    this.kedvencekNevei = {};
     this.dataService = new DataService();
     this.dataService.getAxiosData(
       "http://localhost:8000/api/kategoria",
       this.megjeleniteskategoria,
       this.hibakezeles,
-      console.log("igen2")
+    );
+    this.dataService.getAxiosData(
+      "http://localhost:8000/api/kedvencek/1",
+      (response) => {
+        // Itt dolgozzuk fel a választ
+        response.forEach(kedvenc => {
+          // Hozzáadás a kedvencekNevei objektumhoz
+          this.kedvencekNevei[kedvenc.Etel_Azon] = kedvenc.etel.Elnevezes;
+        });
+        // Itt hívjuk meg a megjelenítésre szolgáló függvényt
+        this.megjeleniteskedvenc(response);
+      },
+      this.hibakezeles
     );
     this.dataService.getAxiosData(
       "http://localhost:8000/api/etelek",
-      this.megjelenites,
+      (response) => this.etelekMegjelenitesKedvencekNelkul(response),
       this.hibakezeles,
-      console.log("igen2")
     );
 
+
+    $(document).on('click', '.star', (event) => { // Changed to arrow function
+      var cardDivDataId = $(event.currentTarget).closest('.card').data('id');
+      const isWhite = $(event.currentTarget).css('background-color') === 'rgb(255, 255, 255)';
+      $(event.currentTarget).css('background-color', isWhite ? 'yellow' : 'white');
+      if (isWhite) {
+        const kedvencek = {
+          Felhasznalo_Azon: 1,
+          Etel_Azon: cardDivDataId,
+        };
+        this.kedvenchezfuzes(kedvencek); // 'this' now correctly refers to the Controller instance
+      }else{
+        const Felhasznalo_Azon= 1
+        const Etel_Azon = cardDivDataId
+        this.dataService.deleteAxiosData('http://localhost:8000/api/kedvencek', Felhasznalo_Azon, Etel_Azon)
+      }
+    });
+    const kosarContainer = $('.kosar-container');
+
+    kosarContainer.css('display', 'none');
     this.kosarelem = $(".kosarbaad");
-    $(document).ready(function(){
+    $(document).ready(function () {
+
       var navOriginalPos = $('nav').offset().top;
 
       var kosarHeight = $('.kosar-container').outerHeight();
       var navHeight = $('nav').outerHeight();
-      
 
-      $(window).scroll(function() {
+
+      $(window).scroll(function () {
         var scrollDistance = $(window).scrollTop();
 
         if (scrollDistance >= navOriginalPos) {
-            $('.kosar-container').css({
-                position: 'sticky',
-                top: '60px',
-                width: '450px' 
-            });
+          $('.kosar-container').css({
+            position: 'sticky',
+            top: '60px',
+            width: '450px'
+          });
         } else {
-            $('.kosar-container').css({
-                position: 'static',
-                top: '',
-                left: '',
-                right: '',
-                width: '' 
-            });
+          $('.kosar-container').css({
+            position: 'static',
+            top: '',
+            left: '',
+            right: '',
+            width: ''
+          });
         }
-    });
-      $(window).scroll(function(){
-          if ($(window).scrollTop() > navOriginalPos) {
-              $('nav').addClass('fixed');
-              $('body').css('padding-top', navHeight + 'px');
-
-              $('main').css('padding-top', kosarHeight + 'px');
-          } else {
-              $('nav').removeClass('fixed');
-
-              $('main').css('padding-top', '0');
-              $('body').css('padding-top', '0');
-          }
-          
       });
-  });
-    console.log("igen");
+      $(window).scroll(function () {
+        if ($(window).scrollTop() > navOriginalPos) {
+          $('nav').addClass('fixed');
+          $('body').css('padding-top', navHeight + 'px');
+
+          $('main').css('padding-top', kosarHeight + 'px');
+        } else {
+          $('nav').removeClass('fixed');
+
+          $('main').css('padding-top', '0');
+          $('body').css('padding-top', '0');
+        }
+
+      });
+    });
+
     $(document).on("click", ".kosarbaad", (event) => {
       event.preventDefault();
       const termekNeve = $(event.currentTarget)
@@ -73,26 +106,70 @@ class Controller {
         10
       );
       const termekID = $(event.currentTarget)
-      .closest(".card")
-      .data("id");
+        .closest(".card")
+        .data("id");
       this.kosarbaHozzaadas(termekNeve, termekAra, termekID);
 
       // Frissítsd a kosár UI-t
       this.kosarUIFrissites();
     });
-   
+
+  }
+  etelekMegjelenitesKedvencekNelkul(etelekResponse) {
+    const tisztitottEtelek = etelekResponse.map(kategoria => {
+      const tisztitottEtelek = kategoria.Etelek.filter(etel => {
+        // Visszaadja azokat az ételeket, amelyek nem szerepelnek a kedvencek között
+        return !Object.values(this.kedvencekNevei).includes(etel.Elnevezes);
+      });
+
+      return {
+        ...kategoria,
+        Etelek: tisztitottEtelek
+      };
+    });
+
+    // Itt meghívhatod a megjelenítő függvényt a tisztított ételek listájával
+    this.megjelenites(tisztitottEtelek);
+  }
+  kedvenchezfuzes(kedvencek){
+    this.dataService.postData(
+      "http://localhost:8000/api/kedvencek",
+      kedvencek,
+      (response) => {
+        console.log("Étel hozzáadva:", response);
+      },
+      (error) => {
+        console.error("Hiba az étel hozzáadásakor:", error);
+      }
+    )
+
+  }
+  toggleKosarContainerDisplay() {
+    // Check if the cart is empty by checking the number of keys in kosarTartalom
+    const kosarUres = Object.keys(this.kosarTartalom).length === 0;
+
+    // Select the kosar-container element
+    const kosarContainer = $('.kosar-container');
+
+    // Toggle the display property based on whether the cart is empty
+    if (kosarUres) {
+      kosarContainer.css('display', 'none');
+    } else {
+      kosarContainer.css('display', '');
+    }
   }
   kosarbaHozzaadas(termekNeve, termekAra, termekID) {
     if (this.kosarTartalom[termekNeve]) {
-        this.kosarTartalom[termekNeve].darab++;
+      this.kosarTartalom[termekNeve].darab++;
     } else {
-        this.kosarTartalom[termekNeve] = {
-            id: termekID, // Store the ID here
-            ar: termekAra,
-            darab: 1,
-        };
+      this.kosarTartalom[termekNeve] = {
+        id: termekID,
+        ar: termekAra,
+        darab: 1,
+      };
     }
-}
+    this.toggleKosarContainerDisplay();
+  }
 
   kosarUIFrissites() {
     const kosarDiv = $(".kosar");
@@ -124,9 +201,9 @@ class Controller {
       const mennyisegValtoztatoDiv = $("<div>").append(minuszGomb, pluszGomb);
       kosarMennyisegValtoztatoDiv.append(mennyisegValtoztatoDiv);
     });
-    
+
     // Append total amount before the "Rendelés" button
-    
+
 
     kosarDiv.append(
       kosarTermeknevekDiv,
@@ -134,7 +211,7 @@ class Controller {
       kosarDarabszamokDiv,
       kosarMennyisegValtoztatoDiv
     );
-    
+
 
     const actionDiv = $('<div class="kosar-akcio"></div>');
 
@@ -169,28 +246,28 @@ class Controller {
     }
 
     this.kosarUIFrissites(); // Frissítjük a kosár UI-t
-
+    this.toggleKosarContainerDisplay();
   }
   calculateTotal() {
     let total = 0;
     for (let key in this.kosarTartalom) {
-        total += this.kosarTartalom[key].ar * this.kosarTartalom[key].darab;
+      total += this.kosarTartalom[key].ar * this.kosarTartalom[key].darab;
     }
     return total;
-}
+  }
   megjelenites(list) {
     const szuloElem = $(".tarolo");
-    const megjelenito = new Megjelenit(list, szuloElem);
+    const megjelenito = new Megjelenit(list, szuloElem, false);
   }
   megjeleniteskategoria(list) {
     const ul = $('.etelkategoriak');
-  
+
     list.forEach(Kategoria => {
       const li = $('<li></li>').text(Kategoria.Kategoria);
 
       ul.prepend(li);
     });
-  
+
     // No need to append the ul to the document since it's already in place,
     // just populated it with the new <li> items.
   }
@@ -208,7 +285,7 @@ class Controller {
 
     this.lekerMaxRendelesAzon();
   }
-  
+
   szallitasHozzaadas(etelData) {
     this.dataService.postData(
       "http://localhost:8000/api/szallitas/add",
@@ -254,5 +331,18 @@ class Controller {
       }
     );
   }
+  megjeleniteskedvenc(kedvencekLista) {
+    const szuloElem = $(".tarolo");
+    // Az 'etel' objektumokat egy tömbbe gyűjti, amihez hozzáadja a "Kedvencek" kategóriát
+    const kedvencekObj = {
+      Kategoria: "Kedvencek",
+      Etelek: kedvencekLista.map(kedvenc => kedvenc.etel)
+    };
+
+    // A 'Megjelenit' konstruktorát meghívja egy tömbbel, ami csak a kedvencekObj objektumot tartalmazza
+    new Megjelenit([kedvencekObj], szuloElem, true);
+
+  }
 }
+
 export default Controller;
