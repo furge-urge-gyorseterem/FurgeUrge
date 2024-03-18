@@ -6,11 +6,7 @@ class Controller {
     this.kosarTartalom = {};
     this.kedvencekNevei = {};
     this.dataService = new DataService();
-    this.dataService.getAxiosData(
-      "http://localhost:8000/api/kategoria",
-      this.megjeleniteskategoria,
-      this.hibakezeles,
-    );
+   
     this.dataService.getAxiosData(
       "http://localhost:8000/api/kedvencek/1",
       (response) => {
@@ -23,6 +19,11 @@ class Controller {
         this.megjeleniteskedvenc(response);
       },
       this.hibakezeles
+    );
+    this.dataService.getAxiosData(
+      "http://localhost:8000/api/kategoria",
+      (list) => this.megjeleniteskategoria(list),
+      this.hibakezeles,
     );
     this.dataService.getAxiosData(
       "http://localhost:8000/api/etelek",
@@ -77,8 +78,6 @@ class Controller {
             width: ''
           });
         }
-      });
-      $(window).scroll(function () {
         if ($(window).scrollTop() > navOriginalPos) {
           $('nav').addClass('fixed');
           $('body').css('padding-top', navHeight + 'px');
@@ -91,6 +90,16 @@ class Controller {
           $('body').css('padding-top', '0');
         }
 
+      });
+      $('.tarolo h2').each(function () {
+        const currentSection = $(this);
+        const sectionTop = currentSection.offset().top - navHeight;
+  
+        if (scrollDistance >= sectionTop && scrollDistance < sectionTop + currentSection.outerHeight()) {
+          const currentId = currentSection.attr('id');
+          $('.etelkategoriak li').removeClass('active'); // Remove the class 'active' from all li elements
+          $(`.etelkategoriak li[data-target="${currentId}"]`).addClass('active'); // Add class 'active' to the current nav item
+        }
       });
     });
 
@@ -259,18 +268,57 @@ class Controller {
     const szuloElem = $(".tarolo");
     const megjelenito = new Megjelenit(list, szuloElem, false);
   }
-  megjeleniteskategoria(list) {
+  megjeleniteskategoria(list, kedvenc) {
     const ul = $('.etelkategoriak');
 
     list.forEach(Kategoria => {
-      const li = $('<li></li>').text(Kategoria.Kategoria);
+      const li = $(`<li data-target=${Kategoria.Kategoria}></li>`).text(Kategoria.Kategoria);
 
       ul.prepend(li);
+      
+    });
+    if (Object.keys(this.kedvencekNevei).length > 0) {
+      const li = $(`<li data-target=${"Kedvencek"}></li>`).text("⭐ Kedvencek");
+      ul.prepend(li);
+    }
+    const self = this; 
+
+    $(window).on('scroll', function() {
+      const scrollPosition = $(this).scrollTop();
+      if(scrollPosition == $(this).scrollTop()){
+        $('.etelkategoriak li').removeClass('active');
+      }
+      $('h2').each(function() {
+        const currentSection = $(this);
+        const sectionTop = currentSection.offset().top;
+
+        const offsetForFixedHeader = 0; 
+
+        if (scrollPosition+400 >= sectionTop - offsetForFixedHeader) {
+          const currentId = currentSection.attr('id');
+
+          $('.etelkategoriak li').removeClass('active');
+
+          $(`.etelkategoriak li[data-target="${currentId}"]`).addClass('active');
+        }
+      });
     });
 
-    // No need to append the ul to the document since it's already in place,
-    // just populated it with the new <li> items.
+    // Smooth scrolling to section on nav item click, which you might already have set up
+    $('.etelkategoriak li').on('click', function() {
+      const targetId = $(this).data('target');
+      const targetSection = $('#' + targetId);
+
+      if (targetSection.length) {
+        $('html, body').animate({
+          scrollTop: targetSection.offset().top
+        }, 100); // Adjust the duration as needed
+      }
+    });
   }
+
+  
+  
   hibakezeles(uzenet) {
     console.log(uzenet);
   }
