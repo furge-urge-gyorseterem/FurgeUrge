@@ -53,16 +53,16 @@ class Controller {
     kosarContainer.css('display', 'none');
     this.kosarelem = $(".kosarbaad");
     $(document).ready(function () {
+      
 
       var navOriginalPos = $('nav').offset().top;
+    var navHeight = $('nav').outerHeight();
+    var originalPaddingMain = parseInt($('main').css('padding-top')); // Original padding of the main content
 
-      var kosarHeight = $('.kosar-container').outerHeight();
-      var navHeight = $('nav').outerHeight();
-
-
-      $(window).scroll(function () {
+    $(window).scroll(function () {
         var scrollDistance = $(window).scrollTop();
-
+        var mainWidth = $('main').outerWidth(); // Get the current width of the main element
+        var windowWidth = $(window).width(); 
         if (scrollDistance >= navOriginalPos) {
           $('.kosar-container').css({
             position: 'sticky',
@@ -78,19 +78,29 @@ class Controller {
             width: ''
           });
         }
-        if ($(window).scrollTop() > navOriginalPos) {
-          $('nav').addClass('fixed');
-          $('body').css('padding-top', navHeight + 'px');
-
-          $('main').css('padding-top', kosarHeight + 'px');
+        if (scrollDistance >= navOriginalPos) {
+            $('nav').addClass('fixed');
+            $('nav').css({
+              width: mainWidth + 'px', // Set the width of the navbar to match the main element
+              left: (windowWidth - mainWidth) / 2 + 'px' // Center the navbar
+            });
+            $('body').css('padding-top', navHeight + 'px'); // This is to prevent the jump
         } else {
-          $('nav').removeClass('fixed');
-
-          $('main').css('padding-top', '0');
-          $('body').css('padding-top', '0');
+            $('nav').removeClass('fixed');
+            $('nav').removeClass('fixed').css({
+              width: '', // Reset the width
+              left: '' // Reset the left position
+            });
+            $('body').css('padding-top', '0px'); // Remove the padding when navbar is not fixed
         }
 
-      });
+        // Adjust main padding to account for fixed nav height
+        if ($('nav').hasClass('fixed')) {
+            $('main').css('padding-top', originalPaddingMain + navHeight + 'px');
+        } else {
+            $('main').css('padding-top', originalPaddingMain + 'px');
+        }
+    });
       $('.tarolo h2').each(function () {
         const currentSection = $(this);
         const sectionTop = currentSection.offset().top - navHeight;
@@ -294,7 +304,7 @@ class Controller {
 
         const offsetForFixedHeader = 0; 
 
-        if (scrollPosition+400 >= sectionTop - offsetForFixedHeader) {
+        if (scrollPosition+350 >= sectionTop - offsetForFixedHeader) {
           const currentId = currentSection.attr('id');
 
           $('.etelkategoriak li').removeClass('active');
@@ -394,3 +404,4 @@ class Controller {
 }
 
 export default Controller;
+
