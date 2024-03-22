@@ -24,7 +24,7 @@ return new class extends Migration
         });
         DB::table('eteleink')->insert([
             'Elnevezes' => 'Szalámis Pizza',
-            'Etelkategoria' => 'Főétel',
+            'Etelkategoria' => 'Pizza',
             'Ar' => 1000,
             'Leírás' =>"Igen",
             'created_at' => now(),
@@ -32,7 +32,7 @@ return new class extends Migration
         ]);
         DB::table('eteleink')->insert([
             'Elnevezes' => 'Sajtburger',
-            'Etelkategoria' => 'Főétel',
+            'Etelkategoria' => 'Hamburger',
             'Ar' => 1000,
             'Leírás' =>"Igen",
             'created_at' => now(),
@@ -40,6 +40,22 @@ return new class extends Migration
         ]);
         DB::table('eteleink')->insert([
             'Elnevezes' => 'pizza tekercs',
+            'Etelkategoria' => 'Főétel',
+            'Ar' => 1000,
+            'Leírás' =>"Igen",
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('eteleink')->insert([
+            'Elnevezes' => 'Rántott sajt',
+            'Etelkategoria' => 'Főétel',
+            'Ar' => 1000,
+            'Leírás' =>"Igen",
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('eteleink')->insert([
+            'Elnevezes' => 'Cigánypecsenye',
             'Etelkategoria' => 'Főétel',
             'Ar' => 1000,
             'Leírás' =>"Igen",
@@ -56,6 +72,14 @@ return new class extends Migration
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+        DB::table('eteleink')->insert([
+            'Elnevezes' => 'Vörheny Leves',
+            'Etelkategoria' => 'Leves', 
+            'Ar' => 4500,
+            'Leírás' =>"Igen", 
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
 
         DB::table('eteleink')->insert([
             'Elnevezes' => 'Csoki torta',
@@ -67,7 +91,7 @@ return new class extends Migration
         ]);
 
         DB::table('eteleink')->insert([
-            'Elnevezes' => 'Medoxid hamburger',
+            'Elnevezes' => 'Medo burger',
             'Etelkategoria' => 'Hamburger', 
             'Ar' => 1900,
             'Leírás' =>"Igen", 
@@ -83,7 +107,22 @@ return new class extends Migration
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-        
+        DB::table('eteleink')->insert([
+            'Elnevezes' => 'Ricsi pizza',
+            'Etelkategoria' => 'Pizza', 
+            'Ar' => 1700,
+            'Leírás' =>"Igen", 
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('eteleink')->insert([
+            'Elnevezes' => 'Suli pizza',
+            'Etelkategoria' => 'Pizza', 
+            'Ar' => 2700,
+            'Leírás' =>"Igen", 
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 
     /**

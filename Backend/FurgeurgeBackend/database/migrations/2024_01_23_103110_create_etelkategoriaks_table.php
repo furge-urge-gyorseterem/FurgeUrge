@@ -14,14 +14,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('etelkategoriaks', function (Blueprint $table) {
-            $table->string('Kategoria')->primary(); // Elsődleges kulcsként használjuk
+            $table->increments('Azon'); // Azon lesz az elsődleges kulcs és auto-incrementing
+            $table->string('Kategoria')->unique(); // Elsődleges kulcsként használjuk
             $table->timestamps(); // Ha szükséges
         });
-        DB::table('etelkategoriaks')->insert([
-            'Kategoria' => 'Desszert', 
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        
         DB::table('etelkategoriaks')->insert([
             'Kategoria' => 'Leves', 
             'created_at' => now(),
@@ -39,6 +36,11 @@ return new class extends Migration
         ]);
         DB::table('etelkategoriaks')->insert([
             'Kategoria' => 'Pizza', 
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('etelkategoriaks')->insert([
+            'Kategoria' => 'Desszert', 
             'created_at' => now(),
             'updated_at' => now(),
         ]);
