@@ -1,5 +1,35 @@
-.VNBAR{
-    height: 1000px;
-    width: 20%;
-   background-color:grey;
+.VNBAR {
+	height: 1000px;
+	width: 20%;
+	background-color: hsla(68, 9%, 34%, 0.675);
+  
+}
+.VNBAR li {
+	list-style: none;
+	border-bottom: 1px solid white;
+    margin: 4% 10% 1% 10%;
+
+
+}
+.VNBAR li{
+	list-style: none;
+	border-bottom: 1px solid white;
+    margin: 4% 10% 1% 10%;
+  
+
+}
+.link {
+	text-decoration: none;
+	color: black;
+    display: block;
+ 
+
+}
+.link:hover {
+	text-decoration: none;
+	color: black;
+    display: block;
+    background-color: hsl(0, 0%, 60%);
+  
+
 }
