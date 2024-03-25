@@ -47,6 +47,16 @@ class DataService {
   addMegrendeltItem(url, megrendeltData, callback, errorCallback) {
     this.postData(url, megrendeltData, callback, errorCallback);
   }
+  deleteAxiosData(url, Azon, id){
+    axios
+    .delete(`${url}/${Azon}/${id}`)
+    .then((response)=> {
+      console.log("RESP", response);
+  })
+    .catch((error)=> {
+      console.log("hiba",error);
+    })
+  }
   
 }
 export default DataService;
