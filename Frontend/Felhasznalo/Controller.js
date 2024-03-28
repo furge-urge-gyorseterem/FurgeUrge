@@ -8,7 +8,7 @@ class Controller {
     this.dataService = new DataService();
    
     this.dataService.getAxiosData(
-      "http://localhost:8000/api/kedvencek/1",
+      "http://localhost:3000/api/kedvencek/1",
       (response) => {
         // Itt dolgozzuk fel a választ
         response.forEach(kedvenc => {
@@ -21,12 +21,12 @@ class Controller {
       this.hibakezeles
     );
     this.dataService.getAxiosData(
-      "http://localhost:8000/api/kategoria",
+      "http://localhost:3000/api/kategoria",
       (list) => this.megjeleniteskategoria(list),
       this.hibakezeles,
     );
     this.dataService.getAxiosData(
-      "http://localhost:8000/api/etelek",
+      "http://localhost:3000/api/etelek",
       (response) => this.etelekMegjelenitesKedvencekNelkul(response),
       this.hibakezeles,
     );
@@ -45,7 +45,7 @@ class Controller {
       }else{
         const Felhasznalo_Azon= 1
         const Etel_Azon = cardDivDataId
-        this.dataService.deleteAxiosData('http://localhost:8000/api/kedvencek', Felhasznalo_Azon, Etel_Azon)
+        this.dataService.deleteAxiosData('http://localhost:3000/api/kedvencek', Felhasznalo_Azon, Etel_Azon)
       }
     });
     const kosarContainer = $('.kosar-container');
@@ -152,7 +152,7 @@ class Controller {
   }
   kedvenchezfuzes(kedvencek){
     this.dataService.postData(
-      "http://localhost:8000/api/kedvencek",
+      "http://localhost:3000/api/kedvencek",
       kedvencek,
       (response) => {
         console.log("Étel hozzáadva:", response);
@@ -346,7 +346,7 @@ class Controller {
 
   szallitasHozzaadas(etelData) {
     this.dataService.postData(
-      "http://localhost:8000/api/szallitas/add",
+      "http://localhost:3000/api/szallitas/add",
       etelData,
       (response) => {
         console.log("Étel hozzáadva:", response);
@@ -359,7 +359,7 @@ class Controller {
   }
   megrendeltHozzaadas(megrendeltData) {
     this.dataService.addMegrendeltItem(
-      "http://localhost:8000/api/megrendeltek",
+      "http://localhost:3000/api/megrendeltek",
       megrendeltData,
       (response) => {
         console.log("Megrendelt hozzáadva:", response);
@@ -371,7 +371,7 @@ class Controller {
   }
   lekerMaxRendelesAzon() {
     this.dataService.getMaxRendelesAzon(
-      "http://localhost:8000/api/szallitas/maxazon",
+      "http://localhost:3000/api/szallitas/maxazon",
       (data) => {
         console.log("A legnagyobb Rendeles_Azon:", data.Rendeles_Azon);
         const nextRendelesAzon = data.Rendeles_Azon + 1;

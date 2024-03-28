@@ -22,6 +22,8 @@ return new class extends Migration
             $table->text('Lakcím')->nullable();
             $table->string('Státusz')->default('vendég');
             $table->foreign('Státusz')->references('FelhasználóStátusz')->on('felhasznalostatuszs'); 
+            $table->string('api_token', 60)->nullable(); // specify the length also
+            $table->rememberToken();
             $table->timestamps();
             $table->softDeletes(); 
         });
@@ -52,8 +54,8 @@ return new class extends Migration
         DB::table('users')->insert([
             
             
-            'email' => 'rixi',
-            'password' => Hash::make('a235111'),
+            'email' => 'rixi@email.com',
+            'password' => Hash::make('asd123'),
             'Telefonszám' => '4541332334',
             'Lakcím' => 'Pest',
             'name' => 'Rixi',

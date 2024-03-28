@@ -5,7 +5,7 @@ body {
 main {
   background-color: #258037;
   width: 80%;
-  max-width: 1200px;
+  max-width: 80%;
   margin: auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -85,7 +85,7 @@ ul li {
   display: flex;
   text-align: center;
   justify-content: center;
-  /* Center the items horizontally */
+
   gap: 10px;
 }
 
@@ -150,6 +150,7 @@ ul li {
 
   background-color: #f59c02;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .kosar {

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="loginForm">
+        <label>
+            Email:
+            <input type="email" name="email" id="email">
+        </label>
+        <label>
+            Jelszó:
+            <input type="password" name="password" id="password">
+        </label>
+        <button type="submit">Bejelentkezés</button>
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#loginForm').on('submit', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: 'http://localhost:3000/api/login',
+                    type: 'POST',
+                    data: {
+                        email: $('#email').val(),
+                        password: $('#password').val(),
+                    },
+                    success: function (response) {
+                        console.log('Bejelentkezés sikeres!', response);
+                        window.location.href = '/kaja.html';
+                    },
+                    error: function (error) {
+                        console.error('Hiba a bejelentkezés során', error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
