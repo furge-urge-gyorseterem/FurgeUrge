@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const httpClient = axios.create({
-	baseURL: 'http://localhost:8000/api'
+	baseURL: 'http://localhost:3000/api'
 });
 
 const getMeals = () => httpClient.get('/eteleink');
