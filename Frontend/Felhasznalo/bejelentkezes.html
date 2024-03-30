@@ -20,28 +20,35 @@
 		</form>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script>
-			$(document).ready(function () {
-				$('#loginForm').on('submit', function (e) {
-					e.preventDefault();
-					$.ajax({
-						url: 'http://localhost:3000/api/login',
-						type: 'POST',
-						data: {
-							email: $('#email').val(),
-							password: $('#password').val()
-						},
+		$(document).ready(function () {
+    $('#loginForm').on('submit', function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: 'http://localhost:3000/api/login',
+            type: 'POST',
+            data: {
+                email: $('#email').val(),
+                password: $('#password').val()
+            },
+            success: function (response) {
+                console.log(response.success)
+                if (response.success) {
+                    console.log('Bejelentkezés sikeres!', response);
+                    window.location.href = 'kaja.html';
+                } else {
+                    console.error('Hiba a bejelentkezés során', response);
+                    alert('Bejelentkezés sikertelen. Kérjük, ellenőrizze az adatokat és próbálja újra.');
+                }
+            },
+            error: function (error) {
+                console.error('Hiba történt a kérés feldolgozása során', error);
+                alert('Hiba történt. Kérjük, próbálja meg később.');
+            }
+        });
+        
+    });
+});
 
-						success: function (response) {
-							console.log('Bejelentkezés sikeres!', response);
-							window.location.href = 'kaja.html';
-						},
-						error: function (error) {
-							console.error('Hiba a bejelentkezés során', error);
-						}
-					});
-					
-				});
-			});
 		</script>
 	</body>
 </html>

@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 return new class extends Migration
 {
@@ -14,7 +15,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id('Felhasználó_id');
+            $table->id();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
@@ -34,32 +35,37 @@ return new class extends Migration
             'Lakcím' => 'Pest',
             'name' => 'PéldaGéza',
             'Státusz' => 'vásárló',
+            'api_token' => Str::random(60),
         ]);
+        
         DB::table('users')->insert([
             'email' => 'Akosbátya',
             'password' => Hash::make('akimbo'),
-            'Telefonszám' => '40324321421', 
+            'Telefonszám' => '40324321421',
             'Lakcím' => 'Érd',
             'name' => 'KOSZTI',
-            'Státusz' => 'Futár'
+            'Státusz' => 'Futár',
+            'api_token' => Str::random(60), 
         ]);
+        
         DB::table('users')->insert([
             'email' => 'vali',
             'password' => Hash::make('valika'),
             'Telefonszám' => '542143',
             'Lakcím' => 'Eger',
             'name' => 'Vali',
-            'Státusz' => 'dolgozó'
+            'Státusz' => 'dolgozó',
+            'api_token' => Str::random(60), 
         ]);
+        
         DB::table('users')->insert([
-            
-            
             'email' => 'rixi@email.com',
             'password' => Hash::make('asd123'),
             'Telefonszám' => '4541332334',
             'Lakcím' => 'Pest',
             'name' => 'Rixi',
-            'Státusz' => 'Admin'
+            'Státusz' => 'Admin',
+            'api_token' => Str::random(60), 
         ]);
 
     }

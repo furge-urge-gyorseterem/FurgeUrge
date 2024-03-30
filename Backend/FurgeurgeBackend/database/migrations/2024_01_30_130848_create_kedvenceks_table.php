@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('kedvenceks', function (Blueprint $table) {
            
-            $table->foreignId('Felhasznalo_Azon')->references('Felhasználó_id')->on('users');
+            $table->foreignId('Felhasznalo_Azon')->references('id')->on('users');
          
             $table->foreignId('Etel_Azon')->references('Etel_Azon')->on('eteleink');
             

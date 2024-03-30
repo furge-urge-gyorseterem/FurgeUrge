@@ -14,7 +14,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('dolgozok', function (Blueprint $table) {
-            $table->foreignId('Dolgozó_id')->references('felhasználó_id')->on('users');
+            $table->foreignId('Dolgozó_id')->references('id')->on('users');
             $table->dateTime('Belepes');
             $table->dateTime('Kilepes')->nullable();
             $table->timestamps();
