@@ -1,4 +1,3 @@
-
 import DataService from "./DataService.js";
 import Megjelenit from "./ÉtlapMegjelenít.js";
 class Controller {
@@ -30,8 +29,6 @@ class Controller {
       (response) => this.etelekMegjelenitesKedvencekNelkul(response),
       this.hibakezeles,
     );
-
-
     $(document).on('click', '.star', (event) => { // Changed to arrow function
       var cardDivDataId = $(event.currentTarget).closest('.card').data('id');
       const isWhite = $(event.currentTarget).css('background-color') === 'rgb(255, 255, 255)';
@@ -49,11 +46,10 @@ class Controller {
       }
     });
     const kosarContainer = $('.kosar-container');
-
     kosarContainer.css('display', 'none');
     this.kosarelem = $(".kosarbaad");
     $(document).ready(function () {
-      
+
 
       var navOriginalPos = $('nav').offset().top;
     var navHeight = $('nav').outerHeight();
@@ -101,18 +97,27 @@ class Controller {
             $('main').css('padding-top', originalPaddingMain + 'px');
         }
     });
-      $('.tarolo h2').each(function () {
-        const currentSection = $(this);
-        const sectionTop = currentSection.offset().top - navHeight;
-  
-        if (scrollDistance >= sectionTop && scrollDistance < sectionTop + currentSection.outerHeight()) {
-          const currentId = currentSection.attr('id');
-          $('.etelkategoriak li').removeClass('active'); // Remove the class 'active' from all li elements
-          $(`.etelkategoriak li[data-target="${currentId}"]`).addClass('active'); // Add class 'active' to the current nav item
+    $(window).on('scroll', function() {
+      var scrollPosition = $(this).scrollTop();
+      var newActiveId = null; // Ide tároljuk az új aktív szekció ID-ját, ha találunk
+    
+      $('.tarolo h2').each(function() {
+        const sectionTop = $(this).offset().top - navHeight;
+        const sectionBottom = sectionTop + $(this).outerHeight();
+    
+        if (scrollPosition >= sectionTop-300 && scrollPosition < sectionBottom) {
+          newActiveId = $(this).attr('id'); // Megjelöljük az új aktív szekciót
+          return false; // Kilépünk az each ciklusból, mivel találtunk egy aktív szekciót
         }
       });
+    
+      // Ha találtunk új aktív szekciót, frissítjük az aktív class-t
+      if (newActiveId !== null) {
+        $('.etelkategoriak li.active').removeClass('active');
+        $(`.etelkategoriak li[data-target="${newActiveId}"]`).addClass('active');
+      }
     });
-
+    });
     $(document).on("click", ".kosarbaad", (event) => {
       event.preventDefault();
       const termekNeve = $(event.currentTarget)
@@ -128,11 +133,9 @@ class Controller {
         .closest(".card")
         .data("id");
       this.kosarbaHozzaadas(termekNeve, termekAra, termekID);
-
       // Frissítsd a kosár UI-t
       this.kosarUIFrissites();
     });
-
   }
   etelekMegjelenitesKedvencekNelkul(etelekResponse) {
     const tisztitottEtelek = etelekResponse.map(kategoria => {
@@ -140,13 +143,11 @@ class Controller {
         // Visszaadja azokat az ételeket, amelyek nem szerepelnek a kedvencek között
         return !Object.values(this.kedvencekNevei).includes(etel.Elnevezes);
       });
-
       return {
         ...kategoria,
         Etelek: tisztitottEtelek
       };
     });
-
     // Itt meghívhatod a megjelenítő függvényt a tisztított ételek listájával
     this.megjelenites(tisztitottEtelek);
   }
@@ -161,15 +162,12 @@ class Controller {
         console.error("Hiba az étel hozzáadásakor:", error);
       }
     )
-
   }
   toggleKosarContainerDisplay() {
     // Check if the cart is empty by checking the number of keys in kosarTartalom
     const kosarUres = Object.keys(this.kosarTartalom).length === 0;
-
     // Select the kosar-container element
     const kosarContainer = $('.kosar-container');
-
     // Toggle the display property based on whether the cart is empty
     if (kosarUres) {
       kosarContainer.css('display', 'none');
@@ -189,7 +187,6 @@ class Controller {
     }
     this.toggleKosarContainerDisplay();
   }
-
   kosarUIFrissites() {
     const kosarDiv = $(".kosar");
     const rendelesosszeg = $(".rendeles-osszeg");
@@ -201,14 +198,11 @@ class Controller {
     const kosarMennyisegValtoztatoDiv = $(
       '<div class="kosar-mennyiseg-valtoztato"></div>'
     );
-
     Object.entries(this.kosarTartalom).forEach(([termekNeve, adatok]) => {
       kosarTermeknevekDiv.append($(`<div>${termekNeve}</div>`));
       kosarArakDiv.append($(`<div>${adatok.ar} Ft</div>`));
-
       const darabDiv = $("<div>").append($(`<span>${adatok.darab} db</span>`));
       kosarDarabszamokDiv.append(darabDiv);
-
       const minuszGomb = $("<button>")
         .text("-")
         .addClass("darab-csokkento")
@@ -220,20 +214,14 @@ class Controller {
       const mennyisegValtoztatoDiv = $("<div>").append(minuszGomb, pluszGomb);
       kosarMennyisegValtoztatoDiv.append(mennyisegValtoztatoDiv);
     });
-
     // Append total amount before the "Rendelés" button
-
-
     kosarDiv.append(
       kosarTermeknevekDiv,
       kosarArakDiv,
       kosarDarabszamokDiv,
       kosarMennyisegValtoztatoDiv
     );
-
-
     const actionDiv = $('<div class="kosar-akcio"></div>');
-
     // If there are items in the cart, append the "Rendelés" button and total to actionDiv
     if (Object.keys(this.kosarTartalom).length > 0) {
       const rendelesGomb = $("<button>")
@@ -242,10 +230,8 @@ class Controller {
         .on("click", this.veglegesites.bind(this));
       const totalAmount = this.calculateTotal();
       const totalDiv = $('<div class="kosar-osszeg">Összeg: ' + totalAmount + ' Ft</div>');
-
       actionDiv.append(rendelesGomb, totalDiv);
     }
-
     rendelesosszeg.append(actionDiv)
   }
   // Egy új függvény a darabszám változtatására
@@ -263,7 +249,6 @@ class Controller {
     if (this.kosarTartalom[termekNeve].darab <= 0) {
       delete this.kosarTartalom[termekNeve];
     }
-
     this.kosarUIFrissites(); // Frissítjük a kosár UI-t
     this.toggleKosarContainerDisplay();
   }
@@ -280,10 +265,8 @@ class Controller {
   }
   megjeleniteskategoria(list, kedvenc) {
     const ul = $('.etelkategoriak');
-
     list.forEach(Kategoria => {
       const li = $(`<li data-target=${Kategoria.Kategoria}></li>`).text(Kategoria.Kategoria);
-
       ul.prepend(li);
       
     });
@@ -292,33 +275,11 @@ class Controller {
       ul.prepend(li);
     }
     const self = this; 
-
-    $(window).on('scroll', function() {
-      const scrollPosition = $(this).scrollTop();
-      if(scrollPosition == $(this).scrollTop()){
-        $('.etelkategoriak li').removeClass('active');
-      }
-      $('h2').each(function() {
-        const currentSection = $(this);
-        const sectionTop = currentSection.offset().top;
-
-        const offsetForFixedHeader = 0; 
-
-        if (scrollPosition+350 >= sectionTop - offsetForFixedHeader) {
-          const currentId = currentSection.attr('id');
-
-          $('.etelkategoriak li').removeClass('active');
-
-          $(`.etelkategoriak li[data-target="${currentId}"]`).addClass('active');
-        }
-      });
-    });
-
+   
     // Smooth scrolling to section on nav item click, which you might already have set up
     $('.etelkategoriak li').on('click', function() {
       const targetId = $(this).data('target');
       const targetSection = $('#' + targetId);
-
       if (targetSection.length) {
         $('html, body').animate({
           scrollTop: targetSection.offset().top
@@ -326,7 +287,6 @@ class Controller {
       }
     });
   }
-
   
   
   hibakezeles(uzenet) {
@@ -340,10 +300,8 @@ class Controller {
       Szállítás_költség: totalKosarOsszeg,
     }
     this.szallitasHozzaadas(szallitas)
-
     this.lekerMaxRendelesAzon();
   }
-
   szallitasHozzaadas(etelData) {
     this.dataService.postData(
       "http://localhost:3000/api/szallitas/add",
@@ -396,12 +354,9 @@ class Controller {
       Kategoria: "Kedvencek",
       Etelek: kedvencekLista.map(kedvenc => kedvenc.etel)
     };
-
     // A 'Megjelenit' konstruktorát meghívja egy tömbbel, ami csak a kedvencekObj objektumot tartalmazza
     new Megjelenit([kedvencekObj], szuloElem, true);
-
   }
 }
 
 export default Controller;
-
