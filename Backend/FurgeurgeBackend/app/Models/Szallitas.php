@@ -20,5 +20,8 @@ class Szallitas extends Model
        
         
     ];
-
+    public function megrendeltEtelek()
+    {
+        return $this->hasMany(Megrendelt::class, 'Rendeles_Azon', 'Rendeles_Azon');
+    }
 }

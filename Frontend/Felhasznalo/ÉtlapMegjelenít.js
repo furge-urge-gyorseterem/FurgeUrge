@@ -14,7 +14,7 @@ class Megjelenit {
   }
 
   DivbeIr(isKedvenc) {
-    console.log(this.#list);
+
     this.#list.forEach((kategoria) => {
       // Add a header for each category
       const sectionId = kategoria.Kategoria; // Ensure the ID is in a proper format for an HTML id attribute

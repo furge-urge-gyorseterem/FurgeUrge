@@ -38,4 +38,16 @@ class SzallitasController extends Controller
             'Rendeles_Azon' => $maxRendelesAzon
         ]);
     }
+    public function showOrderStatus($id)
+{
+    $orders = Szallitas::where('Megrendelő_id', $id)
+                    ->where('Státusz', '!=', 'Kiszállítva')
+                    ->get();
+
+    if ($orders->isEmpty()) {
+        return response()->json(['message' => 'Nincsenek nyitott rendelések.'], 404);
+    }
+
+    return response()->json($orders);
+}
 }

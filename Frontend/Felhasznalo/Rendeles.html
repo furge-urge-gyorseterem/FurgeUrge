@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rendelés Státusza</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <ul>
+        <li><a href="Főoldal.html">Főoldal</a></li>
+        <li><a href="kaja.html">Étlap</a></li>
+        <li id="logout" class="Kilepes"><a href="">Kijelentkezés</a></li>
+        <li class="Profil" ><a href="Profil.html">Profil</a></li>
+        
+
+      </ul>
+    <h1>Rendelés Státusza</h1>
+    <div id="ordersStatus"></div>
+
+    <script>
+        $(document).ready(function() {
+            const id = localStorage.getItem('userid'); // Ezt az értéket szükség szerint állítsd be vagy szerezd meg
+            $.ajax({
+                url: 'http://localhost:3000/api/orders/status/' + id,
+                type: 'GET',
+                success: function(response) {
+                    console.log(response)
+                    if(response.length > 0) {
+                        var ordersList = '<ul>';
+                        response.forEach(function(order) {
+                            ordersList += '<li>' + 'Rendelés Azonosító: ' + order.Rendeles_Azon + ', Státusz: ' + order.Státusz + '</li>';
+                        });
+                        ordersList += '</ul>';
+                        $('#ordersStatus').html(ordersList);
+                    } else {
+                        $('#ordersStatus').html('Nincsenek nyitott rendelések.');
+                    }
+                },
+                error: function() {
+                    $('#ordersStatus').html('Hiba történt a rendelés státuszainak lekérdezésekor.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

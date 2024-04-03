@@ -15,6 +15,9 @@ class Megrendelt extends Model
         'Etel_Azon',
         'mennyiseg',
     ];
-
+    public function etel()
+    {
+        return $this->belongsTo(Eteleink::class, 'Etel_Azon', 'Etel_Azon');
+    }
 
 }

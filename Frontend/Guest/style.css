@@ -1,0 +1,238 @@
+body {
+    background-color: #264E36
+  }
+  
+  main {
+    background-color: #258037;
+    width: 80%;
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: 'h h h'
+    'n1 n1 n1'
+      'n n n'
+      'a a as'
+      'a a as'
+      'f f f';
+  }
+  
+  .items-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  header {
+    grid-area: h;
+  }
+  header img{
+    width: 10%;
+  }
+  ul li a {
+    text-decoration: none; 
+    color: black; 
+    padding: 10px 15px;
+    border-radius: 5px;
+  }
+  
+  ul li a:hover {
+    background-color: #FFD700; /* Changes background color on hover */
+  }
+  h2 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  navigation {
+    grid-area: n1;
+    background-color: #f59c02;
+    width: 100%;
+    height: 50px;
+  
+  }
+  
+  nav {
+    grid-area: n;
+    background-color: #f59c02;
+    width: 100%;
+    height: 50px;
+    display: grid;
+    grid-template-areas: "na na p";
+  }
+  
+  article {
+    padding-left: 15px;
+    grid-area: a;
+    width: 700px;
+  }
+  
+  aside {
+    grid-area: as;
+    width: 500px;
+    padding-right: 50px;
+    padding-top: 65px;
+  
+  }
+  
+  .kosar-container {
+  
+    border: 1px solid gray;
+    padding-left: 20px;
+    padding-top: 20px;
+    background-color: #EEB127;
+    width: 450px;
+  }
+  
+  ul {
+    padding-top: 10px;
+    margin: auto;
+    height: 40px;
+  }
+  
+  ul li {
+    display: inline;
+    padding-right: 10px;
+    font-weight: bold;
+    transition: font-size 0.3s ease;
+    cursor: pointer;
+    width: 150px;
+  }
+  
+  .etelkategoriak {
+    grid-area: na;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    /* Center the items horizontally */
+    gap: 10px;
+  }
+  
+  .etelkategoriak li:hover {
+    font-size: 20px;
+  }
+  
+  .etelkategoriak li.active {
+    font-size: 20px;
+  }
+  
+  .Profil {
+
+    float: right;
+  }
+  
+  .card {
+    background-color: #EEB127;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    width: calc(50% - 20px);
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas: "image title footer";
+    align-items: center;
+  }
+  
+  .card-header,
+  .card-body,
+  .card-footer {
+    padding: 10px;
+  }
+  
+  .card-header {
+    background-color: #EEB127;
+    grid-area: image;
+    height: 100%;
+  }
+  
+  .card-header img {
+    padding-top: 15px;
+    width: 125%;
+    height: auto;
+    margin: auto;
+    padding-right: 5px;
+  }
+  
+  .card-body {
+    grid-area: title;
+  }
+  
+  .card-footer {
+    grid-area: footer;
+    height: 100%;
+    background-color: #EEB127;
+  }
+  
+  .kosarbaad {
+    width: 100% !important;
+    height: 50%;
+  
+    background-color: #f59c02;
+    cursor: pointer;
+  }
+  
+  .kosar {
+    display: flex;
+  
+  }
+  
+  .kosar-akcio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    /* Add margin on top if needed */
+  }
+  
+  .rendeles-gomb {
+    width: 100px;
+    height: 50px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .kosar>div {
+    margin-right: 20px;
+    width: 100px;
+  }
+  
+  
+  .kosar-termeknevek div,
+  .kosar-arak div,
+  .kosar-darabszamok div,
+  .kosar-mennyiseg-valtoztato div {
+    min-width: 120px;
+    margin-bottom: 5px;
+    text-align: left;
+    padding-bottom: 20px;
+  }
+  
+  .kosar-mennyiseg-valtoztato div {
+    width: 60px;
+    padding-bottom: 15px;
+  }
+  
+  .kosar-mennyiseg-valtoztato button {
+    width: 25px;
+    margin: 0 5px;
+  }
+  
+  .fixed {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; 
+  }
+  
+  
+  .star {
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    cursor: pointer;
+  }

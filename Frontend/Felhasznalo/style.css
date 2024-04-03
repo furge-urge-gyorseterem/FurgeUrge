@@ -10,6 +10,7 @@ main {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas: 'h h h'
+  'n1 n1 n1'
     'n n n'
     'a a as'
     'a a as'
@@ -33,6 +34,23 @@ h2 {
   padding-bottom: 10px;
 }
 
+navigation {
+  grid-area: n1;
+  background-color: #f59c02;
+  width: 100%;
+  height: 50px;
+
+}
+ul li a {
+  text-decoration: none; 
+  color: black; 
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+ul li a:hover {
+  background-color: #FFD700; /* Changes background color on hover */
+}
 nav {
   grid-area: n;
   background-color: #f59c02;
@@ -217,4 +235,8 @@ ul li {
   align-items: center;
   margin: auto;
   cursor: pointer;
+}
+.Kilepes, .Profil {
+
+float: right;
 }

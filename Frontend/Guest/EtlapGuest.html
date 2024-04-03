@@ -15,17 +15,20 @@
 
 <body>
   <main>
+
     <header>
       <h1>Urge Furge</h1>
       <img src="../kepek/Logo.png" alt="Logo">
     </header>
     <navigation>
       <ul>
-      <li><a href="Főoldal.html">Főoldal</a></li>
-        <li><a href="kaja.html">Étlap</a></li>
-        <li id="logout" class="Kilepes"><a href="">Kijelentkezés</a></li>
-        <li class="Profil" ><a href="Profil.html">Profil</a></li>
+      <li><a href="FőoldalGuest.html">Főoldal</a></li>
+        <li><a href="EtlapGuest.html">Étlap</a></li>
+        <li class="Profil"><a href="bejelentkezes.html">Bejelentkezés</a></li>
       </ul>
+
+        
+
     </navigation>
     <nav>
       <ul class="etelkategoriak">
@@ -33,21 +36,18 @@
       </ul>
       
     </nav>
-    <div id="kosarModal" class="modal" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
+    <div class="modal fade" id="bejelentkezesModal" tabindex="-1" aria-labelledby="bejelentkezesModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Kosár Tartalma</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+            <h5 class="modal-title" id="bejelentkezesModalLabel">Étel Rendelés</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <p>Itt jelenik meg a kosár tartalma...</p>
+            Étel rendeléshez vagy kedvencekhez adáshoz kérem jelentkezzen be.
           </div>
           <div class="modal-footer">
-            <button type="button" id="order-button" class="btn btn-primary">Megrendelem</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Bezár</button>
+            <a href="bejelentkezes.html" class="btn btn-primary">Bejelentkezés</a>
           </div>
         </div>
       </div>
@@ -58,9 +58,8 @@
     <aside>
       
       <div class="kosar-container">
-        <h2>Kosár:</h2>
         <div class="kosar">
-          
+            <h2>Kosár:</h2>
           <div class="kosar-termeknevek"></div>
           <div class="kosar-arak"></div>
           <div class="kosar-darabszamok"></div>

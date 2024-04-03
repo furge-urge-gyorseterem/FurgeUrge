@@ -26,6 +26,8 @@ return new class extends Migration
             ['Rendeles_Azon' => 1, 'Etel_Azon' => 2, 'mennyiseg' => 1],
             ['Rendeles_Azon' => 2, 'Etel_Azon' => 4, 'mennyiseg' => 3],
             ['Rendeles_Azon' => 3, 'Etel_Azon' => 5, 'mennyiseg' => 2],
+            ['Rendeles_Azon' => 3, 'Etel_Azon' => 10, 'mennyiseg' => 2],
+            ['Rendeles_Azon' => 4, 'Etel_Azon' => 2, 'mennyiseg' => 1]
         ]);
 
        

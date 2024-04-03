@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="loginForm">
+        <label>
+            Email:
+            <input type="email" name="email" id="email" />
+        </label>
+        <label>
+            Jelszó:
+            <input type="password" name="password" id="password" />
+        </label>
+        <button type="submit">Bejelentkezés</button>
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#loginForm').on('submit', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: 'http://localhost:3000/api/login',
+                    type: 'POST',
+                    data: {
+                        email: $('#email').val(),
+                        password: $('#password').val()
+                    },
+                    success: function (response) {
+                        console.log(response.success)
+                        if (response.success) {
+                            console.log('Bejelentkezés sikeres!', response);
+                            // Itt változtatásra kerül a token változó helyes használatára
+                            localStorage.setItem('userid', response.user_id);
+                            console.log(localStorage) // feltételezve, hogy a válasz 'token' mezőt tartalmaz
+                            window.location.href = 'kaja.html'; // Átirányítás az étlap oldalra
+                           
+                        } else {
+                            console.error('Hiba a bejelentkezés során', response);
+                            alert('Bejelentkezés sikertelen. Kérjük, ellenőrizze az adatokat és próbálja újra.');
+                        }
+                    },
+                    error: function (error) {
+                        console.error('Hiba történt a kérés feldolgozása során', error);
+                        alert('Hiba történt. Kérjük, próbálja meg később.');
+                    }
+                });
+
+            });
+        });
+
+    </script>
+    <br>
+    <br>
+    <form id="registrationForm">
+        <label>
+            Név:
+            <input type="text" name="name" id="name" required />
+        </label>
+        <label>
+            Email:
+            <input type="email" name="email" id="email" required />
+        </label>
+        <label>
+            Város:
+            <input type="text" name="city" id="city" required />
+        </label>
+        <label>
+            Telefonszám:
+            <input type="tel" name="phone" id="phone" required />
+        </label>
+        <label>
+            Jelszó:
+            <input type="password" name="password" id="password" required />
+        </label>
+        <label>
+            Jelszó megerősítése:
+            <input type="password" name="password_confirmation" id="password_confirmation" required />
+        </label>
+        <button type="submit">Regisztráció</button>
+    </form>
+    <script>
+        $(document).ready(function () {
+            $('#registrationForm').on('submit', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: 'http://localhost:3000/api/register',
+                    type: 'POST',
+                    data: {
+                        name: $('#name').val(),
+                        email: $('#email').val(),
+                        password: $('#password').val(),
+                        password_confirmation: $('#password_confirmation').val()
+                    },
+                    success: function (response) {
+                        console.log('Regisztráció sikeres!', response);
+
+                    },
+                    error: function (error) {
+                        console.error('Hiba a regisztráció során', error);
+                        // Hiba kezelése, pl. felhasználó tájékoztatása
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

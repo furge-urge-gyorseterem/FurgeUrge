@@ -42,11 +42,19 @@ return new class extends Migration
                 'Szállítás_költség' => 700, 
             ],
             [
-                'Megrendelő_id' => 1, 
+                'Megrendelő_id' => 4, 
                 'Futár_id' => 3, 
-                'Státusz' => 'Készítés folyamatban',
-                'Szállítás_Kezdete' => Carbon::now(),
-                'Szállítás_Vége' => null,
+                'Státusz' => 'Kiszállítva',
+                'Szállítás_Kezdete' => Carbon::parse('2024-02-06 17:00'),
+                'Szállítás_Vége' => Carbon::parse('2024-02-06 19:00'),
+                'Szállítás_költség' => 500, 
+            ],
+            [
+                'Megrendelő_id' => 4, 
+                'Futár_id' => 3, 
+                'Státusz' => 'Kiszállítva',
+                'Szállítás_Kezdete' => Carbon::parse('2024-02-05 17:00'),
+                'Szállítás_Vége' => Carbon::parse('2024-02-05 17:30'),
                 'Szállítás_költség' => 500, 
             ],
         ]);

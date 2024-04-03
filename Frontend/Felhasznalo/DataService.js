@@ -5,9 +5,7 @@ class DataService {
     axios
       .get(url)
       .then(function (response) {
-        console.log("adatok", response.data);
-        console.log("státusz", response.status);
-        console.log("Státusz szöveg", response.statusText);
+
         callback(response.data);
       })
       .catch(function (error) {
@@ -17,6 +15,17 @@ class DataService {
         // always executed
       });
   }
+  getTokenAxiosData(url, token){
+    axios
+    .get(`${url}/${token}`)
+    .then((response)=> {
+      console.log("RESP", response);
+  })
+    .catch((error)=> {
+      console.log("hiba",error);
+    })
+  }
+  
   postData(url, data, callback, errorCallback) {
     axios
       .post(url, data)
