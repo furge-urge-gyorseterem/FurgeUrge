@@ -59,3 +59,4 @@ Route::delete('/kedvencek/{felhasznaloAzon}/{etelAzon}', [KedvencekController::c
 Route::get('/kedvencek/{felhasznaloAzon}', [KedvencekController::class, 'showFavorites']);
 Route::get('/ordered-foods/{id}', [UserController::class, 'getOrderedFoods']);
 Route::get('/orders/status/{userId}', [SzallitasController::class, 'showOrderStatus']);
+Route::get('/Workers',[DolgozoController::class,'index']);
