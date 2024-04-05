@@ -11,7 +11,7 @@ class DolgozoController extends Controller
 
 
        return DB::table('dolgozok')
-      ->join('users as u','dolgozok.Dolgozó_id','=','u.Felhasználó_id')
+      ->join('users as u','dolgozok.Dolgozó_id','=','u.id')
        ->get();
         
     }

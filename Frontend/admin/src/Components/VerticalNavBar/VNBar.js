@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import './VNBar.css';
 import { Link } from 'react-router-dom';
 
@@ -26,24 +27,24 @@ function VNBAR() {
 			</div>
 
 			<ul>
-				<li className='arrow'>
+				<li className="arrow">
 					<Link to="/" className="link">
-						Dashboard
+						<div>Dashboard</div>
 					</Link>
 				</li>
-				<li className='arrow'>
+				<li className="arrow">
 					<Link to="/meals" className="link">
-						Ételeink
+						<div>Ételeink</div>
 					</Link>
 				</li>
-				<li className='arrow'>
+				<li className="arrow">
 					<Link to="/users" className="link">
-						Felhasználók
+						<div>Felhasználók</div>
 					</Link>
 				</li>
-				<li className='arrow'>
+				<li className="arrow">
 					<Link to="/orders" className="link">
-						Rendelések
+						<div>Rendelések</div>
 					</Link>
 				</li>
 			</ul>

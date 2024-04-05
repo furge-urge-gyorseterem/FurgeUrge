@@ -6,6 +6,7 @@ import React, { useState, useEffect } from 'react';
 function Users() {
 	const [Worker, setWorker] = useState([]);
 	const [workerKey, setworkerKey] = useState([]);
+	const szures = ['name', 'Telefonszám', 'Lakcím', 'Státusz'];
 
 	const { getWorkers } = useMealApi();
 
@@ -13,7 +14,8 @@ function Users() {
 		try {
 			const { data } = await getWorkers();
 			setWorker(data);
-			setworkerKey(Object.keys(data[0]));
+
+			setworkerKey(Object.keys(data[0]).filter((key) => szures.includes(key)));
 		} catch (error) {
 			console.log(error);
 		}
@@ -25,34 +27,27 @@ function Users() {
 
 	return (
 		<div className="Users">
-			<Table striped bordered hover size="sm">
+			<Table striped borderless hover size="m" variant="dark">
 				<thead>
 					<tr>
 						{workerKey.map((key) => (
 							<th key={key}>{key}</th>
-
 						))}
 						<th>Options</th>
 					</tr>
 				</thead>
 				<tbody>
-					{Worker.map((members, index) => (
-						<>
-							<tr key={index}>
-								{workerKey.map((data, i) => {
-									return (
-										<>
-											<td key={i}>{members[data] !== null ? members[data] : ''}</td>
-										</>
-									);
-								}
-								)}
+					{Worker.map((member, index) => (
+						<React.Fragment key={index}>
+							<tr>
+								{workerKey.map((key) => {
+									return <td key={key}>{member[key]}</td>; 
+								})}
 								<td>
-									<button>edit</button> <button>delete</button>
+									<button className='e'>edit</button> <button className='d'>delete</button>
 								</td>
 							</tr>
-							
-						</>
+						</React.Fragment>
 					))}
 				</tbody>
 			</Table>

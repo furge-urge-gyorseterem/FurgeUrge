@@ -1,0 +1,56 @@
+/* AOrder.css - alapvető stílusok */
+
+.AOrder {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+	border: 2px solid black;
+	width: 90%;
+	margin: 20px auto;
+	color: white;
+	background-color: rgba(72, 72, 72, 0.952);
+}
+
+.RData {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+	border-right: 2px solid black;
+}
+
+.RData div {
+	margin: 5px 0;
+	padding: 5px;
+	border: 1px solid black;
+	border-left: 50px solid transparent;
+	border-right: 50px solid transparent;
+}
+.stat {
+	border-radius: 60px;
+	margin: 3%;
+}
+
+.watch {
+	margin: 3%;
+	background-color: green;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px 20px;
+	border: 1px solid black;
+	border-radius: 20px;
+	width: 200px;
+}
+
+.watch:hover {
+    margin: 3%;
+    background-color: #0f0; /* Világos zöld */
+    color: white; /* Fehér szöveg a kontraszthoz */
+    border-radius: 5px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Zöld "világítás" */
+    transition: all 0.3s ease; 
+}

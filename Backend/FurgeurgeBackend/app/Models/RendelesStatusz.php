@@ -8,8 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class RendelesStatusz extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'RendelésStátusz';
-    protected $fillable = [
-        'RendelésStátusz',
-    ];
+    protected $primaryKey = 'RendelesStatusz';
 }

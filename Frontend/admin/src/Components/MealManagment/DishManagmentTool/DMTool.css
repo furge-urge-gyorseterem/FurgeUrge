@@ -49,6 +49,7 @@
   border: none;
   border-radius: 10px 10px 0%  0%;
 }
+
 .costumTab[aria-selected="true"] {
   background: rgba(67, 70, 45, 0.566); /* Aktív tab háttérszíne */
   color: #ffffff; /* Aktív tab szövegszíne */
@@ -60,6 +61,8 @@
 }
 .react-tabs__tab-panel {
   background-color: rgba(67, 70, 45, 0.566);
+
+
   border-radius: 0 30px 30px  30px;
 
 }

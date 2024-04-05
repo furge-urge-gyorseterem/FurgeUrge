@@ -7,10 +7,17 @@ const httpClient = axios.create({
 const getMeals = () => httpClient.get('/eteleink');
 const deleteMeal = (id) => httpClient.delete(`/eteleink/${id}`);
 
-const getWorkers = () => httpClient.get('/Dolgozok');
+const getWorkers = () => httpClient.get('/Workers');
+
+const getAdminAdat = () => httpClient.get('/AAdat');
+const getrendop = () => httpClient.get('/rendstats');
+const statuszmodosit = (rendelestId, ujStatusz) => httpClient.patch(`/RendelesstatuszModosit/${rendelestId}/${ujStatusz}`);
 
 export const useMealApi = () => ({
 	getMeals,
 	deleteMeal,
-	getWorkers
+	getWorkers,
+	getAdminAdat,
+	getrendop,
+	statuszmodosit
 });
