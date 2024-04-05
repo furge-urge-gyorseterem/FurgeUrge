@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Megrendelt;
 use App\Models\Szallitas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SzallitasController extends Controller
 {
@@ -29,6 +30,7 @@ class SzallitasController extends Controller
             'szallitasData' => $szallitas,
         ], 201);
     }
+    
     public function getHighestOrderId()
     {
         $maxRendelesAzon = Szallitas::max('Rendeles_Azon');
@@ -50,4 +52,48 @@ class SzallitasController extends Controller
 
     return response()->json($orders);
 }
+public function index()
+{
+    $eteleinks = Szallitas::all(); // Retrieve all records
+    return response()->json($eteleinks); // Return the records as JSON
+}
+public function AdminAdat()
+{
+    $eredmeny = DB::table('szallitas')
+        ->join('rendeles_statuszs', 'szallitas.Státusz', '=', 'rendeles_statuszs.RendelésStátusz')
+        ->join('users as megrendelo_user', 'szallitas.Megrendelő_id', '=', 'megrendelo_user.id')
+        ->join('users as futar_user', 'szallitas.Futár_id', '=', 'futar_user.id')
+        ->select(
+            'szallitas.Rendeles_Azon',
+            'szallitas.Státusz',
+            'szallitas.Szállítás_Kezdete',
+            'szallitas.Szállítás_Vége',
+            'szallitas.Szállítás_költség',
+            'rendeles_statuszs.RendelésStátusz',
+            'megrendelo_user.id as MegrendelőID', // Megrendelő azonosítója
+            'megrendelo_user.name as MegrendelőNév', // Megrendelő neve
+            'futar_user.id as FutárID', // Futár azonosítója
+            'futar_user.name as FutárNév' // Futár neve
+        )
+        ->get();
+
+    return response()->json($eredmeny);
+}
+
+    public function updateStatus($id, $statusz)
+    {
+        // Ellenőrizzük, hogy a megadott státusz létezik-e a rendeles_statuszs táblában
+        $statusExists = DB::table('rendeles_statuszs')->where('RendelésStátusz', $statusz)->exists();
+
+        if (!$statusExists) {
+            return response()->json(['error' => 'Érvénytelen státusz.'], 404);
+        }
+
+        // Keresés az adott ID-jú szállításra
+        $szallitas = Szallitas::findOrFail($id);
+        $szallitas->Státusz = $statusz;
+        $szallitas->save();
+
+        return response()->json(['message' => 'Szállítási státusz sikeresen frissítve.']);
+    }
 }

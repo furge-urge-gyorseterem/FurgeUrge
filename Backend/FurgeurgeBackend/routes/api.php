@@ -11,6 +11,8 @@ use App\Http\Controllers\EteleinkController;
 use App\Http\Controllers\EtelkategoriakController;
 use App\Http\Controllers\KedvencekController;
 use App\Http\Controllers\MegrendeltController;
+
+use App\Http\Controllers\RendelesStatuszController;
 use App\Http\Controllers\SzallitasController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -60,3 +62,11 @@ Route::get('/kedvencek/{felhasznaloAzon}', [KedvencekController::class, 'showFav
 Route::get('/ordered-foods/{id}', [UserController::class, 'getOrderedFoods']);
 Route::get('/orders/status/{userId}', [SzallitasController::class, 'showOrderStatus']);
 Route::get('/Workers',[DolgozoController::class,'index']);
+
+
+//orders rész inentöl megy lets go baby
+Route::get('/rendstats',[RendelesStatuszController::class,'index']);
+Route::get('/szallitas',[SzallitasController::class,'index']);
+
+Route::get('/AAdat',[SzallitasController::class,'AdminAdat']);
+Route::patch('/RendelesstatuszModosit/{id}/{statusz}', [SzallitasController::class, 'updateStatus']);

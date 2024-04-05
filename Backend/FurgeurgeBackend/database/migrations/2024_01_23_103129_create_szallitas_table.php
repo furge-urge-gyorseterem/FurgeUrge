@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('Megrendelő_id')->references('id')->on('users');
             $table->foreignId('Futár_id')->references('id')->on('users');
             $table->string('Státusz')->default('Készítés Folyamatban');
-            $table->foreign('Státusz')->references('RendelésStátusz')->on('RendelesStatusz'); 
+            $table->foreign('Státusz')->references('RendelésStátusz')->on('rendeles_statuszs'); 
             $table->dateTime('Szállítás_Kezdete');
             $table->dateTime('Szállítás_Vége')->nullable();
             $table->integer('Szállítás_költség');

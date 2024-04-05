@@ -12,23 +12,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('RendelesStatusz', function (Blueprint $table) {
+        Schema::create('rendeles_statuszs', function (Blueprint $table) {
             $table->string('RendelésStátusz')->primary();
         });
 
-        DB::table('RendelesStatusz')->insert([
+        DB::table('rendeles_statuszs')->insert([
             'RendelésStátusz' => 'Készítés folyamatban', 
 
         ]);
-        DB::table('RendelesStatusz')->insert([
-            'RendelésStátusz' => 'Elkészült', 
+        DB::table('rendeles_statuszs')->insert([
+            'RendelésStátusz' => 'Elkeszult', 
 
         ]);
-        DB::table('RendelesStatusz')->insert([
+        DB::table('rendeles_statuszs')->insert([
             'RendelésStátusz' => 'Futárnál', 
 
         ]);
-        DB::table('RendelesStatusz')->insert([
+        DB::table('rendeles_statuszs')->insert([
             'RendelésStátusz' => 'Kiszállítva', 
 
         ]);
@@ -39,6 +39,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('etelstatuszs');
+        Schema::dropIfExists('rendeles_statuszs');
     }
 };

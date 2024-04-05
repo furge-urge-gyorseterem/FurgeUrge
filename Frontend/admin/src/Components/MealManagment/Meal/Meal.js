@@ -8,7 +8,7 @@ function Meal(props) {
 
 	return (
 		<div className="Meal">
-			<div className="Data">
+			<div className="MData">
 				<div className="FoodName">{props.food.Elnevezes}</div>
 
 				<div className="Cost">{props.food.Ar} FT</div>
