@@ -4,6 +4,9 @@ import React, { useEffect, useState } from 'react';
 import './OrderManagmentTool.css';
 import { useMealApi } from '../../api/MealApi';
 import AdminOrders from './AdminOrders/AdminOrders';
+import WorkOrders from './WorkerOrders/OM';
+
+
 const OrderManagmentTool = () => {
 	const [isChecked, setIsChecked] = useState(false);
 
@@ -40,6 +43,7 @@ const OrderManagmentTool = () => {
             <div>
         
                 <h1>Ó Ó Dolgozó vagyok mehet grind</h1>
+				<WorkOrders  Orders={Orders}/>
 
             </div> :   <div>
             <h1>Admin Üzem Mód</h1>

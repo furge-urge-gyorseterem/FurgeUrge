@@ -21,7 +21,7 @@ return new class extends Migration
 
         ]);
         DB::table('rendeles_statuszs')->insert([
-            'RendelésStátusz' => 'Elkeszult', 
+            'RendelésStátusz' => 'Futárra vár', 
 
         ]);
         DB::table('rendeles_statuszs')->insert([
