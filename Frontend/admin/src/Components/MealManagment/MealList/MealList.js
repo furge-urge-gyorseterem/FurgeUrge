@@ -15,7 +15,7 @@ const MealList = (props) => {
 
 	useEffect(() => {
 		setMeals(getFilteredMeals())
-	}, [query])
+	}, [query,props.meals])
 
 	return (
 		<div className="MealList">

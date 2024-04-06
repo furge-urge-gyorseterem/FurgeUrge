@@ -52,7 +52,7 @@ function AOrder(props) {
 						</option>
 					))}
 				</select>
-				{/* További interaktív elemek helye */}
+				<div className='watch'>👁</div>
 			</div>
 		</div>
 	);
