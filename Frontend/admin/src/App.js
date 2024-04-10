@@ -14,7 +14,7 @@ function App() {
 	return (
 		<div className="App">
 			
-			<VNBAR />
+			<VNBAR name="Vörös Dominik"/>
 		
 
 			<Routes>

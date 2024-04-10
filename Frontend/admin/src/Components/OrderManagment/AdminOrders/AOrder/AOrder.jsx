@@ -34,25 +34,29 @@ function AOrder(props) {
 
 	return (
 		<div className="AOrder">
-			<div className="RData">
-				<div className="azonosító">Rendelés Azonosítója: {props.rendeles.Rendeles_Azon}</div>
-				<div className="Megrendelo">
-					Megrendelő: {props.rendeles.MegrendelőNév} <br /> Azon: {props.rendeles.MegrendelőID}
+			<div className="Container">
+				<div className="RData">
+					<div className="azonosító">Rendelés Azonosítója: {props.rendeles.Rendeles_Azon}</div>
+					<div className="Megrendelo">
+						Megrendelő: {props.rendeles.MegrendelőNév} <br /> Azon: {props.rendeles.MegrendelőID}
+					</div>
+					<div className="Futár">
+						Név: {props.rendeles.FutárNév} <br /> Azon: {props.rendeles.FutárID}
+					</div>
 				</div>
-				<div className="Futár">
-					Név: {props.rendeles.FutárNév} <br /> Azon: {props.rendeles.FutárID}
+
+				<div className="ROptions">
+					<div className="watch">👁</div>
+
+					<select className="stat" value={selectedOption} onChange={handleSelectChange}>
+						<option value="">{props.rendeles.Státusz || 'Válassz státuszt'}</option>
+						{options.map((option, index) => (
+							<option key={index} value={option.value}>
+								{option.label}
+							</option>
+						))}
+					</select>
 				</div>
-			</div>
-			<div className="ROptions">
-				<select className="stat" value={selectedOption} onChange={handleSelectChange}>
-					<option value="">{props.rendeles.Státusz || 'Válassz státuszt'}</option>
-					{options.map((option, index) => (
-						<option key={index} value={option.value}>
-							{option.label}
-						</option>
-					))}
-				</select>
-				<div className='watch'>👁</div>
 			</div>
 		</div>
 	);

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+<?php
 use App\Models\Megrendelt;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,13 +20,12 @@ class Szallitas extends Model
         'Szállítás_Kezdete',
         'Szállítás_Vége',
         'Szállítás_költség',
-       
-        
+
     ];
     public function megrendeltEtelek()
     {
         return $this->hasMany(Megrendelt::class, 'Rendeles_Azon', 'Rendeles_Azon');
     }
-  
+
         
     }
