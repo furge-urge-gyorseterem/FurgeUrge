@@ -8,7 +8,11 @@ class Controller {
     this.dataService = new DataService();
 
     const id = localStorage.getItem('userid');
+    const státusz = localStorage.getItem('statusz')
+    console.log(localStorage)
+    const adminLi = státusz === 'Admin' ? $('<li><a href="http://localhost:3001/">Admin</a></li>') : $();
 
+    $('navigation ul').append(adminLi);
     this.dataService.getAxiosData(
       `http://localhost:3000/api/kedvencek/${id}`,
       (response) => {
@@ -155,7 +159,7 @@ class Controller {
       // Frissítsd a kosár UI-t
       this.kosarUIFrissites();
     });
-    
+
   }
   etelekMegjelenitesKedvencekNelkul(etelekResponse) {
     const tisztitottEtelek = etelekResponse.map(kategoria => {
@@ -326,7 +330,7 @@ class Controller {
     let htmlContent = '<ul class="list-unstyled">';
     let osszeg = 0;
     Object.entries(this.kosarTartalom).forEach(([termekNeve, adatok]) => {
-      
+
       osszeg += adatok.ar
       htmlContent += `
         <li>
@@ -340,18 +344,18 @@ class Controller {
     $(document).on('click', '#order-button', () => {
       // Itt az arrow functionnek köszönhetően a `this` a Controller példányára fog mutatni
       console.log('A megrendelés gombra kattintottak.');
-  
+
       const userId = localStorage.getItem('userid');
       const totalKosarOsszeg = this.calculateTotal();
       const szallitas = {
-          Megrendelő_id: userId,
-          Futár_id: 2,
-          Szállítás_költség: totalKosarOsszeg,
+        Megrendelő_id: userId,
+        Futár_id: 2,
+        Szállítás_költség: totalKosarOsszeg,
       };
       this.szallitasHozzaadas(szallitas); // a `this` itt a Controller példányára utal
-  });
+    });
     return htmlContent;
-    
+
   }
   szallitasHozzaadas(etelData) {
     this.dataService.postData(
@@ -364,7 +368,7 @@ class Controller {
         console.error("Hiba az étel hozzáadásakor:", error);
       }
     )
-    ;
+      ;
     this.lekerMaxRendelesAzon();
   }
   megrendeltHozzaadas(megrendeltData) {

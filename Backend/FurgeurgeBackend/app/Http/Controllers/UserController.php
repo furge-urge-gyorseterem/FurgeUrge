@@ -1,9 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Eteleink;
-use App\Models\Megrendelt;
 use App\Models\Szallitas;
 use App\Models\User;
 use Illuminate\Http\Request;

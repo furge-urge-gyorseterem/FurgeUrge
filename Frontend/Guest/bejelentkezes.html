@@ -35,10 +35,11 @@
                         console.log(response.success)
                         if (response.success) {
                             console.log('Bejelentkezés sikeres!', response);
-                            // Itt változtatásra kerül a token változó helyes használatára
+
                             localStorage.setItem('userid', response.user_id);
-                            console.log(localStorage) // feltételezve, hogy a válasz 'token' mezőt tartalmaz
-                            window.location.href = '../Felhasznalo/kaja.html'; // Átirányítás az étlap oldalra
+                            localStorage.setItem('statusz',response.Státusz);
+                            console.log(localStorage)
+                            window.location.href = '../Felhasznalo/kaja.html'; 
                            
                         } else {
                             console.error('Hiba a bejelentkezés során', response);
