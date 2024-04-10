@@ -1,19 +1,21 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import './VNBar.css';
 import { Link } from 'react-router-dom';
+import LogoImage from './navbar/icons/Logo.png';
+import profpick from './navbar/prof/prof1.jpg';
 
-function VNBAR() {
+function VNBAR(props) {
 	return (
 		<div className="VNBAR">
-			<div className="ProfPic"></div>
-			<label>Felhasználó név</label>
+			<div className="ProfPic">
+				<img className="Prof" src={profpick} alt="prof"></img>
+			</div>
+			<label>{props.name}</label>
 			<div className="options">
 				<ul>
 					<li>
 						{' '}
-						<a href="#">
-							<img src="navbar/icons/logout.jpg" alt="" /> Visza a Főoldalra
-						</a>
+						<a href="http://127.0.0.1:5500/Felhasznalo/F%C5%91oldal.html">Visza a Főoldalra</a>
 					</li>
 					<li>
 						{' '}
@@ -48,6 +50,8 @@ function VNBAR() {
 					</Link>
 				</li>
 			</ul>
+
+			<img className="logo" src={LogoImage} alt="logo"></img>
 		</div>
 	);
 }

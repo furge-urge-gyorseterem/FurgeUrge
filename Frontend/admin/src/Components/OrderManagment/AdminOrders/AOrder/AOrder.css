@@ -1,56 +1,81 @@
-/* AOrder.css - alapvető stílusok */
-
 .AOrder {
 	display: flex;
 	justify-content: space-between;
+    margin-right:3% ;
+    margin-left:7% ;
+    width: 70vw;
 	align-items: center;
-	padding: 10px;
-	border: 2px solid black;
-	width: 90%;
-	margin: 20px auto;
-	color: white;
-	background-color: rgba(72, 72, 72, 0.952);
+    color: white;
+	font-size: 0.8rem;
 }
 
-.RData {
+.Container{
+    box-sizing: border-box;
+    margin: 2%;
+    padding: auto;
+    width: 80%;
+    padding: 60px;
+	background-color: #333;
+    border-radius: 8px;
+    display: flex;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	
+	box-sizing: border-box; 
+}
+.RData{
 	display: flex;
-	flex-direction: column;
-	padding: 10px;
-	border-right: 2px solid black;
+	align-items: center;
+	justify-content: start;
+    margin-right: 10%;
+	text-align: left;
+}
+.ROptions{
+    width: 100%;
+}
+.ROptions section{
+    width: 100%;
 }
 
-.RData div {
-	margin: 5px 0;
-	padding: 5px;
-	border: 1px solid black;
-	border-left: 50px solid transparent;
-	border-right: 50px solid transparent;
+.RData div,
+.azonosító,
+.Megrendelo,
+.Futár {
+
+	margin: 0 10px;
+	padding: 8px;
+	background-color: #4caf50; /* Világoszöld háttér a kiemelés érdekében */
+	border-radius: 4px;
+
+	width: 10vw;
+	height: 10vh;
 }
+
 .stat {
-	border-radius: 60px;
-	margin: 3%;
+    margin-top: 4%;
+	padding: 10px;
+	border: none;
+	border-radius: 4px;
+	background-color: #555; /* Sötét háttér az opcióknak */
+
+    
+	color: white;
+	cursor: pointer;
+    width: 100%;
+	
 }
 
 .watch {
-	margin: 3%;
-	background-color: green;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 10px 20px;
-	border: 1px solid black;
-	border-radius: 20px;
-	width: 200px;
+	padding: 10px 15px;
+	background-color: #555; /* Egységesített háttér */
+	color: white;
+	border-radius: 4px;
+	cursor: pointer;
 }
 
 .watch:hover {
-    margin: 3%;
-    background-color: #0f0; /* Világos zöld */
-    color: white; /* Fehér szöveg a kontraszthoz */
-    border-radius: 5px;
-    text-align: center;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Zöld "világítás" */
-    transition: all 0.3s ease; 
+	background-color: #4caf50; /* Zöld háttér a hover állapotban */
+	box-shadow: 0 0 10px #4caf50; /* Világító effekt */
 }
+
+/* További stílusok amennyiben szükségesek */
+

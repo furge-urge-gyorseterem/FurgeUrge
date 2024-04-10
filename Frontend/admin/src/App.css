@@ -2,7 +2,7 @@
 
 
 body{
-  background-color: rgb(212, 224, 131);
+  background-color: #258037;
 }
 .App{
   text-align: center;
@@ -10,5 +10,4 @@ body{
   flex-wrap: wrap;
   gap: 1%;
   width: 100%;
- 
 }

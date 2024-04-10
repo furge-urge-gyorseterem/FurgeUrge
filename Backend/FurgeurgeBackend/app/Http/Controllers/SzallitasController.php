@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Megrendelt;
+
 use App\Models\Szallitas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

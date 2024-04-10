@@ -9,9 +9,9 @@ function Meal(props) {
 	return (
 		<div className="Meal">
 			<div className="MData">
-				<div className="FoodName">{props.food.Elnevezes}</div>
+				<div className="FoodName ColorBox">{props.food.Elnevezes}</div>
 
-				<div className="Cost">{props.food.Ar} FT</div>
+				<div className="Cost ColorBox">{props.food.Ar} FT</div>
 			</div>
 			<div className="Options">
 				<div className="edit">✏</div>
