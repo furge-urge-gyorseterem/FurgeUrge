@@ -1,0 +1,53 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 20px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    padding: 10px;
+    background-color: #ffffff;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+ul li a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#ordersStatus {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effects for list items */
+ul li:hover {
+    background-color: #f9f9f9;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    ul li {
+        padding: 8px;
+    }
+}

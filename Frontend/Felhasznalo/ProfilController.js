@@ -9,6 +9,8 @@ class Controller {
                 this.fetchOrderedFoods(userId);
 
         });
+        const id = localStorage.getItem("userid")
+        
     }
     fetchOrderedFoods(userId) {
         this.dataService.getAxiosData(
@@ -43,6 +45,7 @@ class Controller {
             orderedFoodsContainer.text('Nincs megjeleníthető rendelés.');
         }
     }
+    
 };
 
 export default Controller;

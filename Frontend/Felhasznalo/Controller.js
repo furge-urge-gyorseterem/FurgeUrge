@@ -9,10 +9,9 @@ class Controller {
 
     const id = localStorage.getItem('userid');
     const státusz = localStorage.getItem('statusz')
-    console.log(localStorage)
     const adminLi = státusz === 'Admin' ? $('<li><a href="http://localhost:3001/">Admin</a></li>') : $();
 
-    $('navigation ul').append(adminLi);
+    $('navigation ul.navigation-right').prepend(adminLi);
     this.dataService.getAxiosData(
       `http://localhost:3000/api/kedvencek/${id}`,
       (response) => {
@@ -26,6 +25,7 @@ class Controller {
       },
       this.hibakezeles
     );
+    
 
     this.dataService.getAxiosData(
       "http://localhost:3000/api/kategoria",

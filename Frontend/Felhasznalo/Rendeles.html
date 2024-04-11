@@ -3,19 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rendelés Státusza</title>
+    <title>Rendelésem</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="rendeles.css">
 </head>
 
 <body>
-    <ul>
-        <li><a href="Főoldal.html">Főoldal</a></li>
-        <li><a href="kaja.html">Étlap</a></li>
-        <li id="logout" class="Kilepes"><a href="">Kijelentkezés</a></li>
-        <li class="Profil" ><a href="Profil.html">Profil</a></li>
-        
-
-      </ul>
+    <navigation>
+        <ul class="navigation-left">
+  
+          <li><a href="Főoldal.html">Főoldal</a></li>
+          <li><a href="kaja.html">Étlap</a></li>
+          <li><a href="Rendeles.html">Rendelésem</a></li>
+        </ul>
+        <ul class="navigation-right">
+  
+          <li class="Profil"><a href="Profil.html">Profil</a></li>
+          <li id="logout" class="Kilepes"><a href="">Kijelentkezés</a></li>
+  
+        </ul>
+      </navigation>
     <h1>Rendelés Státusza</h1>
     <div id="ordersStatus"></div>
 
@@ -43,6 +50,10 @@
                 }
             });
         });
+        const státusz = localStorage.getItem('statusz')
+    const adminLi = státusz === 'Admin' ? $('<li><a href="http://localhost:3001/">Admin</a></li>') : $();
+
+    $('navigation ul.navigation-right').prepend(adminLi);
     </script>
 </body>
 

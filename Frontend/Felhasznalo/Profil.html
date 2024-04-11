@@ -8,19 +8,31 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="Profilmain.js" type="module"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <title>Document</title>
+  
+  <link rel="stylesheet" href="profil.css">
+    <title>Profilom</title>
 </head>
 <body>
-    <navigation>
-        <ul>
-          <li><a href="Főoldal.html">Főoldal</a></li>
-          <li><a href="kaja.html">Étlap</a></li>
-          <li id="logout" class="Kilepes"><a href="">Kijelentkezés</a></li>
-          <li class="Profil" ><a href="Profil.html">Profil</a></li>
-          
-  
-        </ul>
+  <navigation>
+    <ul class="navigation-left">
 
+      <li><a href="Főoldal.html">Főoldal</a></li>
+      <li><a href="kaja.html">Étlap</a></li>
+      <li><a href="Rendeles.html">Rendelésem</a></li>
+    </ul>
+    <ul class="navigation-right">
+
+      <li class="Profil"><a href="Profil.html">Profil</a></li>
+      <li id="logout" class="Kilepes"><a href="">Kijelentkezés</a></li>
+
+    </ul>
+  </navigation>
         <div id="ordered-foods-container"></div>
 </body>
+<script>
+  const státusz = localStorage.getItem('statusz')
+  const adminLi = státusz === 'Admin' ? $('<li><a href="http://localhost:3001/">Admin</a></li>') : $();
+
+$('navigation ul.navigation-right').prepend(adminLi);
+</script>
 </html>

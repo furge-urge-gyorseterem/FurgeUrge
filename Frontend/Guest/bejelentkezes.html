@@ -5,22 +5,79 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="form.css">
 </head>
 
 <body>
-    <form id="loginForm">
-        <label>
-            Email:
-            <input type="email" name="email" id="email" />
-        </label>
-        <label>
-            Jelszó:
-            <input type="password" name="password" id="password" />
-        </label>
-        <button type="submit">Bejelentkezés</button>
-    </form>
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Login')">Bejelentkezés</button>
+        <button class="tablinks" onclick="openTab(event, 'Registration')">Regisztráció</button>
+    </div>
+    <div id="Login" class="tabcontent">
+        <form id="loginForm">
+            <label>
+                Email:
+                <input type="email" name="email" id="email" />
+            </label>
+            <label>
+                Jelszó:
+                <input type="password" name="password" id="password" />
+            </label>
+            <button type="submit">Bejelentkezés</button>
+        </form>
+    </div>
+
+    <div id="Registration" class="tabcontent">
+        <form id="registrationForm">
+            <label>
+                Név:
+                <input type="text" name="name" id="name" required />
+            </label>
+            <label>
+                Email:
+                <input type="email" name="email" id="email" required />
+            </label>
+            <label>
+                Város:
+                <input type="text" name="city" id="city" required />
+            </label>
+            <label>
+                Telefonszám:
+                <input type="tel" name="phone" id="phone" required />
+            </label>
+            <label>
+                Jelszó:
+                <input type="password" name="password" id="password" required />
+            </label>
+            <label>
+                Jelszó megerősítése:
+                <input type="password" name="password_confirmation" id="password_confirmation" required />
+            </label>
+            <button type="submit">Regisztráció</button>
+        </form>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // Call this function to default to open the first tab
+        document.addEventListener("DOMContentLoaded", function () {
+            // Open the first tab by default
+            document.querySelector('.tablinks').click();
+        });
         $(document).ready(function () {
             $('#loginForm').on('submit', function (e) {
                 e.preventDefault();
@@ -37,10 +94,10 @@
                             console.log('Bejelentkezés sikeres!', response);
 
                             localStorage.setItem('userid', response.user_id);
-                            localStorage.setItem('statusz',response.Státusz);
+                            localStorage.setItem('statusz', response.Státusz);
                             console.log(localStorage)
-                            window.location.href = '../Felhasznalo/kaja.html'; 
-                           
+                            window.location.href = '../Felhasznalo/kaja.html';
+
                         } else {
                             console.error('Hiba a bejelentkezés során', response);
                             alert('Bejelentkezés sikertelen. Kérjük, ellenőrizze az adatokat és próbálja újra.');
@@ -56,35 +113,6 @@
         });
 
     </script>
-    <br>
-    <br>
-    <form id="registrationForm">
-        <label>
-            Név:
-            <input type="text" name="name" id="name" required />
-        </label>
-        <label>
-            Email:
-            <input type="email" name="email" id="email" required />
-        </label>
-        <label>
-            Város:
-            <input type="text" name="city" id="city" required />
-        </label>
-        <label>
-            Telefonszám:
-            <input type="tel" name="phone" id="phone" required />
-        </label>
-        <label>
-            Jelszó:
-            <input type="password" name="password" id="password" required />
-        </label>
-        <label>
-            Jelszó megerősítése:
-            <input type="password" name="password_confirmation" id="password_confirmation" required />
-        </label>
-        <button type="submit">Regisztráció</button>
-    </form>
     <script>
         $(document).ready(function () {
             $('#registrationForm').on('submit', function (e) {
