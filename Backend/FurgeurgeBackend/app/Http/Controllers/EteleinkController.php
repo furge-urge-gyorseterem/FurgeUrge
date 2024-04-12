@@ -50,5 +50,26 @@ class EteleinkController extends Controller
 
         return response()->json($eredmeny); // Visszatérés a feldolgozott adatokkal
     }
+    public function store(Request $request)
+{
+
+    $request->validate([
+        'Elnevezes' => 'required|string|max:255',
+        'Etelkategoria' => 'required|string|max:255',
+        'Ar' => 'required|integer',
+        'Leírás' => 'required|string|max:255',
+    ]);
+
+    $etel = new Eteleink();
+    $etel->Elnevezes = $request->Elnevezes;
+    $etel->Etelkategoria = $request->Etelkategoria;
+    $etel->Ar = $request->Ar;
+    $etel->Leírás = $request->Leírás;
+    $etel->save();
+
+
+    return response()->json(['success' => 'Elem sikeresen létrehozva.'], 201);
+}
+
     }
 

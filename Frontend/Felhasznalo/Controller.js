@@ -25,7 +25,7 @@ class Controller {
       },
       this.hibakezeles
     );
-    
+
 
     this.dataService.getAxiosData(
       "http://localhost:3000/api/kategoria",
@@ -159,7 +159,9 @@ class Controller {
       // Frissítsd a kosár UI-t
       this.kosarUIFrissites();
     });
-
+    $(document).on('click', '.close', function () {
+      $('#kosarModal').modal('hide'); // This will close the modal with id 'kosarModal'
+    });
   }
   etelekMegjelenitesKedvencekNelkul(etelekResponse) {
     const tisztitottEtelek = etelekResponse.map(kategoria => {
@@ -258,6 +260,13 @@ class Controller {
     actionDiv.append(rendelesGomb, totalDiv);
 
     rendelesosszeg.append(actionDiv)
+    const baseHeight = 220;
+    const itemHeight = 22;
+    const itemCount = Object.keys(this.kosarTartalom).length; // number of items in the cart
+    const newModalHeight = baseHeight + ((itemCount - 1) * itemHeight);
+
+    $('#kosarModal .modal-content').css('height', newModalHeight + 'px');
+    this.updateModalTitleWithTotal(totalAmount);
   }
   // Egy új függvény a darabszám változtatására
   kosarDarabValtoztat(termekNeve, valtozas) {
@@ -276,6 +285,11 @@ class Controller {
     }
     this.kosarUIFrissites(); // Frissítjük a kosár UI-t
     this.toggleKosarContainerDisplay();
+  }
+  updateModalTitleWithTotal(total) {
+    const modalTitle = $('#kosarModal .modal-title');
+    const titleText = 'Kosár Tartalma - Összesen: ' + total + ' Ft';
+    modalTitle.text(titleText);
   }
   calculateTotal() {
     let total = 0;
@@ -323,8 +337,10 @@ class Controller {
   }
   jelenitseMegAModalt() {
     const kosarModal = $('#kosarModal');
-    kosarModal.find('.modal-body').html(this.kosarTartalmatListaz()); // Itt hozzuk létre a kosár tartalmát megjelenítő HTML-t
-    kosarModal.modal('show'); // Bootstrap modális függvény, ami megjeleníti a modált
+    const totalAmount = this.calculateTotal(); // Calculate total amount for the cart
+    kosarModal.find('.modal-title').text('Kosár Tartalma - Összesen: ' + totalAmount + ' Ft');
+    kosarModal.find('.modal-body').html(this.kosarTartalmatListaz());
+    kosarModal.modal('show');
   }
   kosarTartalmatListaz() {
     let htmlContent = '<ul class="list-unstyled">';

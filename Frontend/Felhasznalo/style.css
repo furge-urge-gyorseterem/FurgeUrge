@@ -22,19 +22,39 @@ main {
   flex-wrap: wrap;
   gap: 20px;
 }
-
 header {
   grid-area: h;
+  display: flex;
+align-items: center;
 }
 header img{
-  width: 10%;
+  width: 25%;
+  margin-right: 20px;
+}
+header h1{
+  margin: auto;
+  color: white;
+  text-align: center;
+  font-size: 300%; /* Adjust as needed */
+  font-weight: bold;
+}
+.kep1{
+
+  transform: scaleX(-1);
+
 }
 h2 {
   padding-top: 10px;
   padding-bottom: 10px;
   color: #FFD700;
 }
+.modal-dialog{
+  height: 100%;
+}
+.modal-content {
 
+  overflow-y: auto;
+}
 navigation {
   grid-area: n1;
   background-color: #f59c02;
