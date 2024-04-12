@@ -12,6 +12,7 @@ function DMTool() {
 	const [categories, setCategories] = useState([]);
 	const [selectedCategory, setSelectedCategory] = useState(0);
 	const [tabIndex, setTabIndex] = useState(0);
+	const [refresh, setrefresh] = useState(0);
 
 	const { getMeals, deleteMeal } = useMealApi();
 
@@ -24,6 +25,7 @@ function DMTool() {
 			console.log(error);
 		}
 	};
+	
 
 	const removeMeal = async (id) => {
 		try {
@@ -47,12 +49,15 @@ function DMTool() {
 
 	useEffect(() => {
 		fetchMeals();
-	}, []);
+	}, [refresh]);
 
 	const getMealList = (currentCategory) => {
 		if (currentCategory === 'Összes') return allMeal;
 		return allMeal.filter((meal) => meal.Etelkategoria === currentCategory);
 	};
+	const refresher=()=>{
+		setrefresh(refresh+1)
+	}
 
 	return (
 		<div className="DMTool">
@@ -65,7 +70,7 @@ function DMTool() {
 
 				{categories.map((category) => (
 					<TabPanel>
-						<MealList meals={getMealList(category)} deleteMeal={removeMeal} />
+						<MealList meals={getMealList(category)} deleteMeal={removeMeal} refresh={refresher}/>
 						{/* <MealList kategoria={category}></MealList> */}
 					</TabPanel>
 

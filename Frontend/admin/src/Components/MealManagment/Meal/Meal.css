@@ -13,7 +13,7 @@
 	gap: 1%;
 	color: white;
 	margin-bottom: 5%;
-  font-size: 1.5rem;
+	font-size: 1.5rem;
 }
 .MData {
 	display: flex;
@@ -37,10 +37,10 @@
 	border: 10px solid --base-color;
 }
 .ColorBox {
-	background-color: #4CAF50;;
- 
+	background-color: #4caf50;
+
 	margin: 2%;
-  border-radius: 8px;
+	border-radius: 8px;
 }
 
 .Options {
@@ -61,7 +61,7 @@
 	box-sizing: border-box;
 	cursor: pointer;
 	color: black;
-	background-color: hsl(0, 0%, 75%);
+	background-color: var(--base-color);
 }
 .delete {
 	border-top-right-radius: 60px;
@@ -71,10 +71,17 @@
 	border-right: 0.1px solid rgb(162, 162, 162);
 }
 .edit:hover {
-	background-color: hsl(0, 0%, 85%);
-  transition: 0.5s;
+    background-color: hsl(83, 100%, 40%);  /* Darker green */
+    transition: 0.5s;
+
 }
+
 .delete:hover {
-	background-color: hsl(0, 0%, 85%);
-  transition: 0.5s;
+    background-color: hsl(0, 100%, 40%);  /* Darker red */
+    transition: 0.5s;
+
+}
+
+color{
+	background-color: darkslategrey;
 }

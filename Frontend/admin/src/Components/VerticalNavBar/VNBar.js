@@ -5,6 +5,8 @@ import LogoImage from './navbar/icons/Logo.png';
 import profpick from './navbar/prof/prof1.jpg';
 
 function VNBAR(props) {
+
+	
 	return (
 		<div className="VNBAR">
 			<div className="ProfPic">

@@ -38,10 +38,10 @@
                             console.log('Bejelentkezés sikeres!', response);
 
                             localStorage.setItem('userid', response.user_id);
+                            localStorage.setItem('userName', response.name);
                             localStorage.setItem('statusz',response.Státusz);
                             console.log(localStorage)
-                            window.location.href = '../Felhasznalo/kaja.html'; 
-                           
+                            window.location.href = '../Felhasznalo/kaja.html';                            
                         } else {
                             console.error('Hiba a bejelentkezés során', response);
                             alert('Bejelentkezés sikertelen. Kérjük, ellenőrizze az adatokat és próbálja újra.');

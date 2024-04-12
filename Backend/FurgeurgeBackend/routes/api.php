@@ -63,11 +63,11 @@ Route::get('/ordered-foods/{id}', [UserController::class, 'getOrderedFoods']);
 Route::get('/orders/status/{userId}', [SzallitasController::class, 'showOrderStatus']);
 Route::get('/Workers',[DolgozoController::class,'index']);
 
-
+Route::patch('/Epatch/{id}',[EteleinkController::class,'update']);
+Route::post('/Epost', [EteleinkController::class, 'store']);
 //orders rész inentöl megy lets go baby
 Route::get('/rendstats',[RendelesStatuszController::class,'index']);
 Route::get('/szallitas',[SzallitasController::class,'index']);
 
 Route::get('/AAdat',[SzallitasController::class,'AdminAdat']);
 Route::patch('/RendelesstatuszModosit/{id}/{statusz}', [SzallitasController::class, 'updateStatus']);
-Route::post('/Epost/{etel}',[EteleinkController::class,'store']);
