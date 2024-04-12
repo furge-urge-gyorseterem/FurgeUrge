@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    padding: 20px;
+}
+
+navigation ul {
+    list-style: none;
+    background-color: #007bff;
+    text-align: center;
+    padding: 20px 0;
+    margin-bottom: 40px;
+}
+
+navigation ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+navigation ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#ordered-foods-container {
+    margin-top: 20px;
+}
+
+.delivery {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.delivery h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 20px;
+}
+
+li {
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border-left: 5px solid #007bff;
+    font-size: 16px;
+}
+
+li:last-child {
+    margin-bottom: 0;
+}
