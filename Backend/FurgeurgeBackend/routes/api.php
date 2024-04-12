@@ -70,3 +70,4 @@ Route::get('/szallitas',[SzallitasController::class,'index']);
 
 Route::get('/AAdat',[SzallitasController::class,'AdminAdat']);
 Route::patch('/RendelesstatuszModosit/{id}/{statusz}', [SzallitasController::class, 'updateStatus']);
+Route::post('/Epost/{etel}',[EteleinkController::class,'store']);
