@@ -29,23 +29,38 @@ class Controller {
         orderedFoodsContainer.empty();
     
         if (data && data.length > 0) {
-            data.forEach(delivery => {
-                const deliveryDiv = $('<div class="delivery"></div>');
-                deliveryDiv.append(`<h3>Rendelés Azonosító: ${delivery.Rendeles_Azon}</h3>`);
-    
-                const foodList = $('<ul>');
-                delivery.Etelek.forEach(item => {
-                    foodList.append($('<li>').text(`${item.Elnevezes}, Mennyiség: ${item.Mennyiseg}`));
-                });
-                deliveryDiv.append(foodList);
-    
-                orderedFoodsContainer.append(deliveryDiv);
+            const list = $('<ul>');
+            data.forEach((delivery, index) => {
+                const listItem = $(`<li>${delivery.Szallitas_Vege}</li>`);
+                // If it's the first item, add the 'elso' class
+                if (index === 0) {
+                    listItem.addClass('elso');
+                }
+                listItem.on('click', () => this.showModal(delivery));
+                list.append(listItem);
             });
+            orderedFoodsContainer.append(list);
         } else {
             orderedFoodsContainer.text('Nincs megjeleníthető rendelés.');
         }
     }
+
+    showModal(delivery) {
+        // Update the modal with the order ID and delivery date
+        $('#modal-order-id').text(`Rendelés Azonosítója: ${delivery.Rendeles_Azon}`);
+        $('#modal-delivery-date').text(`Kiszállítás Dátuma: ${delivery.Szallitas_Vege}`);
     
+        // Update the modal with the list of ordered items
+        const modalItems = $('#modal-items');
+        modalItems.empty();
+    
+        delivery.Etelek.forEach(item => {
+            modalItems.append($(`<p>${item.Elnevezes}, Mennyiség: ${item.Mennyiseg}</p>`));
+        });
+    
+        // Show the modal
+        $('#orderModal').show();
+    }
 };
 
 export default Controller;

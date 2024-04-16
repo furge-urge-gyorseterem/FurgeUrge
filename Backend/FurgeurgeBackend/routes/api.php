@@ -43,12 +43,9 @@ Route::get('/verify-email/{id}/{hash}', VerifyEmailController::class)
 Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
     ->middleware(['auth', 'throttle:6,1'])
     ->name('verification.send');
-
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
-    ->middleware('auth')
-    ->name('logout');
-
-    Route::get('/get-user-by-token/{token}', [UserController::class, 'getUserByToken']);
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->middleware('auth:sanctum');
+Route::get('/get-user-by-token/{token}', [UserController::class, 'getUserByToken']);
 Route::get('/etelek', [EteleinkController::class, 'eteleKategoria'])->name('etelek.eteleKategoria');
 Route::get('/eteleink', [EteleinkController::class, 'index']);
 Route::get('/kategoria', [EtelkategoriakController::class, 'kategoria']);
@@ -61,13 +58,14 @@ Route::delete('/kedvencek/{felhasznaloAzon}/{etelAzon}', [KedvencekController::c
 Route::get('/kedvencek/{felhasznaloAzon}', [KedvencekController::class, 'showFavorites']);
 Route::get('/ordered-foods/{id}', [UserController::class, 'getOrderedFoods']);
 Route::get('/orders/status/{userId}', [SzallitasController::class, 'showOrderStatus']);
-Route::get('/Workers',[DolgozoController::class,'index']);
+Route::get('/Workers', [DolgozoController::class, 'index']);
 
+Route::get('undelivered-orders/{id}', [SzallitasController::class, 'showUndeliveredOrderItems']);
 
 //orders rész inentöl megy lets go baby
-Route::get('/rendstats',[RendelesStatuszController::class,'index']);
-Route::get('/szallitas',[SzallitasController::class,'index']);
+Route::get('/rendstats', [RendelesStatuszController::class, 'index']);
+Route::get('/szallitas', [SzallitasController::class, 'index']);
 
-Route::get('/AAdat',[SzallitasController::class,'AdminAdat']);
+Route::get('/AAdat', [SzallitasController::class, 'AdminAdat']);
 Route::patch('/RendelesstatuszModosit/{id}/{statusz}', [SzallitasController::class, 'updateStatus']);
-Route::post('/Epost/{etel}',[EteleinkController::class,'store']);
+Route::post('/Epost/{etel}', [EteleinkController::class, 'store']);

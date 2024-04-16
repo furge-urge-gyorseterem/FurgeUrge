@@ -31,6 +31,7 @@ class UserController extends Controller
     $result = $deliveries->map(function ($delivery) {
         return [
             'Rendeles_Azon' => $delivery->Rendeles_Azon,
+            'Szallitas_Vege' => $delivery->Szállítás_Vége,
             'Etelek' => $delivery->megrendeltEtelek->map(function ($megrendelt) {
                 return [
                     'Etel_Azon' => $megrendelt->etel->Etel_Azon,

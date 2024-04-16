@@ -11,6 +11,7 @@
 
 <body>
     <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Fooldal')">Főoldal</button>
         <button class="tablinks" onclick="openTab(event, 'Login')">Bejelentkezés</button>
         <button class="tablinks" onclick="openTab(event, 'Registration')">Regisztráció</button>
     </div>
@@ -61,24 +62,31 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         function openTab(evt, tabName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("tablinks");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            document.getElementById(tabName).style.display = "block";
-            evt.currentTarget.className += " active";
-        }
+            if (tabName === 'Fooldal') {
+        window.location.href = 'FőoldalGuest.html';
+        return; // Prevent further execution to handle redirection immediately
+    }
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";  // Hide all tab content
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");  // Remove "active" class
+    }
+    document.getElementById(tabName).style.display = "block";  // Show the specific tab content
+    evt.currentTarget.className += " active";  // Add "active" class to the clicked tab
+}
 
-        // Call this function to default to open the first tab
-        document.addEventListener("DOMContentLoaded", function () {
-            // Open the first tab by default
-            document.querySelector('.tablinks').click();
-        });
+// Set up the page to open the Bejelentkezés tab by default
+document.addEventListener("DOMContentLoaded", function() {
+    // Simulate a click on the "Bejelentkezés" button
+    var loginTab = document.querySelector('.tablinks[onclick*="Login"]');
+    if (loginTab) {
+        loginTab.click();
+    }
+});
         $(document).ready(function () {
             $('#loginForm').on('submit', function (e) {
                 e.preventDefault();
@@ -93,7 +101,7 @@
                         console.log(response.success)
                         if (response.success) {
                             console.log('Bejelentkezés sikeres!', response);
-
+                            localStorage.setItem('accessToken', response.token);
                             localStorage.setItem('userid', response.user_id);
                             localStorage.setItem('statusz', response.Státusz);
                             console.log(localStorage)
