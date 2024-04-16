@@ -79,3 +79,14 @@
 
 /* További stílusok amennyiben szükségesek */
 
+/* A card komponens átlátszó háttere */
+.card ,.list-group-item{
+    background-color: rgba(255, 255, 255, 0.5); /* Fehér háttér 50%-os átlátszósággal */
+    border: none; /* Eltávolítja az alapértelmezett keretet, ha szükséges */
+}
+
+/* A card-header sötétzöld, kevésbé átlátszó háttere */
+.card-header {
+    background-color: rgba(0, 100, 0, 0.85); /* Sötétzöld háttér 85%-os átlátszósággal */
+    color: white; /* Fehér szöveg a jobb olvashatóságért */
+}

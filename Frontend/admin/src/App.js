@@ -11,10 +11,11 @@ import OrderManagmentTool from './Components/OrderManagment/OrderManagmentTool';
 import UCMtool from './Components/UserManagment/U-CMTool/U-CMtool';
 
 function App() {
+
 	return (
 		<div className="App">
 			
-			<VNBAR name="Vörös Dominik"/>
+			<VNBAR name="Rixi"/>
 		
 
 			<Routes>
