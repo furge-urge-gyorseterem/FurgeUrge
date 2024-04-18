@@ -10,7 +10,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 const OrderManagmentTool = () => {
 	const [isChecked, setIsChecked] = useState(false);
 
-	const handleChange = () => setIsChecked(!isChecked);
+
 	const { getAdminAdat } = useMealApi();
 	const [Orders, setOrders] = useState([]);
 
@@ -33,29 +33,18 @@ const OrderManagmentTool = () => {
 
 	return (
 		<div>
-			<label className="switch">
-				<input type="checkbox" checked={isChecked} onChange={handleChange} />
-				<span className="slider"></span>
-			</label>
-			{isChecked ? (
-				<div>
-					<h1>Ó Ó Dolgozó vagyok mehet grind</h1>
-					<WorkOrders Orders={Orders} />
-				</div>
-			) : (
-				<div>
-					<h1>Admin Üzem Mód</h1>
-					<Tabs>
-						<TabList className="costumTablist">
-							<Tab className="costumTab">Összes</Tab>
-						</TabList>
+			<div>
+				<h1>Admin Üzem Mód</h1>
+				<Tabs>
+					<TabList className="costumTablist">
+						<Tab className="costumTab">Összes</Tab>
+					</TabList>
 
-						<TabPanel>
-							<AdminOrders Orders={Orders} />
-						</TabPanel>
-					</Tabs>
-				</div>
-			)}
+					<TabPanel>
+						<AdminOrders Orders={Orders} />
+					</TabPanel>
+				</Tabs>
+			</div>
 		</div>
 	);
 };
