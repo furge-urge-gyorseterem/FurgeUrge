@@ -101,14 +101,14 @@ class Controller {
           $('nav').addClass('fixed');
           $('nav').css({
             width: mainWidth + 'px',
-            left: (windowWidth - mainWidth) / 2 + 'px' 
+            left: (windowWidth - mainWidth) / 2 + 'px'
           });
-          $('body').css('padding-top', navHeight + 'px'); 
+          $('body').css('padding-top', navHeight + 'px');
         } else {
           $('nav').removeClass('fixed');
           $('nav').removeClass('fixed').css({
-            width: '', 
-            left: '' 
+            width: '',
+            left: ''
           });
           $('body').css('padding-top', '0px');
         }
@@ -128,8 +128,8 @@ class Controller {
           const sectionBottom = sectionTop + $(this).outerHeight();
 
           if (scrollPosition >= sectionTop - 300 && scrollPosition < sectionBottom) {
-            newActiveId = $(this).attr('id'); 
-            return false; 
+            newActiveId = $(this).attr('id');
+            return false;
           }
         });
 
@@ -167,17 +167,17 @@ class Controller {
         url: 'http://localhost:3000/api/logout', // Adjust URL to match API route
         type: 'POST',
         headers: {
-            'Authorization': 'Bearer ' + localStorage.getItem('accessToken'), // accessToken should be the token you received during login
+          'Authorization': 'Bearer ' + localStorage.getItem('accessToken'), // accessToken should be the token you received during login
         },
-        success: function(response) {
-            console.log('Logout successful');
-            localStorage.clear()
-            window.location.href = '../Guest/FőoldalGuest.html';
+        success: function (response) {
+          console.log('Logout successful');
+          localStorage.clear()
+          window.location.href = '../Guest/FőoldalGuest.html';
         },
-        error: function(xhr, status, error) {
-            console.error('Logout failed:', error);
+        error: function (xhr, status, error) {
+          console.error('Logout failed:', error);
         }
-    });
+      });
     });
   }
   etelekMegjelenitesKedvencekNelkul(etelekResponse) {
@@ -398,40 +398,49 @@ class Controller {
       ;
     this.lekerMaxRendelesAzon();
   }
-  megrendeltHozzaadas(megrendeltData) {
+  megrendeltHozzaadas(megrendeltData, resolve, reject) {
     this.dataService.addMegrendeltItem(
       "http://localhost:3000/api/megrendeltek",
       megrendeltData,
       (response) => {
         console.log("Megrendelt hozzáadva:", response);
+        resolve(response); // Resolve the promise with the response
       },
       (error) => {
         console.error("Hiba a megrendelt hozzáadásakor:", error);
+        reject(error); // Reject the promise with the error
       }
     );
-   
   }
   lekerMaxRendelesAzon() {
     this.dataService.getMaxRendelesAzon(
       "http://localhost:3000/api/szallitas/maxazon",
       (data) => {
-
         const nextRendelesAzon = data.Rendeles_Azon + 1;
-        Object.entries(this.kosarTartalom).forEach(([termekNeve, adatok]) => {
+        const promises = Object.entries(this.kosarTartalom).map(([termekNeve, adatok]) => {
           const rendeles = {
             Rendeles_Azon: nextRendelesAzon,
             Etel_Azon: adatok.id,
             mennyiseg: adatok.darab,
           };
-          this.megrendeltHozzaadas(rendeles);
+          return new Promise((resolve, reject) => {
+            this.megrendeltHozzaadas(rendeles, resolve, reject);
+          });
         });
 
+        Promise.all(promises)
+          .then(() => {
+            window.location.href = 'Rendeles.html';
+          })
+          .catch(error => {
+            console.error('Error processing one or more items:', error);
+          });
       },
       (error) => {
         console.error("Hiba a legnagyobb Rendeles_Azon lekérésekor:", error);
       }
     );
-  }
+}
   megjeleniteskedvenc(kedvencekLista) {
 
     const szuloElem = $(".tarolo");
