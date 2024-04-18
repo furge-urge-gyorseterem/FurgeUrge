@@ -6,11 +6,11 @@ class Controller {
     this.kosarTartalom = {};
     this.kedvencekNevei = {};
     this.dataService = new DataService();
-
+    console.log(localStorage)
     const id = localStorage.getItem('userid');
     const státusz = localStorage.getItem('statusz')
     const adminLi = státusz === 'Admin' ? $('<li><a href="http://localhost:3001/">Admin</a></li>') : $();
-
+    this.redirectIfUnauthenticated();
     $('navigation ul.navigation-right').prepend(adminLi);
     this.dataService.getAxiosData(
       `http://localhost:3000/api/kedvencek/${id}`,
@@ -100,20 +100,19 @@ class Controller {
         if (scrollDistance >= navOriginalPos) {
           $('nav').addClass('fixed');
           $('nav').css({
-            width: mainWidth + 'px', // Set the width of the navbar to match the main element
-            left: (windowWidth - mainWidth) / 2 + 'px' // Center the navbar
+            width: mainWidth + 'px',
+            left: (windowWidth - mainWidth) / 2 + 'px' 
           });
-          $('body').css('padding-top', navHeight + 'px'); // This is to prevent the jump
+          $('body').css('padding-top', navHeight + 'px'); 
         } else {
           $('nav').removeClass('fixed');
           $('nav').removeClass('fixed').css({
-            width: '', // Reset the width
-            left: '' // Reset the left position
+            width: '', 
+            left: '' 
           });
-          $('body').css('padding-top', '0px'); // Remove the padding when navbar is not fixed
+          $('body').css('padding-top', '0px');
         }
 
-        // Adjust main padding to account for fixed nav height
         if ($('nav').hasClass('fixed')) {
           $('main').css('padding-top', originalPaddingMain + navHeight + 'px');
         } else {
@@ -122,19 +121,18 @@ class Controller {
       });
       $(window).on('scroll', function () {
         var scrollPosition = $(this).scrollTop();
-        var newActiveId = null; // Ide tároljuk az új aktív szekció ID-ját, ha találunk
+        var newActiveId = null;
 
         $('.tarolo h2').each(function () {
           const sectionTop = $(this).offset().top - navHeight;
           const sectionBottom = sectionTop + $(this).outerHeight();
 
           if (scrollPosition >= sectionTop - 300 && scrollPosition < sectionBottom) {
-            newActiveId = $(this).attr('id'); // Megjelöljük az új aktív szekciót
-            return false; // Kilépünk az each ciklusból, mivel találtunk egy aktív szekciót
+            newActiveId = $(this).attr('id'); 
+            return false; 
           }
         });
 
-        // Ha találtunk új aktív szekciót, frissítjük az aktív class-t
         if (newActiveId !== null) {
           $('.etelkategoriak li.active').removeClass('active');
           $(`.etelkategoriak li[data-target="${newActiveId}"]`).addClass('active');
@@ -160,7 +158,26 @@ class Controller {
       this.kosarUIFrissites();
     });
     $(document).on('click', '.close', function () {
-      $('#kosarModal').modal('hide'); // This will close the modal with id 'kosarModal'
+      $('#kosarModal').modal('hide');
+    });
+    $(document).on("click", ".Kilepes", (event) => {
+
+      event.preventDefault();
+      $.ajax({
+        url: 'http://localhost:3000/api/logout', // Adjust URL to match API route
+        type: 'POST',
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('accessToken'), // accessToken should be the token you received during login
+        },
+        success: function(response) {
+            console.log('Logout successful');
+            localStorage.clear()
+            window.location.href = '../Guest/FőoldalGuest.html';
+        },
+        error: function(xhr, status, error) {
+            console.error('Logout failed:', error);
+        }
+    });
     });
   }
   etelekMegjelenitesKedvencekNelkul(etelekResponse) {
@@ -190,16 +207,9 @@ class Controller {
     )
   }
   toggleKosarContainerDisplay() {
-    // Check if the cart is empty by checking the number of keys in kosarTartalom
+
     const kosarUres = Object.keys(this.kosarTartalom).length === 0;
-    // Select the kosar-container element
     const kosarContainer = $('.kosar-container');
-    // Toggle the display property based on whether the cart is empty
-    if (kosarUres) {
-      kosarContainer.css('display', 'none');
-    } else {
-      kosarContainer.css('display', '');
-    }
   }
   kosarbaHozzaadas(termekNeve, termekAra, termekID) {
     if (this.kosarTartalom[termekNeve]) {
@@ -358,7 +368,6 @@ class Controller {
     });
     htmlContent += '</ul>';
     $(document).on('click', '#order-button', () => {
-      // Itt az arrow functionnek köszönhetően a `this` a Controller példányára fog mutatni
       console.log('A megrendelés gombra kattintottak.');
 
       const userId = localStorage.getItem('userid');
@@ -369,7 +378,9 @@ class Controller {
         Szállítás_költség: totalKosarOsszeg,
       };
       this.szallitasHozzaadas(szallitas); // a `this` itt a Controller példányára utal
+      $('#kosarModal').modal('hide');
     });
+
     return htmlContent;
 
   }
@@ -398,7 +409,7 @@ class Controller {
         console.error("Hiba a megrendelt hozzáadásakor:", error);
       }
     );
-    window.location.href = 'Rendeles.html'
+   
   }
   lekerMaxRendelesAzon() {
     this.dataService.getMaxRendelesAzon(
@@ -414,6 +425,7 @@ class Controller {
           };
           this.megrendeltHozzaadas(rendeles);
         });
+
       },
       (error) => {
         console.error("Hiba a legnagyobb Rendeles_Azon lekérésekor:", error);
@@ -430,6 +442,11 @@ class Controller {
     };
     // A 'Megjelenit' konstruktorát meghívja egy tömbbel, ami csak a kedvencekObj objektumot tartalmazza
     new Megjelenit([kedvencekObj], szuloElem, true);
+  }
+  redirectIfUnauthenticated() {
+    if (!localStorage.getItem('accessToken')) {
+      window.location.href = '../Guest/FőoldalGuest.html'; // Átirányítás a nem bejelentkezett felhasználók főoldalára
+    }
   }
 }
 

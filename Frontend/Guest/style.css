@@ -264,24 +264,57 @@ body {
   }
   
   
+  .star-container {
+    display: inline-block;
+    position: relative;
+    background-color: #EEB127;
+  }
+  
+  .star-border {
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    background: black;
+    width: 54px; 
+    height: 54px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -2px; 
+    left: -2px; 
+    
+  }
+  
   .star {
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    background: white;
     width: 50px;
     height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: auto;
+    position: relative;
     cursor: pointer;
   }
-  .Profil{
-    float: right;
-  }
-  .Kilepes {
-  
-  float: right;
+  ::-webkit-scrollbar {
+    width: 5px;
   }
   
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #FFD700; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #FFD700
+  }
   @media (max-width: 1200px) {
     nav{
       height: 120px;

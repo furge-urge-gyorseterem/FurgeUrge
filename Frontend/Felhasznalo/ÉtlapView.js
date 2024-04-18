@@ -13,15 +13,19 @@ class ÉtlapView {
         const imageDiv = $(`<div class="card-header"><img src="../kepek/hamburger.png" alt="${this.#adat.Elnevezes}"></div>`);
         const titlePriceDiv = $(`<div class="card-body"><p class="nev">${this.#adat.Elnevezes}</p><br><p class="ar">${this.#adat.Ar + " Ft"}</p></div>`);
         const footerdiv = $('<div class="card-footer"></div>');
-        const starDiv = $('<div class="star"></div>');
+        const starDiv = $('<div class="star-container"></div>');
+        const starDiHatar = $('<div class="star-border"></div>');
+        const starDiCsillag = $('<div class="star"></div>');
         const buttonDiv = $('<button class="kosarbaad">🛒</button>');
+        starDiv.append(starDiHatar,starDiCsillag)
         footerdiv.append(starDiv, buttonDiv)
+
         itemDiv.append(imageDiv, titlePriceDiv, footerdiv);
         this.tablaElem.append(itemDiv);
         if (this.isKedvenc) {
-            starDiv.css('background-color', 'yellow');
+            starDiCsillag.css('background-color', 'yellow');
         } else {
-            starDiv.css('background-color', 'white');
+            starDiCsillag.css('background-color', 'white');
         }
     
         

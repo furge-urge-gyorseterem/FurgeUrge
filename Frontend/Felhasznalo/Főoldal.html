@@ -17,7 +17,7 @@
   <main>
     <header>
       <h1>Üdvözöljük a Fürge Ürge Étteremben</h1>
-      
+
     </header>
     <navigation>
       <ul class="navigation-left">
@@ -54,7 +54,9 @@
     <aside>
       <img src="../kepek/Logo.png" alt="Logo">
     </aside>
-    <footer><h3>Válassza az otthoni ízek kényelmét. Válassza a Fürge Ürge-t!</h3></footer>
+    <footer>
+      <h3>Válassza az otthoni ízek kényelmét. Válassza a Fürge Ürge-t!</h3>
+    </footer>
   </main>
 </body>
 <script>
@@ -62,6 +64,30 @@
   const adminLi = státusz === 'Admin' ? $('<li><a href="http://localhost:3001/">Admin</a></li>') : $();
 
   $('navigation ul.navigation-right').prepend(adminLi);
+  function redirectIfUnauthenticated() {
+            if (!localStorage.getItem('accessToken')) {
+                window.location.href = '../Guest/FőoldalGuest.html'; // Átirányítás a nem bejelentkezett felhasználók főoldalára
+            }
+            $(document).on("click", ".Kilepes", (event) => {
+
+                event.preventDefault();
+                $.ajax({
+                    url: 'http://localhost:3000/api/logout', // Adjust URL to match API route
+                    type: 'POST',
+                    headers: {
+                        'Authorization': 'Bearer ' + localStorage.getItem('accessToken'), // accessToken should be the token you received during login
+                    },
+                    success: function (response) {
+                        console.log('Logout successful');
+                        localStorage.clear()
+                        window.location.href = '../Guest/FőoldalGuest.html';
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Logout failed:', error);
+                    }
+                });
+            });
+        }
 </script>
 
 </html>
