@@ -1,0 +1,41 @@
+.Cetli {
+  height: auto;
+  
+  width: 250px;
+  text-align: center;
+  justify-content: center;
+  background-color: rgb(69, 170, 69);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+
+
+  cursor: grab;
+
+  border-radius: 20px;
+  margin: auto;
+  margin-top: 5px;
+  
+
+}
+
+.content {
+  margin: 10%;
+  padding-bottom: 5%;
+
+  font-size: large;
+}
+
+.FeladatCim{
+margin-top: 13px;
+padding-left: 1px;
+padding-bottom: 4px;
+
+
+
+}
+
+.Cetli:hover{
+  background-color: rgb(20, 248, 20);
+  box-shadow: 0 14px 118px  rgba(72, 238, 11, 0.2), 0 6px 20px 0 rgba(60, 244, 9, 0.19);
+
+}

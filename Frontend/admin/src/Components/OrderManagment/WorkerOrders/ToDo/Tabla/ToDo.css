@@ -1,0 +1,11 @@
+.Tabla {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	padding: auto;
+	margin: 20%;
+	width: max-content;
+}
+h1 {
+	color: white;
+}
