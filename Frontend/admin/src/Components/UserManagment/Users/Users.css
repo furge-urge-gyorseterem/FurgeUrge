@@ -1,0 +1,31 @@
+.Users {
+	width: 60vw;
+    padding: 60px;
+
+}
+.e {
+	border-radius: 60px;
+	color: black;
+	background-color: rgb(41, 205, 46);
+	border: none;
+    margin-right: 3%;
+}
+.d {
+	border-radius: 60px;
+	color: black;
+	background: rgb(172, 16, 16);
+}
+
+.e:hover {
+	background-color: greenyellow;
+	box-shadow: -2px 1px 29px 0px rgba(0, 255, 24, 0.75);
+	-webkit-box-shadow: -2px 1px 29px 0px rgba(0, 255, 24, 0.75);
+	-moz-box-shadow: -2px 1px 29px 0px rgba(0, 255, 24, 0.75);
+}
+
+.d:hover {
+	background: rgb(255, 0, 0);
+	box-shadow: -2px 1px 29px 0px rgba(255, 0, 0, 0.75);
+	-webkit-box-shadow: -2px 1px 29px 0px rgba(255, 0, 0, 0.75);
+	-moz-box-shadow: -2px 1px 29px 0px rgba(255, 0, 0, 0.75);
+}

@@ -1,0 +1,430 @@
+body {
+    background-color: #264E36
+  }
+  
+  main {
+    background-color: #258037;
+    width: 80%;
+    max-width: 80%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: 'h h h'
+    'n1 n1 n1'
+      'n n n'
+      'a a as'
+      'a a as'
+      'f f f';
+  }
+  
+  .items-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  header {
+    grid-area: h;
+    display: flex;
+  align-items: center;
+  }
+  header img{
+    width: 25%;
+    margin-right: 20px;
+  }
+  header h1{
+    margin: auto;
+    color: white;
+    text-align: center;
+    font-size: 300%;
+
+    font-weight: bold;
+  }
+  .kep1{
+
+    transform: scaleX(-1);
+
+}
+  h2 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #FFD700;
+  }
+  
+  navigation {
+    grid-area: n1;
+    background-color: #f59c02;
+    width: 100%;
+    height: 50px;
+    display: block; /* Ha flexbox-ot használsz, akkor ezt 'flex'-re változtasd */
+    justify-content: space-between;
+    justify-content: center; /* Középre igazítja a flex elemeket vízszintesen */
+    align-items: center;
+  }
+  .navigation-left,
+  .navigation-right {
+    float: left; /* A '.navigation-left' elemet balra igazítja */
+    list-style: none; /* Eltávolítja a lista jelölőket */
+    padding: 0; /* Eltávolítja az alapértelmezett paddingot */
+    margin: 0; /* Eltávolítja az alapértelmezett margót */
+    padding-top: 10px;
+  }
+  
+  .navigation-right {
+    float: right; /* A '.navigation-right' elemet jobbra igazítja */
+  }
+
+  /* Opcionális: Tisztázhatod a lebegést egy clear-fix segítségével */
+  .navigation:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  ul li a {
+    text-decoration: none; 
+    color: black; 
+    padding: 10px 15px;
+    border-radius: 5px;
+  }
+  
+  ul li a:hover {
+    background-color: #FFD700; /* Changes background color on hover */
+  }
+  nav {
+    grid-area: n;
+    background-color: #f59c02;
+    width: 100%;
+    height: 50px;
+    display: grid;
+    grid-template-areas: "na na";
+  }
+  
+  article {
+    padding-left: 15px;
+    grid-area: a;
+    max-width: 700px;
+  }
+  
+  aside {
+    grid-area: as;
+    width: 500px;
+    padding-right: 50px;
+    padding-top: 65px;
+  
+  }
+  
+  .kosar-container {
+  
+    border: 1px solid gray;
+    padding-left: 20px;
+    padding-top: 20px;
+    background-color: #EEB127;
+    max-width: 450px;
+  }
+  
+  ul {
+    padding-top: 10px;
+    margin: auto;
+    height: 40px;
+  }
+  
+  ul li {
+    display: inline;
+    padding-right: 10px;
+    font-weight: bold;
+    transition: font-size 0.3s ease;
+    cursor: pointer;
+    width: 150px;
+  }
+  
+  .etelkategoriak {
+    grid-area: na;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    /* Center the items horizontally */
+    gap: 10px;
+  }
+  
+  .etelkategoriak li:hover {
+    font-size: 20px;
+  }
+  
+  .etelkategoriak li.active {
+    font-size: 20px;
+  }
+  
+  .Felhasznalo {
+    float: right;
+  }
+  
+  .card {
+    background-color: #EEB127;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    width: calc(50% - 20px);
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas: "image title footer";
+    align-items: center;
+  }
+  
+  .card-header,
+  .card-body,
+  .card-footer {
+    padding: 10px;
+  }
+  
+  .card-header {
+    background-color: #EEB127;
+    grid-area: image;
+    height: 100%;
+  }
+  
+  .card-header img {
+    padding-top: 15px;
+    width: 125%;
+    height: auto;
+    margin: auto;
+    padding-right: 5px;
+  }
+  
+  .card-body {
+    grid-area: title;
+  }
+  
+  .card-footer {
+    grid-area: footer;
+    height: 100%;
+    background-color: #EEB127;
+  }
+  
+  .kosarbaad {
+    width: 100% !important;
+    height: 50%;
+  
+    background-color: #f59c02;
+    cursor: pointer;
+  }
+  
+  .kosar {
+    display: flex;
+  
+  }
+  
+  .kosar-akcio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    /* Add margin on top if needed */
+  }
+  
+  .rendeles-gomb {
+    width: 100px;
+    height: 50px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  .kosar>div {
+    margin-right: 20px;
+    width: 100px;
+  }
+  
+  
+  .kosar-termeknevek div,
+  .kosar-arak div,
+  .kosar-darabszamok div,
+  .kosar-mennyiseg-valtoztato div {
+    min-width: 120px;
+    margin-bottom: 5px;
+    text-align: left;
+    padding-bottom: 20px;
+  }
+  
+  .kosar-mennyiseg-valtoztato div {
+    width: 60px;
+    padding-bottom: 15px;
+  }
+  
+  .kosar-mennyiseg-valtoztato button {
+    width: 25px;
+    margin: 0 5px;
+  }
+  
+  .fixed {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; 
+  }
+  
+  
+  .star-container {
+    display: inline-block;
+    position: relative;
+    background-color: #EEB127;
+  }
+  
+  .star-border {
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    background: black;
+    width: 54px; 
+    height: 54px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -2px; 
+    left: -2px; 
+    
+  }
+  
+  .star {
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    background: white;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+  }
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #FFD700; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #FFD700
+  }
+  @media (max-width: 1200px) {
+    nav{
+      height: 120px;
+      padding-bottom: 40px;
+    }
+    .etelkategoriak {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      
+    }
+    .etelkategoriak li {
+      flex: 1;
+      min-width: calc(33.333% - 20px); /* Elősegíti, hogy három elem legyen egy sorban a gap miatt levonva */
+      text-align: center;
+      padding-bottom: 10px;
+    }
+    main{
+      grid-template-areas: 'h h h'
+      'n1 n1 n1'
+        'n n n'
+        'as as as'
+        'a a a'
+        'f f f';
+    }
+  
+    .kosar-arak, .kosar-darabszamok, .kosar-mennyiseg-valtoztato {
+      display: block; /* Minden egy sorba kerül */
+      width: 100%; /* Teljes szélességet használja */
+    }
+    
+    .kosar-arak div, 
+    .kosar-darabszamok div,
+    .kosar-mennyiseg-valtoztato div {
+      margin-right: 0; /* Nem szükséges jobb margó, ha minden elem saját sorban van */
+    }
+  
+  aside, article{
+      margin: auto;
+    }
+  
+  }
+  @media (max-width: 900px) {
+  
+    navigation{
+      height: 100px;
+    }
+  }
+  @media (max-width: 700px) {
+    .Kilepes, .Profil {
+  
+      float: none;
+      }
+    nav{
+      height: 140px;
+      padding-bottom: 100px;
+    }
+    h2{
+      color: #FFD700;
+  
+      text-align: center;
+    }
+    .etelkategoriak {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      
+    }
+    navigation {
+      height: 100px;
+      text-align: center;
+      margin: auto;
+      min-width: calc(50% - 20px);
+    }
+    aside {
+      grid-area: as;
+      width: 100%; /* A teljes szélesség kihasználása */
+      padding: 65px 50px; /* Szükség esetén állítsa be a paddingot */
+      box-sizing: border-box; /* A paddingot és bordert is beleértve a szélességbe */
+    }
+    
+    .kosar-container {
+      max-width: 100%; /* Ez lehetővé teszi, hogy kitöltse a rendelkezésre álló helyet */
+      padding: 20px;
+      box-sizing: border-box; /* A paddingot és bordert is beleértve a szélességbe */
+    }
+    
+    /* A kosár tartalmát megjelenítő div-ek szélesítése */
+    .kosar-termeknevek div, 
+    .kosar-arak div, 
+    .kosar-darabszamok div, 
+    .kosar-mennyiseg-valtoztato div {
+      min-width: 0; /* Lehetővé teszi a rugalmas szélességet */
+      width: auto; /* Automatikusan kitölti a rendelkezésre álló helyet */
+    }
+    .etelkategoriak li {
+      flex: 1;
+      min-width: calc(50% - 20px); /* Elősegíti, hogy három elem legyen egy sorban a gap miatt levonva */
+      text-align: center;
+      padding-bottom: 10px;
+    }
+    .items-container .card {
+      flex-basis: 90%; /* Ez biztosítja, hogy minden kártya saját sorban jelenjen meg */
+      margin: 10px auto; /* Középre igazítja a kártyákat, ha csak egy van soronként */
+    }
+    
+  }
+  @media (max-width: 650px) {
+  
+    
+  }
