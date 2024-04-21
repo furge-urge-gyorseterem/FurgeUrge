@@ -32,11 +32,10 @@
             </ul>
         </navigation>
 
-        <article>
+        <article class="Tartalom">
             <div class="order-status-container">
                 <h2>Rendelés Státusza</h2>
                 <div id="ordersStatus">
-                    <!-- Order status content will be dynamically inserted here -->
                 </div>
             </div>
             <div class="order-items-container">
@@ -50,24 +49,27 @@
     </main>
     <script>
         $(document).ready(function () {
-            redirectIfUnauthenticated()
+            redirectIfUnauthenticated();
             const id = localStorage.getItem('userid');
             fetchOrderItems(id);
+            fetchOrderStatus(id);
+            
             function fetchOrderItems(userid) {
                 $.ajax({
-                    url: `http://localhost:3000/api/undelivered-orders/${userid}`, // Adjust this URL to your API endpoint
+                    url: `http://localhost:3000/api/undelivered-orders/${userid}`,
                     type: 'GET',
                     success: function (orders) {
-                        // Check if there are any orders
                         if (orders.length > 0) {
-                            let orderItemsHtml = '';
-                            orders.forEach(function (order) {
-                                // Add each food item with quantity to the list
+                            let orderItemsContainer = '';
+                            orders.forEach(function (order, index) {
+                                let orderItemsHtml = `<div class='order-item-group'><h4>Rendelés: #${index + 1}</h4>`;
                                 order['Ételek'].forEach(function (item) {
-                                    orderItemsHtml += '<p>' + item['Étel Neve'] + ' - Mennyiség: ' + item['Mennyiség'] + '</p>';
+                                    orderItemsHtml += `<p>${item['Étel Neve']} - Mennyiség: ${item['Mennyiség']}</p>`;
                                 });
+                                orderItemsHtml += '</div>';
+                                orderItemsContainer += orderItemsHtml;
                             });
-                            $('#orderItems').html(orderItemsHtml); // Insert the items into the container
+                            $('#orderItems').html(orderItemsContainer); 
                         } else {
                             $('#orderItems').html('<p>Nincsenek nyitott rendelések.</p>');
                         }
@@ -77,37 +79,40 @@
                     }
                 });
             }
-            $.ajax({
-                url: 'http://localhost:3000/api/orders/status/' + id,
-                type: 'GET',
-                success: function (response) {
-                    console.log(response)
-                    if (response.length > 0) {
-                        var ordersList = '';
-                        response.forEach(function (order) {
-                            ordersList += '<p>' + order.Státusz + '</p>';
-                        });
-                        $('#ordersStatus').html(ordersList);
-                    } else {
-                        $('#ordersStatus').html('Nincsenek nyitott rendelések.');
+    
+            function fetchOrderStatus(userid) {
+                $.ajax({
+                    url: 'http://localhost:3000/api/orders/status/' + userid,
+                    type: 'GET',
+                    success: function (response) {
+                        console.log(response)
+                        if (response.length > 0) {
+                            var ordersStatusContainer = '';
+                            response.forEach(function (order, index) {
+                                ordersStatusContainer += `<div class='order-status'><p>Rendelés: #${index + 1}<br>Azonosító: ${order.Rendeles_Azon}<br> Státusz: ${order.Státusz}</p></div>`;
+                            });
+                            $('#ordersStatus').html(ordersStatusContainer);
+                        } else {
+                            $('#ordersStatus').html('Nincsenek nyitott rendelések.');
+                        }
+                    },
+                    error: function () {
+                        $('#ordersStatus').html('Hiba történt a rendelés státuszainak lekérdezésekor.');
                     }
-                },
-                error: function () {
-                    $('#ordersStatus').html('Hiba történt a rendelés státuszainak lekérdezésekor.');
-                }
-            });
-            $(document).on("click", ".Kilepes", (event) => {
-
+                });
+            }
+    
+            $(document).on("click", ".Kilepes", function (event) {
                 event.preventDefault();
                 $.ajax({
-                    url: 'http://localhost:3000/api/logout', // Adjust URL to match API route
+                    url: 'http://localhost:3000/api/logout',
                     type: 'POST',
                     headers: {
-                        'Authorization': 'Bearer ' + localStorage.getItem('accessToken'), // accessToken should be the token you received during login
+                        'Authorization': 'Bearer ' + localStorage.getItem('accessToken'),
                     },
                     success: function (response) {
                         console.log('Logout successful');
-                        localStorage.clear()
+                        localStorage.clear();
                         window.location.href = '../Guest/FőoldalGuest.html';
                     },
                     error: function (xhr, status, error) {
@@ -115,18 +120,18 @@
                     }
                 });
             });
+    
+            const status = localStorage.getItem('statusz')
+            const adminLi = status === 'Admin' ? $('<li><a href="http://localhost:3001/">Admin</a></li>') : $();
+            $('navigation ul.navigation-right').prepend(adminLi);
         });
-        const státusz = localStorage.getItem('statusz')
-        const adminLi = státusz === 'Admin' ? $('<li><a href="http://localhost:3001/">Admin</a></li>') : $();
-
-        $('navigation ul.navigation-right').prepend(adminLi);
+    
         function redirectIfUnauthenticated() {
             if (!localStorage.getItem('accessToken')) {
-                window.location.href = '../Guest/FőoldalGuest.html'; // Átirányítás a nem bejelentkezett felhasználók főoldalára
+                window.location.href = '../Guest/index.html';
             }
-
         }
-
+    
     </script>
 
 </body>

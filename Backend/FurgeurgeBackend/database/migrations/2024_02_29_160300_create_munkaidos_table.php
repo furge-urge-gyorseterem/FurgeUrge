@@ -27,12 +27,6 @@ return new class extends Migration
                 'Kicsekk' => '16:00:00',
             ],
             [
-                'Dolgozó_id' => 3,
-                'Dátum' => '2024-02-28',
-                'Becsekk' => '08:00:00',
-                'Kicsekk' => '16:00:00',
-            ],
-            [
                 'Dolgozó_id' => 4,
                 'Dátum' => '2024-02-28',
                 'Becsekk' => '09:00:00',
@@ -43,7 +37,7 @@ return new class extends Migration
                 'Dátum' => '2024-02-29',
                 'Becsekk' => '08:00:00',
                 'Kicsekk' => '16:00:00',
-            ] 
+            ]
         ]);
     }
 

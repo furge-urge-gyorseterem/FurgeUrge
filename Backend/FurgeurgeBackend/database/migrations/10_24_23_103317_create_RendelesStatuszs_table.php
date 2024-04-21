@@ -17,11 +17,7 @@ return new class extends Migration
         });
 
         DB::table('rendeles_statuszs')->insert([
-            'RendelésStátusz' => 'Készítése folyamatban', 
-
-        ]);
-        DB::table('rendeles_statuszs')->insert([
-            'RendelésStátusz' => 'Kész', 
+            'RendelésStátusz' => 'Készítés folyamatban', 
 
         ]);
         DB::table('rendeles_statuszs')->insert([
