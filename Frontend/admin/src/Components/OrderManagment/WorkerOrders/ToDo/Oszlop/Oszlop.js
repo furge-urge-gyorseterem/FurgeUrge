@@ -32,7 +32,7 @@ function Oszlop(props ) {
     <div className="Oszlop" ref={drop}>
       <h1>{props.name}</h1>
       {props.tabla.map((elem, index) =>
-        elem.RendelésStátusz === props.name ? (
+        elem.Státusz === props.name ? (
           <Cetli
         
             elem={elem}

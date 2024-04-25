@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\DolgozoController;
 use App\Http\Controllers\EteleinkController;
 use App\Http\Controllers\EtelkategoriakController;
@@ -45,6 +46,8 @@ Route::post('/email/verification-notification', [EmailVerificationNotificationCo
     ->name('verification.send');
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth:sanctum');
+
+
 Route::get('/get-user-by-token/{token}', [UserController::class, 'getUserByToken']);
 Route::get('/etelek', [EteleinkController::class, 'eteleKategoria'])->name('etelek.eteleKategoria');
 Route::get('/eteleink', [EteleinkController::class, 'index']);
@@ -71,3 +74,6 @@ Route::get('/szallitas', [SzallitasController::class, 'index']);
 Route::get('/AAdat', [SzallitasController::class, 'AdminAdat']);
 Route::patch('/RendelesstatuszModosit/{id}/{statusz}', [SzallitasController::class, 'updateStatus']);
 Route::post('/Epost/{etel}', [EteleinkController::class, 'store']);
+Route::get('/AAdadatM', [Controller::class, 'getDeliveryWithTotal']);
+
+Route::middleware('auth:sanctum')->get('/user', [UserController::class, 'current']);

@@ -10,11 +10,13 @@ const deleteMeal = (id) => httpClient.delete(`/eteleink/${id}`);
 const getWorkers = () => httpClient.get('/Workers');
 
 const getAdminAdat = () => httpClient.get('/AAdat');
+const getAdminSzAdat=()=> httpClient.get('/SzAdat');
 const getrendop = () => httpClient.get('/rendstats');
 const statuszmodosit = (rendelestId, ujStatusz) => httpClient.patch(`/RendelesstatuszModosit/${rendelestId}/${ujStatusz}`);
 
 const valtoztat = (id, mealData) => httpClient.patch(`/Epatch/${id}`, mealData);
 const newfood = (mealData) => httpClient.post(`/Epost`, mealData);
+
 
 export const useMealApi = () => ({
 	getMeals,
@@ -24,5 +26,6 @@ export const useMealApi = () => ({
 	getrendop,
 	statuszmodosit,
 	valtoztat,
-	newfood
+	newfood,
+	getAdminSzAdat
 });

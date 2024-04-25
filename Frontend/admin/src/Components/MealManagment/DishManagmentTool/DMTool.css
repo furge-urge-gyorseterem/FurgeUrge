@@ -68,3 +68,89 @@
 	background-color: #37d23c;
 	transition: 500ms;
 }
+@media (max-width: 1024px) {
+	.DMTool {
+		width: 90%; /* Wider width for smaller screens */
+	}
+
+	.SearchBar {
+		width: 50%; /* Smaller width for easier interaction */
+	}
+
+	.Search {
+		height: 40px; /* Larger height for easier interaction */
+	}
+
+	.costumTab {
+		padding: 15px; /* Larger padding for easier tapping */
+	}
+
+	.react-tabs__tab-panel {
+		border-radius: 0 15px 15px 15px; /* Smoother corners for smaller screens */
+	}
+}
+
+@media (max-width: 768px) {
+	.DMTool {
+		width: 100%; /* Full width for even smaller screens */
+	}
+
+	.costumTablist {
+		flex-direction: column; /* Change tablist orientation to vertical */
+	}
+
+	.costumTab {
+		padding: 10px; /* Smaller padding for tighter screens */
+	}
+
+	.MLoptions {
+		margin-left: 0; /* Remove left margin for smaller screens */
+	}
+
+	.MLoptions button {
+		margin-left: 0; /* Remove left margin for smaller screens */
+	}
+}
+@media only screen and (min-width: 426px) {
+	.DMTool {
+		width: 90%;
+	}
+
+	.SearchBar {
+		width: 50%;
+	}
+
+	.Search {
+		height: 40px;
+	}
+
+	.costumTab {
+		padding: 15px;
+	}
+
+	.react-tabs__tab-panel {
+		border-radius: 0 15px 15px 15px;
+	}
+}
+
+@media only screen and (max-width: 425px) {
+	.DMTool {
+		width: 100%;
+	}
+
+	.SearchBar {
+		width: 100%;
+	}
+
+	.Search {
+		height: 40px;
+	}
+
+	.costumTab {
+		padding: 10px;
+	}
+
+	.react-tabs__tab-panel {
+		border-radius: 0 10px 10px 10px;
+	}
+}

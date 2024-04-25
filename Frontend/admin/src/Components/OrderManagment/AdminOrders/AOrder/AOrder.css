@@ -9,6 +9,7 @@
 	font-size: 0.8rem;
 }
 
+
 .Container{
     box-sizing: border-box;
     margin: 2%;
@@ -89,4 +90,138 @@
 .card-header {
     background-color: rgba(0, 100, 0, 0.85); /* Sötétzöld háttér 85%-os átlátszósággal */
     color: white; /* Fehér szöveg a jobb olvashatóságért */
+}
+.Warning{
+	padding: 10%;
+}
+
+h4{
+	color: white;
+	box-sizing: border-box;
+    padding: auto;
+    width: 80%;
+    padding: 60px;
+	background-color: #333;
+    border-radius: 8px;
+    display: flex;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	
+	box-sizing: border-box; 
+}
+@media (max-width: 320px) {
+	.AOrder, .Container, .RData div, .stat, .watch {
+		padding: 5px;
+		margin: 0;
+		width: 100%;
+	}
+
+	.card-header, .card-body {
+		padding: 5px;
+	}
+
+	.list-group-item {
+		padding: 5px 10px;
+	}
+}
+
+.Container{
+    box-sizing: border-box;
+    margin: 2%;
+    padding: auto;
+    width: 80%;
+    padding: 60px;
+	background-color: #333;
+    border-radius: 8px;
+    display: flex;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	
+	box-sizing: border-box; 
+}
+
+.RData{
+	display: flex;
+	align-items: center;
+	justify-content: start;
+    margin-right: 10%;
+	text-align: left;
+}
+
+.ROptions{
+    width: 100%;
+}
+
+.ROptions section{
+    width: 100%;
+}
+
+.RData div,
+.azonosító,
+.Megrendelo,
+.Futár {
+
+	margin: 0 10px;
+	padding: 8px;
+	background-color: #4caf50;
+	border-radius: 4px;
+
+	width: 10vw;
+	height: 10vh;
+}
+
+.stat {
+    margin-top: 4%;
+	padding: 10px;
+	border: none;
+	border-radius: 4px;
+	background-color: #555;
+    
+	color: white;
+	cursor: pointer;
+    width: 100%;
+	
+}
+
+.watch {
+	padding: 10px 15px;
+	background-color: #555;
+	color: white;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.watch:hover {
+	background-color: #4caf50;
+	box-shadow: 0 0 10px #4caf50;
+}
+
+/* További stílusok amennyiben szükségesek */
+
+/* A card komponens átlátszó háttere */
+.card ,.list-group-item{
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+}
+
+/* A card-header sötétzöld, kevésbé átlátszó háttere */
+.card-header {
+    background-color: rgba(0, 100, 0, 0.85);
+    color: white;
+}
+
+.Warning{
+	padding: 10%;
+}
+
+h4{
+	color: white;
+	box-sizing: border-box;
+    padding: auto;
+    width: 80%;
+    padding: 60px;
+	background-color: #333;
+    border-radius: 8px;
+    display: flex;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	
+	box-sizing: border-box; 
 }

@@ -23,9 +23,9 @@ class UserController extends Controller
 {
 
     $deliveries = Szallitas::with('megrendeltEtelek.etel')
-                           ->where('Megrendelő_id', $id)
-                           ->where('Státusz', 'Kiszállítva')
-                           ->get();
+                        ->where('Megrendelő_id', $id)
+                        ->where('Státusz', 'Kiszállítva')
+                        ->get();
 
     // Itt a szállításokhoz hozzárendeljük a megrendelt ételek adatait
     $result = $deliveries->map(function ($delivery) {
@@ -45,5 +45,8 @@ class UserController extends Controller
 
     return response()->json($result);
 }
-
+public function current(Request $request)
+{
+    return response()->json($request->user());
+}
 }

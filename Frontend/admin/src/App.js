@@ -11,7 +11,9 @@ import { useState } from 'react';
 import Worker from './Components/worker/Worker';
 
 const App = () => {
-		const userStatus='Dolgozó'
+    const rangok=[{rang:1,value:'Admin'},{rang:2,value:'Dolgozó'},{rang:3,value:'Futár'}]
+        const aktRang=2
+		const userStatus= rangok.find(rang => rang.rang === aktRang).value;
 		let routes;
 
     switch (userStatus) {

@@ -5,9 +5,9 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import React, { useEffect, useState } from 'react';
 import './ToDo.css';
-import SidePanel from '../Cettlipanel/sidepanel';
+
 import { useMealApi } from '../../../../../api/MealApi';
-import { Await } from 'react-router-dom';
+
 
 function ToDo(props) {
 	const [tablaOszlopai, settablaOszlopai] = useState([]);

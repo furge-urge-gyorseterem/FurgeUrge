@@ -1,14 +1,16 @@
+/* eslint-disable eqeqeq */
 import React, { useState, useEffect } from 'react';
 import { useMealApi } from '../../../../api/MealApi';
 import './AOrder.css';
-import { Offcanvas } from 'react-bootstrap';
+import { Button, Offcanvas } from 'react-bootstrap';
 
 function AOrder(props) {
 	const [selectedOption, setSelectedOption] = useState('');
 	const [options, setOptions] = useState([]);
 	const [showOffcanvas, setShowOffcanvas] = useState(false);
+	const [RendeltTetelek,setRendTetelek]=useState([]);
 
-	const { getrendop, statuszmodosit } = useMealApi();
+	const { getrendop, statuszmodosit, getAdminSzAdat } = useMealApi();
 
 	useEffect(() => {
 		const fetchOptions = async () => {
@@ -21,6 +23,7 @@ function AOrder(props) {
 		};
 
 		fetchOptions();
+		setRendTetelek(props.rendeles.RendeltTetelek);
 	}, []);
 
 	const handleSelectChange = async (event) => {
@@ -33,9 +36,44 @@ function AOrder(props) {
 		}
 	};
 
+	const handleSelectFuttarButtonClickKI = async () => {
+		try {
+			const response = await statuszmodosit(props.rendeles.Rendeles_Azon, 'Kiszállítva');
+			console.log('Státusz frissítve:', response.data);
+			props.fetch();
+		} catch (error) {
+			console.error('Hiba a státusz frissítésekor:', error);
+		}
+	};
+	const handleSelectFuttarButtonClickFel = async () => {
+		try {
+			const response = await statuszmodosit(props.rendeles.Rendeles_Azon, 'Futárnál');
+			console.log('Státusz frissítve:', response.data);
+			props.fetch();
+		} catch (error) {
+			console.error('Hiba a státusz frissítésekor:', error);
+		}
+	};
+
 	const handleWatchClick = () => {
 		setShowOffcanvas(!showOffcanvas);
 	};
+
+
+	useEffect(() => {
+
+		if (props.rendeles && props.rendeles.RendeltTetelek) {
+			try {
+			
+				const parsedTetelek = JSON.parse(`[${props.rendeles.RendeltTetelek}]`);
+				setRendTetelek(parsedTetelek);
+			} catch (error) {
+				console.error('Hiba a rendelt tételek parse-olásakor:', error);
+				setRendTetelek([]);
+			}
+		}
+	}, [props.rendeles]);
+
 	if (props.state === 'Admin') {
 		return (
 			<div className="AOrder">
@@ -86,15 +124,17 @@ function AOrder(props) {
 								<div className="card-header">Rendelés Tételei</div>
 								<div className="card-body">
 									<ul className="list-group">
-										<li className="list-group-item">1 alma</li>
-										<li className="list-group-item">2 körte</li>
-										<li className="list-group-item">3 barack</li>
+										{RendeltTetelek.map((elem) => (
+											<li className="list-group-item" key={elem.id}>
+												{elem.mennyiseg} DB {elem.Elnevezes} 
+											</li>
+										))}
 									</ul>
 								</div>
 							</div>
 							<div className="OrderData card mb-3">
 								<div className="card-header" style={{ textAlign: 'center' }}>
-									Vég összeg: 312312321 FT
+										{props.rendeles.Vegosszeg} FT
 								</div>
 							</div>
 						</div>
@@ -103,24 +143,31 @@ function AOrder(props) {
 			</div>
 		);
 	} else if (props.state === 'Futár') {
-		return (
-			<div className="AOrder">
-				<div className="Container">
-					<div className="RData">
-						<div className="azonosító">Rendelés Azonosítója: {props.rendeles.Rendeles_Azon}</div>
-						<div className="Megrendelo">Megrendelő: {props.rendeles.MegrendelőNév}</div>
-						<div className="Futár">Név: {props.rendeles.FutárNév}</div>
+		if (props.rendeles.Státusz == 'Futárra vár' || props.rendeles.Státusz == 'Futárnál') {
+			return (
+				<div className="AOrder">
+					<div className="Container">
+						<div className="RData">
+							<div className="azonosító">Rendelés Azonosítója: {props.rendeles.Rendeles_Azon}</div>
+							<div className="Megrendelo">Megrendelő: {props.rendeles.MegrendelőNév}</div>
+							<div className="Futár">Név: {props.rendeles.FutárNév}</div>
+						</div>
+
+						{props.rendeles.Státusz === 'Futárra vár' ? (
+							<button onClick={handleSelectFuttarButtonClickFel}>Felvétel</button>
+						) : (
+							<button onClick={handleSelectFuttarButtonClickKI}>Kiszállítva!</button>
+						)}
 					</div>
-
-					<select className="stat" value={selectedOption} onChange={handleSelectChange}>
-						<option value="">{props.rendeles.Státusz || 'Válassz státuszt'}</option>
-
-						<option value="Futárnál">Fel vettem</option>
-						<option value="Kiszállítva">Ki vittem</option>
-					</select>
 				</div>
-			</div>
-		);
+			);
+		} else if (props.rendeles.Státusz != 'Kiszállítva') {
+			return (
+				<div className="Warning">
+					<h4>{props.rendeles.Státusz} Kérlek várj türelmesen , ez a rendelés még készül!</h4>
+				</div>
+			);
+		}
 	}
 }
 

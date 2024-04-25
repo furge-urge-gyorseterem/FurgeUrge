@@ -39,7 +39,7 @@ const OrderManagmentTool = (props) => {
 						<Tab className="costumTab">Összes</Tab>
 					</TabList>
 					<TabPanel>
-						<AdminOrders Orders={Orders} state={props.state} />
+						<AdminOrders Orders={Orders} state={props.state} fetch={fetchOrders} />
 					</TabPanel>
 				</Tabs>
 			</div>

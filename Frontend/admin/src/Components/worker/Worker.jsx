@@ -8,12 +8,12 @@ const Worker = (props) =>{
     const [isChecked, setIsChecked] = useState(false);
 
 
-	const { getAdminAdat } = useMealApi();
+	const { getAdminSzAdat } = useMealApi();
 	const [Orders, setOrders] = useState([]);
 
 	const fetchOrders = async () => {
 		try {
-			const { data } = await getAdminAdat();
+			const { data } = await getAdminSzAdat();
 			console.log("data:")
 			console.log(data);
 			
@@ -26,6 +26,7 @@ const Worker = (props) =>{
 	useEffect(() => {
 		fetchOrders();
 		console.log('megtörtent');
+		console.log(Orders)
 	}, []);
 
 
