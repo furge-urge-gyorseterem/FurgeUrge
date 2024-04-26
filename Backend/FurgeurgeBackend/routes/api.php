@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::post('/register', [RegisteredUserController::class, 'store'])
+Route::post('/registr', [RegisteredUserController::class, 'store'])
     ->middleware('guest')
     ->name('register');
 
@@ -46,8 +46,6 @@ Route::post('/email/verification-notification', [EmailVerificationNotificationCo
     ->name('verification.send');
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth:sanctum');
-
-
 Route::get('/get-user-by-token/{token}', [UserController::class, 'getUserByToken']);
 Route::get('/etelek', [EteleinkController::class, 'eteleKategoria'])->name('etelek.eteleKategoria');
 Route::get('/eteleink', [EteleinkController::class, 'index']);
@@ -74,6 +72,6 @@ Route::get('/szallitas', [SzallitasController::class, 'index']);
 Route::get('/AAdat', [SzallitasController::class, 'AdminAdat']);
 Route::patch('/RendelesstatuszModosit/{id}/{statusz}', [SzallitasController::class, 'updateStatus']);
 Route::post('/Epost/{etel}', [EteleinkController::class, 'store']);
-Route::get('/AAdadatM', [Controller::class, 'getDeliveryWithTotal']);
-
-Route::middleware('auth:sanctum')->get('/user', [UserController::class, 'current']);
+Route::post('/reg', [UserController::class, 'store']);
+Route::get('/SzAdat', [Controller::class, 'getDeliveriesWithTotalItems']);
+Route::get('/user/{id}', [UserController::class, 'getUserById']);

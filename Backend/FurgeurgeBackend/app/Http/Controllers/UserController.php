@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 use App\Models\Szallitas;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -23,9 +25,9 @@ class UserController extends Controller
 {
 
     $deliveries = Szallitas::with('megrendeltEtelek.etel')
-                        ->where('Megrendelő_id', $id)
-                        ->where('Státusz', 'Kiszállítva')
-                        ->get();
+        ->where('Megrendelő_id', $id)
+        ->where('Státusz', 'Kiszállítva')
+        ->get();
 
     // Itt a szállításokhoz hozzárendeljük a megrendelt ételek adatait
     $result = $deliveries->map(function ($delivery) {
@@ -45,8 +47,44 @@ class UserController extends Controller
 
     return response()->json($result);
 }
-public function current(Request $request)
+public function getUserById($id)
 {
-    return response()->json($request->user());
+    $user = User::find($id);
+
+    if (!$user) {
+        return response()->json(['message' => 'User not found'], 404);
+    }
+
+    return response()->json([
+        'name' => $user->name,
+        'email' => $user->email,
+        'status' => $user->Státusz
+    ]);
 }
+public function store(Request $request): JsonResponse
+{
+    $request->validate([
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+
+    ]);
+    
+    $user = User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'phone'=>$request->phone,
+        'address'=>$request->address,
+        'password' => Hash::make($request->password),
+    ]);
+
+
+
+
+    $token=$user->createToken('api-token');
+
+    return response()->json([
+        'user' => $user,   
+    ]);
+}
+
 }
