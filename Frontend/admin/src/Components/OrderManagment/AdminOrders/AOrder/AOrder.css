@@ -72,6 +72,15 @@
 	border-radius: 4px;
 	cursor: pointer;
 }
+.stb{
+	padding: 10px 15px;
+	background-color: #555; /* Egységesített háttér */
+	color: white;
+	border-radius: 4px;
+	cursor: pointer;
+	width: 50%;
+	height: auto;
+}
 
 .watch:hover {
 	background-color: #4caf50; /* Zöld háttér a hover állapotban */
@@ -181,19 +190,16 @@ h4{
 	
 }
 
-.watch {
-	padding: 10px 15px;
-	background-color: #555;
-	color: white;
-	border-radius: 4px;
-	cursor: pointer;
-}
+
 
 .watch:hover {
 	background-color: #4caf50;
 	box-shadow: 0 0 10px #4caf50;
 }
-
+.stb:hover {
+	background-color: #4caf50;
+	box-shadow: 0 0 10px #4caf50;
+}
 /* További stílusok amennyiben szükségesek */
 
 /* A card komponens átlátszó háttere */

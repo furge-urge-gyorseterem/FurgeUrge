@@ -84,14 +84,7 @@ body {
   ul li a:hover {
     background-color: #FFD700; /* Changes background color on hover */
   }
-  nav {
-    grid-area: n;
-    background-color: #f59c02;
-    width: 100%;
-    height: 50px;
-    display: grid;
-    grid-template-areas: "na na";
-  }
+
   
   
   article {
@@ -119,6 +112,10 @@ body {
   #orderItems {
     max-height: 150px;
     overflow-y: auto;  /* Enables vertical scrolling */
+}
+#ordersStatus{
+  max-height: 150px;
+  overflow-y: auto; 
 }
   
   h2 {

@@ -3,24 +3,30 @@ import { useMealApi } from '../../../api/MealApi';
 import AOrder from './AOrder/AOrder';
 
 const AdminOrders = (props) => {
-  const [adatok, setadatok] = useState([]);
-  const {getAdminSzAdat} = useMealApi();
-	useEffect(() => {
-		const fetchSZadat = async () => {
-			try {
-				const {data} = await getAdminSzAdat();
-				console.log('data:')
-				console.log(data)
-				setadatok(data);
-			} catch (error) {
-				console.error('Hiba az opciók betöltésekor:', error);
-			}
-		};
+	const [adatok, setAdatok] = useState([]);
+	const { getAdminSzAdat } = useMealApi();
+  useEffect(() => {
+    const fetchSZadat = async () => {
+      try {
+        const { data } = await getAdminSzAdat();
+        // Rendezés státusz szerint itt történik
+        const rendezettData = data.sort((a, b) => {
+          const statusPriority = {
+            'Futárnál': 1,
+            'Futárra vár': 2,
+            'Készítése folyamatban': 3,
+            'Kiszállítva': 4  // Feltételezve, hogy van ilyen státusz is
+          };
+          return statusPriority[a.Státusz] - statusPriority[b.Státusz];
+        });
+        setAdatok(rendezettData);
+      } catch (error) {
+        console.error('Hiba az adatok betöltésekor:', error);
+      }
+    };
 
-		fetchSZadat();
-		console.log(adatok)
-	}, []);
-
+    fetchSZadat();
+  }, []);
 
 	return (
         <div className="AdminOrders">

@@ -37,8 +37,12 @@ function AOrder(props) {
 	};
 
 	const handleSelectFuttarButtonClickKI = async () => {
+		props.rendeles.Státusz='Kiszállítva'
 		try {
+			
+		
 			const response = await statuszmodosit(props.rendeles.Rendeles_Azon, 'Kiszállítva');
+		
 			console.log('Státusz frissítve:', response.data);
 			props.fetch();
 		} catch (error) {
@@ -46,7 +50,9 @@ function AOrder(props) {
 		}
 	};
 	const handleSelectFuttarButtonClickFel = async () => {
+		props.rendeles.Státusz='Futárnál'
 		try {
+			
 			const response = await statuszmodosit(props.rendeles.Rendeles_Azon, 'Futárnál');
 			console.log('Státusz frissítve:', response.data);
 			props.fetch();
@@ -154,9 +160,9 @@ function AOrder(props) {
 						</div>
 
 						{props.rendeles.Státusz === 'Futárra vár' ? (
-							<button onClick={handleSelectFuttarButtonClickFel}>Felvétel</button>
+							<button className='stb' onClick={handleSelectFuttarButtonClickFel}>Felvétel</button>
 						) : (
-							<button onClick={handleSelectFuttarButtonClickKI}>Kiszállítva!</button>
+							<button className='stb' onClick={handleSelectFuttarButtonClickKI}>Kiszállítva!</button>
 						)}
 					</div>
 				</div>

@@ -8,6 +8,7 @@ const getMeals = () => httpClient.get('/eteleink');
 const deleteMeal = (id) => httpClient.delete(`/eteleink/${id}`);
 
 const getWorkers = () => httpClient.get('/Workers');
+const getuser = (id) => httpClient.get(`/user/${id}`);
 
 const getAdminAdat = () => httpClient.get('/AAdat');
 const getAdminSzAdat=()=> httpClient.get('/SzAdat');
@@ -19,6 +20,7 @@ const newfood = (mealData) => httpClient.post(`/Epost`, mealData);
 
 
 export const useMealApi = () => ({
+	getuser,
 	getMeals,
 	deleteMeal,
 	getWorkers,

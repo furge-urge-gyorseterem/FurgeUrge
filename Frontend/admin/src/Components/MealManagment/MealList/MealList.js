@@ -48,7 +48,7 @@ const MealList = (props) => {
 			<div className="SearchBar">
 				<div className="MLoptions">
 					<input type="text" placeholder="keresés" className="Search" onChange={(e) => setQuery(e.target.value)} />
-					<button onClick={toggleAddForm}>Add Food</button>
+					<button className="add" onClick={toggleAddForm}>Add Food</button>
 				</div>
 			</div>
 			<Offcanvas show={showAddForm} placement="end" onHide={toggleAddForm} style={{ backgroundColor: '#258037' }}>
