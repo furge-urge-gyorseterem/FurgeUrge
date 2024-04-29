@@ -5,7 +5,7 @@ class DataService {
     axios
       .get(url)
       .then(function (response) {
-
+        console.log(response.data)
         callback(response.data);
       })
       .catch(function (error) {

@@ -15,6 +15,7 @@ main {
     'a a as'
     'a a as'
     'f f f';
+    padding-bottom: 20px;
 }
 
 .items-container {
@@ -60,25 +61,25 @@ navigation {
   background-color: #f59c02;
   width: 100%;
   height: 50px;
-  display: block; /* Ha flexbox-ot használsz, akkor ezt 'flex'-re változtasd */
+  display: block;
   justify-content: space-between;
-  justify-content: center; /* Középre igazítja a flex elemeket vízszintesen */
+  justify-content: center; 
   align-items: center;
 }
 .navigation-left,
 .navigation-right {
-  float: left; /* A '.navigation-left' elemet balra igazítja */
-  list-style: none; /* Eltávolítja a lista jelölőket */
-  padding: 0; /* Eltávolítja az alapértelmezett paddingot */
-  margin: 0; /* Eltávolítja az alapértelmezett margót */
+  float: left; 
+  list-style: none; 
+  padding: 0; 
+  margin: 0; 
   padding-top: 10px;
 }
 
 .navigation-right {
-  float: right; /* A '.navigation-right' elemet jobbra igazítja */
+  float: right; 
 }
 
-/* Opcionális: Tisztázhatod a lebegést egy clear-fix segítségével */
+
 .navigation:after {
   content: "";
   display: table;
@@ -92,7 +93,7 @@ ul li a {
 }
 
 ul li a:hover {
-  background-color: #FFD700; /* Changes background color on hover */
+  background-color: #FFD700; 
 }
 nav {
   grid-area: n;
@@ -172,6 +173,7 @@ ul li {
   grid-template-columns: 1fr 2fr 1fr;
   grid-template-areas: "image title footer";
   align-items: center;
+  height: 125px;
 }
 
 .card-header,
@@ -196,8 +198,30 @@ ul li {
 
 .card-body {
   grid-area: title;
+  display: grid;
+  grid-template-columns: 40% 40% 20%;
+  grid-template-areas: 'nev nev info'
+                       'ar ar ar';
 }
+.nev{
+  grid-area: nev;
+}
+.info{
+  grid-area: info;
 
+
+}
+.info p{
+  font-size: 20px;
+  padding-left: 20px;
+
+}
+.leiro{
+  display:none;
+}
+.ar{
+  grid-area: ar;
+}
 .card-footer {
   grid-area: footer;
   height: 100%;
@@ -222,7 +246,7 @@ ul li {
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
-  /* Add margin on top if needed */
+
 }
 
 .rendeles-gomb {

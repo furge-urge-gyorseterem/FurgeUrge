@@ -26,7 +26,7 @@ return new class extends Migration
             'Elnevezes' => 'Szalámis Pizza',
             'Etelkategoria' => 'Pizza',
             'Ar' => 1000,
-            'Leírás' =>"Igen",
+            'Leírás' =>"Nagyon finom",
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -34,7 +34,7 @@ return new class extends Migration
             'Elnevezes' => 'Sajtburger',
             'Etelkategoria' => 'Hamburger',
             'Ar' => 1000,
-            'Leírás' =>"Igen",
+            'Leírás' =>"mekis am",
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -42,7 +42,7 @@ return new class extends Migration
             'Elnevezes' => 'pizza tekercs',
             'Etelkategoria' => 'Főétel',
             'Ar' => 1000,
-            'Leírás' =>"Igen",
+            'Leírás' =>"nem",
             'created_at' => now(),
             'updated_at' => now(),
         ]);

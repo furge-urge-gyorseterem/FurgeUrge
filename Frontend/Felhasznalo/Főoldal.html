@@ -66,7 +66,7 @@
   $('navigation ul.navigation-right').prepend(adminLi);
   function redirectIfUnauthenticated() {
             if (!localStorage.getItem('accessToken')) {
-                window.location.href = '../Guest/FőoldalGuest.html'; // Átirányítás a nem bejelentkezett felhasználók főoldalára
+                window.location.href = '../Guest/index.html'; // Átirányítás a nem bejelentkezett felhasználók főoldalára
             }
             $(document).on("click", ".Kilepes", (event) => {
 
