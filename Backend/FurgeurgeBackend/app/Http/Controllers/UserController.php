@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function getUserByToken(Request $request)
     {
-        // Feltételezzük, hogy a token a query stringben érkezik 'api_token' néven
+
         $apiToken = $request->query('api_token');
         $user = User::where('api_token', $apiToken)->first();
 
@@ -29,7 +29,7 @@ class UserController extends Controller
         ->where('Státusz', 'Kiszállítva')
         ->get();
 
-    // Itt a szállításokhoz hozzárendeljük a megrendelt ételek adatait
+
     $result = $deliveries->map(function ($delivery) {
         return [
             'Rendeles_Azon' => $delivery->Rendeles_Azon,
@@ -39,7 +39,7 @@ class UserController extends Controller
                     'Etel_Azon' => $megrendelt->etel->Etel_Azon,
                     'Elnevezes' => $megrendelt->etel->Elnevezes,
                     'Mennyiseg' => $megrendelt->mennyiseg,
-                    // További mezők...
+
                 ];
             }),
         ];

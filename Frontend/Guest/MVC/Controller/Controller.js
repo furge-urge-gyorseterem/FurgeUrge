@@ -14,7 +14,7 @@ class Controller {
             (response) => this.megjelenites(response),
             this.hibakezeles,
         );
-        $(document).on('click', '.star', (event) => { // Changed to arrow function
+        $(document).on('click', '.star', (event) => {
             $('#bejelentkezesModal').modal('show');
         });
         const kosarContainer = $('.kosar-container');
@@ -33,11 +33,11 @@ class Controller {
 
             var navOriginalPos = $('nav').offset().top;
             var navHeight = $('nav').outerHeight();
-            var originalPaddingMain = parseInt($('main').css('padding-top')); // Original padding of the main content
+            var originalPaddingMain = parseInt($('main').css('padding-top')); 
 
             $(window).scroll(function () {
                 var scrollDistance = $(window).scrollTop();
-                var mainWidth = $('main').outerWidth(); // Get the current width of the main element
+                var mainWidth = $('main').outerWidth();
                 var windowWidth = $(window).width();
                 if (scrollDistance >= navOriginalPos) {
                     $('.kosar-container').css({
@@ -57,20 +57,19 @@ class Controller {
                 if (scrollDistance >= navOriginalPos) {
                     $('nav').addClass('fixed');
                     $('nav').css({
-                        width: mainWidth + 'px', // Set the width of the navbar to match the main element
-                        left: (windowWidth - mainWidth) / 2 + 'px' // Center the navbar
+                        width: mainWidth + 'px',
+                        left: (windowWidth - mainWidth) / 2 + 'px' 
                     });
-                    $('body').css('padding-top', navHeight + 'px'); // This is to prevent the jump
+                    $('body').css('padding-top', navHeight + 'px');
                 } else {
                     $('nav').removeClass('fixed');
                     $('nav').removeClass('fixed').css({
-                        width: '', // Reset the width
-                        left: '' // Reset the left position
+                        width: '', 
+                        left: '' 
                     });
-                    $('body').css('padding-top', '0px'); // Remove the padding when navbar is not fixed
+                    $('body').css('padding-top', '0px'); 
                 }
 
-                // Adjust main padding to account for fixed nav height
                 if ($('nav').hasClass('fixed')) {
                     $('main').css('padding-top', originalPaddingMain + navHeight + 'px');
                 } else {
@@ -79,19 +78,18 @@ class Controller {
             });
             $(window).on('scroll', function () {
                 var scrollPosition = $(this).scrollTop();
-                var newActiveId = null; // Ide tároljuk az új aktív szekció ID-ját, ha találunk
+                var newActiveId = null; 
 
                 $('.tarolo h2').each(function () {
                     const sectionTop = $(this).offset().top - navHeight;
                     const sectionBottom = sectionTop + $(this).outerHeight();
 
                     if (scrollPosition >= sectionTop - 300 && scrollPosition < sectionBottom) {
-                        newActiveId = $(this).attr('id'); // Megjelöljük az új aktív szekciót
-                        return false; // Kilépünk az each ciklusból, mivel találtunk egy aktív szekciót
+                        newActiveId = $(this).attr('id'); 
+                        return false; 
                     }
                 });
 
-                // Ha találtunk új aktív szekciót, frissítjük az aktív class-t
                 if (newActiveId !== null) {
                     $('.etelkategoriak li.active').removeClass('active');
                     $(`.etelkategoriak li[data-target="${newActiveId}"]`).addClass('active');

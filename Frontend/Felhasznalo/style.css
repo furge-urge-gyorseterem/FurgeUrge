@@ -36,7 +36,7 @@ header h1{
   margin: auto;
   color: white;
   text-align: center;
-  font-size: 300%; /* Adjust as needed */
+  font-size: 300%;
   font-weight: bold;
 }
 .kep1{
@@ -147,7 +147,7 @@ ul li {
   display: flex;
   text-align: center;
   justify-content: center;
-  /* Center the items horizontally */
+
   gap: 10px;
 }
 
@@ -327,19 +327,18 @@ ul li {
   width: 5px;
 }
 
-/* Track */
+
 ::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px grey; 
   border-radius: 10px;
 }
- 
-/* Handle */
+
 ::-webkit-scrollbar-thumb {
   background: #FFD700; 
   border-radius: 10px;
 }
 
-/* Handle on hover */
+
 ::-webkit-scrollbar-thumb:hover {
   background: #FFD700
 }
@@ -359,7 +358,7 @@ ul li {
   }
   .etelkategoriak li {
     flex: 1;
-    min-width: calc(33.333% - 20px); /* Elősegíti, hogy három elem legyen egy sorban a gap miatt levonva */
+    min-width: calc(33.333% - 20px); 
     text-align: center;
     padding-bottom: 10px;
   }
@@ -373,14 +372,14 @@ ul li {
   }
 
   .kosar-arak, .kosar-darabszamok, .kosar-mennyiseg-valtoztato {
-    display: block; /* Minden egy sorba kerül */
-    width: 100%; /* Teljes szélességet használja */
+    display: block; 
+    width: 100%;
   }
   
   .kosar-arak div, 
   .kosar-darabszamok div,
   .kosar-mennyiseg-valtoztato div {
-    margin-right: 0; /* Nem szükséges jobb margó, ha minden elem saját sorban van */
+    margin-right: 0;
   }
 
 aside, article{
@@ -422,34 +421,34 @@ aside, article{
   }
   aside {
     grid-area: as;
-    width: 100%; /* A teljes szélesség kihasználása */
-    padding: 65px 50px; /* Szükség esetén állítsa be a paddingot */
-    box-sizing: border-box; /* A paddingot és bordert is beleértve a szélességbe */
+    width: 100%;
+    padding: 65px 50px; 
+    box-sizing: border-box; 
   }
   
   .kosar-container {
-    max-width: 100%; /* Ez lehetővé teszi, hogy kitöltse a rendelkezésre álló helyet */
+    max-width: 100%; 
     padding: 20px;
-    box-sizing: border-box; /* A paddingot és bordert is beleértve a szélességbe */
+    box-sizing: border-box; 
   }
   
-  /* A kosár tartalmát megjelenítő div-ek szélesítése */
+
   .kosar-termeknevek div, 
   .kosar-arak div, 
   .kosar-darabszamok div, 
   .kosar-mennyiseg-valtoztato div {
-    min-width: 0; /* Lehetővé teszi a rugalmas szélességet */
-    width: auto; /* Automatikusan kitölti a rendelkezésre álló helyet */
+    min-width: 0;
+    width: auto; 
   }
   .etelkategoriak li {
     flex: 1;
-    min-width: calc(50% - 20px); /* Elősegíti, hogy három elem legyen egy sorban a gap miatt levonva */
+    min-width: calc(50% - 20px); 
     text-align: center;
     padding-bottom: 10px;
   }
   .items-container .card {
-    flex-basis: 90%; /* Ez biztosítja, hogy minden kártya saját sorban jelenjen meg */
-    margin: 10px auto; /* Középre igazítja a kártyákat, ha csak egy van soronként */
+    flex-basis: 90%; 
+    margin: 10px auto; 
   }
   
 }

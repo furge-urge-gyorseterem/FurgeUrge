@@ -362,7 +362,7 @@ class Controller {
   }
   jelenitseMegAModalt() {
     const kosarModal = $('#kosarModal');
-    const totalAmount = this.calculateTotal(); // Calculate total amount for the cart
+    const totalAmount = this.calculateTotal(); 
     kosarModal.find('.modal-title').text('Kosár Tartalma - Összesen: ' + totalAmount + ' Ft');
     kosarModal.find('.modal-body').html(this.kosarTartalmatListaz());
     kosarModal.modal('show');
@@ -392,7 +392,7 @@ class Controller {
         Futár_id: 2,
         Szállítás_költség: totalKosarOsszeg,
       };
-      this.szallitasHozzaadas(szallitas); // a `this` itt a Controller példányára utal
+      this.szallitasHozzaadas(szallitas); 
       $('#kosarModal').modal('hide');
     });
 
@@ -419,11 +419,11 @@ class Controller {
       megrendeltData,
       (response) => {
         console.log("Megrendelt hozzáadva:", response);
-        resolve(response); // Resolve the promise with the response
+        resolve(response); 
       },
       (error) => {
         console.error("Hiba a megrendelt hozzáadásakor:", error);
-        reject(error); // Reject the promise with the error
+        reject(error); 
       }
     );
   }
@@ -459,17 +459,17 @@ class Controller {
   megjeleniteskedvenc(kedvencekLista) {
 
     const szuloElem = $(".tarolo");
-    // Az 'etel' objektumokat egy tömbbe gyűjti, amihez hozzáadja a "Kedvencek" kategóriát
+
     const kedvencekObj = {
       Kategoria: "Kedvencek",
       Etelek: kedvencekLista.map(kedvenc => kedvenc.etel)
     };
-    // A 'Megjelenit' konstruktorát meghívja egy tömbbel, ami csak a kedvencekObj objektumot tartalmazza
+   
     new Megjelenit([kedvencekObj], szuloElem, true);
   }
   redirectIfUnauthenticated() {
     if (!localStorage.getItem('accessToken')) {
-      window.location.href = '../Guest/index.html'; // Átirányítás a nem bejelentkezett felhasználók főoldalára
+      window.location.href = '../Guest/index.html'; 
     }
   }
 }

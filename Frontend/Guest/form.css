@@ -84,6 +84,6 @@ button[type="submit"] {
 
 @media (max-width: 767px) {
     label, input, button {
-        width: 100%; /* Makes sure they don't overflow on small screens */
+        width: 100%; 
     }
 }

@@ -14,20 +14,17 @@ class SzallitasController extends Controller
 {
     public function addDelivery(Request $request)
     {
-        // Create and save the Szallitas instance
+
         $szallitas = new Szallitas([
             'Megrendelő_id' => $request->Megrendelő_id,
             'Futár_id' => $request->Futár_id,
-            'Státusz' => 'Készítés Folyamatban', // Default value
+            'Státusz' => 'Készítés Folyamatban', 
             'Szállítás_Kezdete' => now(),
             'Szállítás_költség' => $request->Szállítás_költség,
         ]);
         $szallitas->save();
         error_log('Generated Szallitas ID: ' . $szallitas->Rendeles_Azon);
 
-
-
-        // Return a response including information about both Szallitas and Megrendelt operations
         return response()->json([
             'message' => 'Delivery and order added successfully!',
             'szallitasData' => $szallitas,
@@ -38,7 +35,6 @@ class SzallitasController extends Controller
     {
         $maxRendelesAzon = Szallitas::max('Rendeles_Azon');
 
-        // Válasz visszaküldése az azonosítóval
         return response()->json([
             'Rendeles_Azon' => $maxRendelesAzon
         ]);
@@ -57,8 +53,8 @@ class SzallitasController extends Controller
     }
     public function index()
     {
-        $eteleinks = Szallitas::all(); // Retrieve all records
-        return response()->json($eteleinks); // Return the records as JSON
+        $eteleinks = Szallitas::all(); 
+        return response()->json($eteleinks);
     }
     public function AdminAdat()
     {
@@ -73,10 +69,10 @@ class SzallitasController extends Controller
                 'szallitas.Szállítás_Vége',
                 'szallitas.Szállítás_költség',
                 'rendeles_statuszs.RendelésStátusz',
-                'megrendelo_user.id as MegrendelőID', // Megrendelő azonosítója
-                'megrendelo_user.name as MegrendelőNév', // Megrendelő neve
-                'futar_user.id as FutárID', // Futár azonosítója
-                'futar_user.name as FutárNév' // Futár neve
+                'megrendelo_user.id as MegrendelőID', 
+                'megrendelo_user.name as MegrendelőNév', 
+                'futar_user.id as FutárID', 
+                'futar_user.name as FutárNév' 
             )
             ->get();
 
@@ -85,14 +81,13 @@ class SzallitasController extends Controller
 
     public function updateStatus($id, $statusz)
     {
-        // Ellenőrizzük, hogy a megadott státusz létezik-e a rendeles_statuszs táblában
+
         $statusExists = DB::table('rendeles_statuszs')->where('RendelésStátusz', $statusz)->exists();
 
         if (!$statusExists) {
             return response()->json(['error' => 'Érvénytelen státusz.'], 404);
         }
 
-        // Keresés az adott ID-jú szállításra
         $szallitas = Szallitas::findOrFail($id);
         $szallitas->Státusz = $statusz;
         $szallitas->save();
@@ -110,13 +105,13 @@ class SzallitasController extends Controller
             return response()->json(['message' => 'Nincsenek nyitott rendelések.'], 404);
         }
         $orderDetails = $orders->map(function ($order) {
-            // For each order, get the related food items with their names
+
             return [
                 'Rendelés Azon' => $order->Rendeles_Azon,
                 'Ételek' => $order->megrendeltEtelek->map(function ($item) {
-                    // For each food item, return the name and quantity
+
                     return [
-                        'Étel Neve' => $item->etel->Elnevezes, // Get the name from the related 'etel' relationship
+                        'Étel Neve' => $item->etel->Elnevezes, 
                         'Mennyiség' => $item->mennyiseg
                     ];
                 })
