@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Meal from '../Meal/Meal';
-
 import { Offcanvas, Button, Form, Row, Col } from 'react-bootstrap';
 import { useMealApi } from '../../../api/MealApi';
 
@@ -48,11 +47,12 @@ const MealList = (props) => {
 			<div className="SearchBar">
 				<div className="MLoptions">
 					<input type="text" placeholder="keresés" className="Search" onChange={(e) => setQuery(e.target.value)} />
-					<button className="add" onClick={toggleAddForm}>Add Food</button>
+					<button className="add" onClick={toggleAddForm}>
+						Add Food
+					</button>
 				</div>
 			</div>
 			<Offcanvas show={showAddForm} placement="end" onHide={toggleAddForm} style={{ backgroundColor: '#258037' }}>
-				{' '}
 				<Offcanvas.Header closeButton>
 					<Offcanvas.Title>Étek hozzá adása</Offcanvas.Title>
 				</Offcanvas.Header>
@@ -85,33 +85,32 @@ const MealList = (props) => {
 									<Form.Control type="number" name="Ar" placeholder="Ar" required />
 								</Form.Group>
 							</Col>
+						</Row>
+						<Row>
 							<Col>
-								<Form.Group controlId="Leiras">
+								<Form.Group as={Col} controlId="formGridLeiras">
 									<Form.Label>Leírás</Form.Label>
-									<Form.Control type="text" name="Leiras" placeholder="Leírás" required />
+									<Form.Control as="textarea" rows={6} name="Leiras" placeholder="Leírás" required />
 								</Form.Group>
 							</Col>
 						</Row>
-						<button
-							type="submit"
+						<Button
+							variant="success"
+							type='submit'
 							style={{
-								backgroundColor: 'lightgreen',
-								borderRadius: '10px',
-								width: '50%',
-								margin: '24%',
-								textAlign: 'center',
-								padding: '20px',
-								transition: 'background-color 0.3s ease' /* Add a transition effect */
+								background: '#7FFF00',
+								color: 'black',
+								transition: 'background-color 0.3s'
 							}}
 							onMouseEnter={(e) => {
-								e.target.style.backgroundColor = 'darkslategrey';
+								e.target.style.backgroundColor = '#32CD32';
 							}}
 							onMouseLeave={(e) => {
-								e.target.style.backgroundColor = 'lightgreen';
+								e.target.style.backgroundColor = '#7FFF00';
 							}}
 						>
-							Hozzáad!
-						</button>
+							Felvesz!
+						</Button>
 					</Form>
 				</Offcanvas.Body>
 			</Offcanvas>

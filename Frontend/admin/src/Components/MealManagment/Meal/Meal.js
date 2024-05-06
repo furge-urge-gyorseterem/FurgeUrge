@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Offcanvas, Toast } from 'react-bootstrap';
+import { Button, Offcanvas, Toast } from 'react-bootstrap';
 import './Meal.css';
 import { useMealApi } from '../../../api/MealApi';
 
@@ -31,14 +31,12 @@ function Meal(props) {
 		}
 	};
 
-
-
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		try {
 			setLoading(true);
 			const adat = { Elnevezes: Name, Ar: Cost, Etelategoria: Category };
-			await valtoztat(props.food.Etel_Azon,adat);
+			await valtoztat(props.food.Etel_Azon, adat);
 			// Optional: Display success feedback
 			setShow(false);
 		} catch (err) {
@@ -61,12 +59,8 @@ function Meal(props) {
 				<div className="Cost ColorBox">{Cost} FT</div>
 			</div>
 			<div className="Options">
-				<div className="edit" onClick={edit}>
-					
-				</div>
-				<div className="delete" onClick={destroy}>
-					
-				</div>
+				<div className="edit" onClick={edit}></div>
+				<div className="delete" onClick={destroy}></div>
 			</div>
 			{error && <Toast>{error}</Toast>}
 			<Offcanvas show={show} onHide={() => setShow(false)} style={{ backgroundColor: '#258037' }}>
@@ -102,9 +96,23 @@ function Meal(props) {
 									<option value="Desszert">Desszert</option>
 								</select>
 							</div>
-							<button type="button" className="btn btn-primary" onClick={handleSubmit}>
-								Save Changes
-							</button>
+							<Button
+								variant="success"
+								onClick={handleSubmit}
+								style={{
+									background: '#7FFF00',
+									color: 'black',
+									transition: 'background-color 0.3s'
+								}}
+								onMouseEnter={(e) => {
+									e.target.style.backgroundColor = '#32CD32';
+								}}
+								onMouseLeave={(e) => {
+									e.target.style.backgroundColor = '#7FFF00';
+								}}
+							>
+								Mentés
+							</Button>
 						</form>
 					)}
 				</Offcanvas.Body>

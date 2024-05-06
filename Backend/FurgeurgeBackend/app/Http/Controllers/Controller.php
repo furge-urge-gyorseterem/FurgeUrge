@@ -27,6 +27,7 @@ class Controller extends BaseController
             ->select(
                 's.*',
                 'megrendelo_user.name as MegrendelőNév', 
+                'megrendelo_user.Lakcím as MegrendelőLakcím', 
                 'futar_user.name as FutárNév',
                 'items.Vegosszeg',
                 'items.RendeltTetelek'

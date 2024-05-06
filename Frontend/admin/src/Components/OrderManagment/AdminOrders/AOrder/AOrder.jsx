@@ -9,8 +9,9 @@ function AOrder(props) {
 	const [options, setOptions] = useState([]);
 	const [showOffcanvas, setShowOffcanvas] = useState(false);
 	const [RendeltTetelek,setRendTetelek]=useState([]);
+	console.log(props.rendeles)
 
-	const { getrendop, statuszmodosit, getAdminSzAdat } = useMealApi();
+	const { getrendop, statuszmodosit, getAdminAdat } = useMealApi();
 
 	useEffect(() => {
 		const fetchOptions = async () => {
@@ -156,7 +157,7 @@ function AOrder(props) {
 						<div className="RData">
 							<div className="azonosító">Rendelés Azonosítója: {props.rendeles.Rendeles_Azon}</div>
 							<div className="Megrendelo">Megrendelő: {props.rendeles.MegrendelőNév}</div>
-							<div className="Futár">Név: {props.rendeles.FutárNév}</div>
+							<div className="Futár">Cím: {props.rendeles.MegrendelőLakcím}</div>
 						</div>
 
 						{props.rendeles.Státusz === 'Futárra vár' ? (

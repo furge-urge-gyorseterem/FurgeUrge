@@ -4,6 +4,7 @@ import './U-CMtool.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 import Users from '../Users/Users';
+import Costumers from '../Costumers/Costumers';
 
 const UCMtool = () => {
 	return (
@@ -18,7 +19,7 @@ const UCMtool = () => {
 					<Users />
 				</TabPanel>
 				<TabPanel>
-					<h1 style={{ fontSize: '100px', color: 'red', padding: '100px' }}>IN-Progress</h1>
+					<Costumers/>
 				</TabPanel>
 			</Tabs>
 		</div>

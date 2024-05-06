@@ -60,29 +60,6 @@ class SzallitasController extends Controller
         $eteleinks = Szallitas::all(); // Retrieve all records
         return response()->json($eteleinks); // Return the records as JSON
     }
-    public function AdminAdat()
-    {
-        $eredmeny = DB::table('szallitas')
-            ->join('rendeles_statuszs', 'szallitas.Státusz', '=', 'rendeles_statuszs.RendelésStátusz')
-            ->join('users as megrendelo_user', 'szallitas.Megrendelő_id', '=', 'megrendelo_user.id')
-            ->join('users as futar_user', 'szallitas.Futár_id', '=', 'futar_user.id')
-            ->select(
-                'szallitas.Rendeles_Azon',
-                'szallitas.Státusz',
-                'szallitas.Szállítás_Kezdete',
-                'szallitas.Szállítás_Vége',
-                'szallitas.Szállítás_költség',
-                'rendeles_statuszs.RendelésStátusz',
-                'megrendelo_user.id as MegrendelőID', // Megrendelő azonosítója
-                'megrendelo_user.name as MegrendelőNév', // Megrendelő neve
-                'futar_user.id as FutárID', // Futár azonosítója
-                'futar_user.name as FutárNév' // Futár neve
-            )
-            ->get();
-
-        return response()->json($eredmeny);
-    }
-
     public function updateStatus($id, $statusz)
     {
         // Ellenőrizzük, hogy a megadott státusz létezik-e a rendeles_statuszs táblában

@@ -69,9 +69,13 @@ Route::post('/Epost', [EteleinkController::class, 'store']);
 Route::get('/rendstats', [RendelesStatuszController::class, 'index']);
 Route::get('/szallitas', [SzallitasController::class, 'index']);
 
-Route::get('/AAdat', [SzallitasController::class, 'AdminAdat']);
 Route::patch('/RendelesstatuszModosit/{id}/{statusz}', [SzallitasController::class, 'updateStatus']);
 Route::post('/Epost/{etel}', [EteleinkController::class, 'store']);
 Route::post('/reg', [UserController::class, 'store']);
 Route::get('/SzAdat', [Controller::class, 'getDeliveriesWithTotalItems']);
+
 Route::get('/user/{id}', [UserController::class, 'getUserById']);
+Route::get('/COST', [UserController::class, 'getCustomers']);
+
+
+Route::put('/usersM/{id}', [UserController::class, 'update']);

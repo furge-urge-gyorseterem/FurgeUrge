@@ -13,15 +13,16 @@ import { useMealApi } from './api/MealApi';
 
 const App = () => {
     const location = useLocation(); 
-    const [activeRank, setActiveRank] = useState(1);
+    const [activeRank, setActiveRank] = useState();
     const [user, setuser] = useState([])
-    const { getuser} = useMealApi();
+    const { getuser } = useMealApi();
     
     const [userId, setUserId] = useState(null);
 
-    const rangok=[{rang:1,value:'Admin'},{rang:2,value:'Dolgozó'},{rang:3,value:'Futár'}]
+    
         const aktRang=activeRank
-		const userStatus= rangok.find(rang => rang.rang === aktRang).value;
+        const userRang=user.status;
+		const userStatus = activeRank
 
 		let routes;
     
@@ -30,13 +31,15 @@ const App = () => {
 
     const fetchUser=async()=>{
         try{
-            const {data}= await getuser(userId);
+            const {data} = await getuser(userId);
             console.log("data:")
-            console.log(data)
-           await setuser(data)
+            await setuser(data)
         }
         catch(error){
             console.log(error)
+        }
+        finally{
+            console.log(user)
         }
     }
 
@@ -45,21 +48,26 @@ const App = () => {
 
 
         useEffect(() => {
-            // URL paraméterek kiolvasása
+
             const queryParams = new URLSearchParams(location.search);
-            const id = queryParams.get('id'); // 'id' paraméter kiolvasása
+            const id = queryParams.get('id'); 
             if (id) {
-                setUserId(id); // Beállítja az állapotot, ha van ID
-            
+                setUserId(id); 
+             
             }
         }, [location]);
         useEffect(() => {
             if (userId) {
                 console.log("A userId frissült: ", userId)
-
+                fetchUser();
             }
-            fetchUser();
+       
         }, [userId]);
+
+        useEffect(()=>{
+            setActiveRank(user.status);
+
+        },[user])
 
     
                 
@@ -101,7 +109,7 @@ const App = () => {
 
     return (
         <div className="App">
-            <VNBAR name="Rixi" userStatus={userStatus}/>
+            <VNBAR name={user.name} userStatus={userStatus}/>
             <Routes>
                 {routes}
             </Routes>
