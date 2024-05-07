@@ -93,11 +93,12 @@
 .card ,.list-group-item{
     background-color: rgba(255, 255, 255, 0.5); 
     border: none; 
-
+}
 
 .card-header {
     background-color: rgba(0, 100, 0, 0.85); 
     color: white;
+}
 .Warning{
 	padding: 10%;
 }
@@ -227,4 +228,4 @@ h4{
 	
 	box-sizing: border-box; 
 }
-}}}
+}

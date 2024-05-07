@@ -72,6 +72,7 @@ public function store(Request $request): JsonResponse
         'phone'=>$request->phone,
         'address'=>$request->address,
         'password' => Hash::make($request->password),
+        
     ]);
 
 
