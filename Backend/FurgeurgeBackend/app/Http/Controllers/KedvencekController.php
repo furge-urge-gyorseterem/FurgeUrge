@@ -16,7 +16,7 @@ class KedvencekController extends Controller
             'Etel_Azon' => $request->Etel_Azon,
         ]);
 
-        return response()->json($kedvencek, 201); // 201 Created
+        return response()->json($kedvencek, 201); 
     }
     public function destroy($felhasznaloAzon, $etelAzon)
     {

@@ -7,23 +7,23 @@ import './VNBar.css';
 function VNBAR({ name, userStatus }) {
 	const links = {
 		Admin: [
-			{ to: "/", text: "Dashboard" },
+			{ to: "/", text: "Irányítópult" },
 			{ to: "/meals", text: "Ételeink" },
 			{ to: "/users", text: "Felhasználók" },
 			{ to: "/orders", text: "Rendelések" }
 		],
 		Dolgozó: [
-			{ to: "/", text: "Dashboard" },
+			{ to: "/", text: "Irányítópult" },
 			{ to: "/meals", text: "Ételeink" },
 			{to:"/Worker",text:"Rendelések"}
 		],
 		Futár: [
-			{ to: "/", text: "Dashboard" },
+			{ to: "/", text: "Irányítópult" },
 			{ to: "/orders", text: "Rendelések" }
 		]
 	};
 
-	const userLinks = links[userStatus] || [{ to: "/", text: "Dashboard" }]; // Default link if userStatus is undefined or not found
+	const userLinks = links[userStatus] || [{ to: "/", text: "Irányítópult" }]; // Default link if userStatus is undefined or not found
 
 	return (
 		<div className="VNBAR">
@@ -34,8 +34,6 @@ function VNBAR({ name, userStatus }) {
 			<div className="options">
 				<ul>
 					<li><a href="http://127.0.0.1:5500/Felhasznalo/F%C5%91oldal.html">Vissza a Főoldalra</a></li>
-				
-					<li><a href="#">Kijelentkezés</a></li>
 				</ul>
 			</div>
 

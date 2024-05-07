@@ -18,14 +18,14 @@
   <main>
     <header>
       <img src="../kepek/Logo.png" alt="Logo">
-      <h1>Rendelésed</h1>
+      <h1>Profilom</h1>
       <img class="kep1" src="../kepek/Logo.png" alt="Logo">
     </header>
     <navigation>
       <ul class="navigation-left">
 
         <li><a href="Főoldal.html">Főoldal</a></li>
-        <li><a href="kaja.html">Étlap</a></li>
+        <li><a href="Étlap.html">Étlap</a></li>
         <li><a href="Rendeles.html">Rendelésem</a></li>
       </ul>
       <ul class="navigation-right">
@@ -48,7 +48,7 @@
           <p id="modal-order-id">Rendelés Azonosítója: </p>
           <p id="modal-delivery-date">Kiszállítás Dátuma: </p>
           <div id="modal-items">
-              <!-- Ordered items will be inserted here -->
+
           </div>
       </div>
   </div>
@@ -57,10 +57,10 @@
 
 </body>
 <script>
-  // Define the redirect function
+
   function redirectIfUnauthenticated() {
     if (!localStorage.getItem('accessToken')) {
-      window.location.href = '../Guest/FőoldalGuest.html'; // Redirect to guest homepage if not authenticated
+      window.location.href = '../Guest/index.html';
     }
   }
 
@@ -68,7 +68,7 @@
     $('#orderModal').hide();
   });
 
-  // When the user clicks anywhere outside of the modal, close it
+
   $(window).on('click', function (event) {
     const modal = $('#orderModal');
     if ($(event.target).is(modal)) {
@@ -76,15 +76,13 @@
     }
   });
   $(document).ready(function () {
-    redirectIfUnauthenticated(); // Call the redirection check
+    redirectIfUnauthenticated();
 
-    // Check user status and prepend admin link if necessary
     const státusz = localStorage.getItem('statusz');
     const adminLi = státusz === 'Admin' ? $('<li><a href="http://localhost:3001/">Admin</a></li>') : $();
     $('navigation ul.navigation-right').prepend(adminLi);
   });
 
-  // Logout event handler
   $(document).on("click", ".Kilepes", (event) => {
     event.preventDefault();
     $.ajax({

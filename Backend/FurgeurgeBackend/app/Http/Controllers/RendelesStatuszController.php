@@ -9,7 +9,7 @@ class RendelesStatuszController extends Controller
 {
     public function index()
     {
-        $eteleinks = ModelsRendelesStatusz::all(); // Retrieve all records
-        return response()->json($eteleinks); // Return the records as JSON
+        $eteleinks = ModelsRendelesStatusz::all(); 
+        return response()->json($eteleinks); 
     }
 }

@@ -36,6 +36,7 @@ class AuthenticatedSessionController extends Controller
             'token'=>$token,
             'success'=>$valid,
             'Státusz' => $user->Státusz,
+            'name' => $user->name,
         ]);
     }
 

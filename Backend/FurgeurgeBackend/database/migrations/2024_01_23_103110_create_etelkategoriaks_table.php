@@ -44,6 +44,12 @@ return new class extends Migration
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+        DB::table('etelkategoriaks')->insert([
+            'Kategoria' => 'Törölt', 
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+    
         
     }
 

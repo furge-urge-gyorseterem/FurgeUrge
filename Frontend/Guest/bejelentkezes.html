@@ -4,8 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="form.css" />
-		<title>Document</title>
-		<link rel="stylesheet" href="form.css" />
+		<title>Bejelentkezés</title>
 	</head>
 
 	<body>
@@ -38,7 +37,7 @@
 					<input type="email" name="email" id="email1" required />
 				</label>
 				<label>
-					Lak cím:
+					Lakcím:
 					<input type="text" name="address" id="address" required />
 				</label>
 				<label>
@@ -60,25 +59,24 @@
 		<script>
 			function openTab(evt, tabName) {
 				if (tabName === 'Fooldal') {
-					window.location.href = 'FőoldalGuest.html';
-					return; // Prevent further execution to handle redirection immediately
+					window.location.href = 'index.html';
+					return; 
 				}
 				var i, tabcontent, tablinks;
 				tabcontent = document.getElementsByClassName('tabcontent');
 				for (i = 0; i < tabcontent.length; i++) {
-					tabcontent[i].style.display = 'none'; // Hide all tab content
+					tabcontent[i].style.display = 'none';
 				}
 				tablinks = document.getElementsByClassName('tablinks');
 				for (i = 0; i < tablinks.length; i++) {
-					tablinks[i].className = tablinks[i].className.replace(' active', ''); // Remove "active" class
+					tablinks[i].className = tablinks[i].className.replace(' active', ''); 
 				}
-				document.getElementById(tabName).style.display = 'block'; // Show the specific tab content
-				evt.currentTarget.className += ' active'; // Add "active" class to the clicked tab
+				document.getElementById(tabName).style.display = 'block';
+				evt.currentTarget.className += ' active';
 			}
 
-			// Set up the page to open the Bejelentkezés tab by default
 			document.addEventListener('DOMContentLoaded', function () {
-				// Simulate a click on the "Bejelentkezés" button
+
 				var loginTab = document.querySelector('.tablinks[onclick*="Login"]');
 				if (loginTab) {
 					loginTab.click();
@@ -97,10 +95,12 @@
 						success: function (response) {
 							console.log(response.success);
 							if (response.success) {
+
 								console.log('Bejelentkezés sikeres!', response);
 								localStorage.setItem('accessToken', response.token);
 								localStorage.setItem('userid', response.user_id);
 								localStorage.setItem('statusz', response.Státusz);
+								localStorage.setItem('nev', response.name)
 								console.log(localStorage);
 								window.location.href = '../Felhasznalo/Étlap.html';
 							} else {
@@ -131,12 +131,11 @@
 					$.ajax({
 						url: 'http://localhost:3000/api/reg',
 						type: 'POST',
-						contentType: 'application/json', // Megerősítés, hogy JSON adatot küldünk
-						data: JSON.stringify(formData), // Konvertálás JSON stringgé
+						contentType: 'application/json', 
+						data: JSON.stringify(formData), 
 						success: function (response) {
 							console.log('Registration successful!', response);
 							alert('Registration successful!');
-							window.location.href = '../Felhasznalo/Étlap.html'; // Sikeres regisztráció után átirányítás
 						},
 						error: function (xhr, status, error) {
 							console.error('Registration failed:', error);

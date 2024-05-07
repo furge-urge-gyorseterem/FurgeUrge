@@ -17,14 +17,16 @@ function DMTool() {
 	const { getMeals, deleteMeal } = useMealApi();
 
 	const fetchMeals = async () => {
-		try {
-			const { data } = await getMeals();
-			setAllMeal(data);
-			await setCategories(['Összes', ...new Set(data.map((category) => category.Etelkategoria))]);
-		} catch (error) {
-			console.log(error);
-		}
-	};
+        try {
+            const { data } = await getMeals();
+            const filteredMeals = data.filter((meal) => meal.Etelkategoria !== 'Törölt');
+            setAllMeal(filteredMeals);
+            const categoriesList = ['Összes', ...new Set(filteredMeals.map((category) => category.Etelkategoria))];
+            setCategories(categoriesList);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 	
 
 	const removeMeal = async (id) => {
@@ -71,7 +73,7 @@ function DMTool() {
 				{categories.map((category) => (
 					<TabPanel>
 						<MealList meals={getMealList(category)} deleteMeal={removeMeal} refresh={refresher}/>
-						{/* <MealList kategoria={category}></MealList> */}
+				
 					</TabPanel>
 
 					

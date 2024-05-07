@@ -10,17 +10,20 @@ class Controller {
     const id = localStorage.getItem('userid');
     const státusz = localStorage.getItem('statusz')
     const adminLi = státusz === 'Admin' ? $(`<li class="munkaF"><a href="http://localhost:3001/?id=${id}">Admin</a></li>`) : $();
+    const FutárLi = státusz === 'Futár' ? $(`<li class="munkaF"><a href="http://localhost:3001/?id=${id}">Futár</a></li>`) : $();
+    const DolgozóLi = státusz === 'Dolgozó' ? $(`<li class="munkaF"><a href="http://localhost:3001/?id=${id}">Dolgozó</a></li>`) : $();
     this.redirectIfUnauthenticated();
-    $('navigation ul.navigation-right').prepend(adminLi);
+    $('.Profil a').text(localStorage.getItem('nev'))
+    $('navigation ul.navigation-right').prepend(adminLi).prepend(FutárLi).prepend(DolgozóLi);
     this.dataService.getAxiosData(
       `http://localhost:3000/api/kedvencek/${id}`,
       (response) => {
-        // Itt dolgozzuk fel a választ
+
         response.forEach(kedvenc => {
-          // Hozzáadás a kedvencekNevei objektumhoz
+
           this.kedvencekNevei[kedvenc.Etel_Azon] = kedvenc.etel.Elnevezes;
         });
-        // Itt hívjuk meg a megjelenítésre szolgáló függvényt
+
         this.megjeleniteskedvenc(response);
       },
       this.hibakezeles
@@ -36,8 +39,9 @@ class Controller {
       "http://localhost:3000/api/etelek",
       (response) => this.etelekMegjelenitesKedvencekNelkul(response),
       this.hibakezeles,
+
     );
-    $(document).on('click', '.star', (event) => { // Changed to arrow function
+    $(document).on('click', '.star', (event) => { 
       var cardDivDataId = $(event.currentTarget).closest('.card').data('id');
       const isWhite = $(event.currentTarget).css('background-color') === 'rgb(255, 255, 255)';
       $(event.currentTarget).css('background-color', isWhite ? 'yellow' : 'white');
@@ -46,21 +50,31 @@ class Controller {
           Felhasznalo_Azon: id,
           Etel_Azon: cardDivDataId,
         };
-        this.kedvenchezfuzes(kedvencek); // 'this' now correctly refers to the Controller instance
+        this.kedvenchezfuzes(kedvencek); 
       } else {
 
         const Etel_Azon = cardDivDataId
         this.dataService.deleteAxiosData('http://localhost:3000/api/kedvencek', id, Etel_Azon)
       }
     });
+    $(document).on('click', '.info p', function() {
 
+      const etelAzon = $(this).closest('.card').data('id');
+      const etelNev = $(this).closest('.card').find('.nev p').text();
+      const etelLeiras = $(this).closest('.card').find('.leiro p').text();
+    
+      $('#infoModal .modal-title').text(etelNev);
+      $('#infoModal #etelLeiras').text(etelLeiras);
+
+      $('#infoModal').modal('show');
+    });
     const kosarContainer = $('.kosar-container');
 
     this.kosarelem = $(".kosarbaad");
     const kosarDiv = $(".kosar");
     const rendelesosszeg = $(".rendeles-osszeg");
     const actionDiv = $('<div class="kosar-akcio"></div>');
-    // If there are items in the cart, append the "Rendelés" button and total to actionDiv
+
 
     const rendelesGomb = $("<button>")
       .text("Rendelés")
@@ -76,11 +90,11 @@ class Controller {
 
       var navOriginalPos = $('nav').offset().top;
       var navHeight = $('nav').outerHeight();
-      var originalPaddingMain = parseInt($('main').css('padding-top')); // Original padding of the main content
+      var originalPaddingMain = parseInt($('main').css('padding-top')); 
 
       $(window).scroll(function () {
         var scrollDistance = $(window).scrollTop();
-        var mainWidth = $('main').outerWidth(); // Get the current width of the main element
+        var mainWidth = $('main').outerWidth(); 
         var windowWidth = $(window).width();
         if (scrollDistance >= navOriginalPos) {
           $('.kosar-container').css({
@@ -159,20 +173,24 @@ class Controller {
     });
     $(document).on('click', '.close', function () {
       $('#kosarModal').modal('hide');
+      $('#infoModal').modal('hide');
+    });
+    $(document).on('click', '#bezar', function () {
+      $('#infoModal').modal('hide');
     });
     $(document).on("click", ".Kilepes", (event) => {
 
       event.preventDefault();
       $.ajax({
-        url: 'http://localhost:3000/api/logout', // Adjust URL to match API route
+        url: 'http://localhost:3000/api/logout',
         type: 'POST',
         headers: {
-          'Authorization': 'Bearer ' + localStorage.getItem('accessToken'), // accessToken should be the token you received during login
+          'Authorization': 'Bearer ' + localStorage.getItem('accessToken'), 
         },
         success: function (response) {
           console.log('Logout successful');
           localStorage.clear()
-          window.location.href = '../Guest/FőoldalGuest.html';
+          window.location.href = '../Guest/index.html';
         },
         error: function (xhr, status, error) {
           console.error('Logout failed:', error);
@@ -183,7 +201,7 @@ class Controller {
   etelekMegjelenitesKedvencekNelkul(etelekResponse) {
     const tisztitottEtelek = etelekResponse.map(kategoria => {
       const tisztitottEtelek = kategoria.Etelek.filter(etel => {
-        // Visszaadja azokat az ételeket, amelyek nem szerepelnek a kedvencek között
+
         return !Object.values(this.kedvencekNevei).includes(etel.Elnevezes);
       });
       return {
@@ -191,7 +209,7 @@ class Controller {
         Etelek: tisztitottEtelek
       };
     });
-    // Itt meghívhatod a megjelenítő függvényt a tisztított ételek listájával
+
     this.megjelenites(tisztitottEtelek);
   }
   kedvenchezfuzes(kedvencek) {
@@ -250,7 +268,7 @@ class Controller {
       const mennyisegValtoztatoDiv = $("<div>").append(minuszGomb, pluszGomb);
       kosarMennyisegValtoztatoDiv.append(mennyisegValtoztatoDiv);
     });
-    // Append total amount before the "Rendelés" button
+
     kosarDiv.append(
       kosarTermeknevekDiv,
       kosarArakDiv,
@@ -259,7 +277,7 @@ class Controller {
     );
 
     const actionDiv = $('<div class="kosar-akcio"></div>');
-    // If there are items in the cart, append the "Rendelés" button and total to actionDiv
+
 
     const rendelesGomb = $("<button>")
       .text("Rendelés")
@@ -272,13 +290,13 @@ class Controller {
     rendelesosszeg.append(actionDiv)
     const baseHeight = 220;
     const itemHeight = 22;
-    const itemCount = Object.keys(this.kosarTartalom).length; // number of items in the cart
+    const itemCount = Object.keys(this.kosarTartalom).length; 
     const newModalHeight = baseHeight + ((itemCount - 1) * itemHeight);
 
     $('#kosarModal .modal-content').css('height', newModalHeight + 'px');
     this.updateModalTitleWithTotal(totalAmount);
   }
-  // Egy új függvény a darabszám változtatására
+
   kosarDarabValtoztat(termekNeve, valtozas) {
     if (valtozas === "novel") {
       if (this.kosarTartalom[termekNeve]) {
@@ -293,7 +311,7 @@ class Controller {
     if (this.kosarTartalom[termekNeve].darab <= 0) {
       delete this.kosarTartalom[termekNeve];
     }
-    this.kosarUIFrissites(); // Frissítjük a kosár UI-t
+    this.kosarUIFrissites(); 
     this.toggleKosarContainerDisplay();
   }
   updateModalTitleWithTotal(total) {
@@ -325,14 +343,13 @@ class Controller {
     }
     const self = this;
 
-    // Smooth scrolling to section on nav item click, which you might already have set up
     $('.etelkategoriak li').on('click', function () {
       const targetId = $(this).data('target');
       const targetSection = $('#' + targetId);
       if (targetSection.length) {
         $('html, body').animate({
           scrollTop: targetSection.offset().top
-        }, 100); // Adjust the duration as needed
+        }, 100); 
       }
     });
   }
@@ -347,7 +364,7 @@ class Controller {
   }
   jelenitseMegAModalt() {
     const kosarModal = $('#kosarModal');
-    const totalAmount = this.calculateTotal(); // Calculate total amount for the cart
+    const totalAmount = this.calculateTotal(); 
     kosarModal.find('.modal-title').text('Kosár Tartalma - Összesen: ' + totalAmount + ' Ft');
     kosarModal.find('.modal-body').html(this.kosarTartalmatListaz());
     kosarModal.modal('show');
@@ -377,7 +394,7 @@ class Controller {
         Futár_id: 2,
         Szállítás_költség: totalKosarOsszeg,
       };
-      this.szallitasHozzaadas(szallitas); // a `this` itt a Controller példányára utal
+      this.szallitasHozzaadas(szallitas); 
       $('#kosarModal').modal('hide');
     });
 
@@ -404,11 +421,11 @@ class Controller {
       megrendeltData,
       (response) => {
         console.log("Megrendelt hozzáadva:", response);
-        resolve(response); // Resolve the promise with the response
+        resolve(response); 
       },
       (error) => {
         console.error("Hiba a megrendelt hozzáadásakor:", error);
-        reject(error); // Reject the promise with the error
+        reject(error); 
       }
     );
   }
@@ -444,17 +461,17 @@ class Controller {
   megjeleniteskedvenc(kedvencekLista) {
 
     const szuloElem = $(".tarolo");
-    // Az 'etel' objektumokat egy tömbbe gyűjti, amihez hozzáadja a "Kedvencek" kategóriát
+
     const kedvencekObj = {
       Kategoria: "Kedvencek",
       Etelek: kedvencekLista.map(kedvenc => kedvenc.etel)
     };
-    // A 'Megjelenit' konstruktorát meghívja egy tömbbel, ami csak a kedvencekObj objektumot tartalmazza
+   
     new Megjelenit([kedvencekObj], szuloElem, true);
   }
   redirectIfUnauthenticated() {
     if (!localStorage.getItem('accessToken')) {
-      window.location.href = '../Guest/index.html'; // Átirányítás a nem bejelentkezett felhasználók főoldalára
+      window.location.href = '../Guest/index.html'; 
     }
   }
 }

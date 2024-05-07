@@ -5,14 +5,14 @@ class DataService {
     axios
       .get(url)
       .then(function (response) {
-
+        console.log(response.data)
         callback(response.data);
       })
       .catch(function (error) {
         hibacallback(error);
       })
       .finally(function () {
-        // always executed
+
       });
   }
   getTokenAxiosData(url, token){
@@ -32,7 +32,7 @@ class DataService {
       .then((response) => callback(response.data))
       .catch((error) => errorCallback(error))
       .finally(() => {
-        // Mindig végrehajtódik
+
       });
   }
   getMaxRendelesAzon(url, callback, errorCallback) {
@@ -50,7 +50,7 @@ class DataService {
         errorCallback(error);
       })
       .finally(() => {
-        // Mindig végrehajtódik
+
       });
   }
   addMegrendeltItem(url, megrendeltData, callback, errorCallback) {

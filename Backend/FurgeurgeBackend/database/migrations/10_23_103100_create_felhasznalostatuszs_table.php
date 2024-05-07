@@ -22,10 +22,10 @@ return new class extends Migration
             'FelhasználóStátusz' => 'Admin',
         ]);
         DB::table('felhasznalostatuszs')->insert([
-            'FelhasználóStátusz' => 'dolgozó', 
+            'FelhasználóStátusz' => 'Dolgozó', 
         ]);
         DB::table('felhasznalostatuszs')->insert([
-            'FelhasználóStátusz' => 'futár',
+            'FelhasználóStátusz' => 'Futár',
         ]);
         
 

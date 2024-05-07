@@ -32,7 +32,7 @@ class Controller {
             const list = $('<ul>');
             data.forEach((delivery, index) => {
                 const listItem = $(`<li>${delivery.Szallitas_Vege}</li>`);
-                // If it's the first item, add the 'elso' class
+
                 if (index === 0) {
                     listItem.addClass('elso');
                 }
@@ -46,11 +46,10 @@ class Controller {
     }
 
     showModal(delivery) {
-        // Update the modal with the order ID and delivery date
+
         $('#modal-order-id').text(`Rendelés Azonosítója: ${delivery.Rendeles_Azon}`);
         $('#modal-delivery-date').text(`Kiszállítás Dátuma: ${delivery.Szallitas_Vege}`);
-    
-        // Update the modal with the list of ordered items
+
         const modalItems = $('#modal-items');
         modalItems.empty();
     
@@ -58,7 +57,7 @@ class Controller {
             modalItems.append($(`<p>${item.Elnevezes}, Mennyiség: ${item.Mennyiseg}</p>`));
         });
     
-        // Show the modal
+
         $('#orderModal').show();
     }
 };

@@ -11,10 +11,11 @@ const getWorkers = () => httpClient.get('/Workers');
 const getcostumers = () => httpClient.get('/COST');
 const getuser = (id) => httpClient.get(`/user/${id}`);
 
-const getAdminAdat = () => httpClient.get('/AAdat');
+
 const getAdminSzAdat=()=> httpClient.get('/SzAdat');
 const getrendop = () => httpClient.get('/rendstats');
 const statuszmodosit = (rendelestId, ujStatusz) => httpClient.patch(`/RendelesstatuszModosit/${rendelestId}/${ujStatusz}`);
+const RendelésFelvétel = (rendelesAzon, futarId) => httpClient.put(`/updateFutar/${rendelesAzon}/${futarId}`);
 
 const valtoztat = (id, mealData) => httpClient.patch(`/Epatch/${id}`, mealData);
 const Uservaltoztat = (id, UData) => httpClient.patch(`/usersM/${id}`, UData);
@@ -26,12 +27,13 @@ export const useMealApi = () => ({
 	getMeals,
 	deleteMeal,
 	getWorkers,
-	getAdminAdat,
+	
 	getrendop,
 	statuszmodosit,
 	valtoztat,
 	newfood,
 	getAdminSzAdat,
 	getcostumers,
-	Uservaltoztat
+	Uservaltoztat,
+	RendelésFelvétel
 });

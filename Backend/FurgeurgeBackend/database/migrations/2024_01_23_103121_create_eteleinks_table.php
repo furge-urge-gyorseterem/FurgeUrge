@@ -26,7 +26,7 @@ return new class extends Migration
             'Elnevezes' => 'Szalámis Pizza',
             'Etelkategoria' => 'Pizza',
             'Ar' => 1000,
-            'Leírás' =>"Igen",
+            'Leírás' =>"Nagyon finom",
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -34,7 +34,7 @@ return new class extends Migration
             'Elnevezes' => 'Sajtburger',
             'Etelkategoria' => 'Hamburger',
             'Ar' => 1000,
-            'Leírás' =>"Igen",
+            'Leírás' =>"mekis am",
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -42,7 +42,7 @@ return new class extends Migration
             'Elnevezes' => 'pizza tekercs',
             'Etelkategoria' => 'Főétel',
             'Ar' => 1000,
-            'Leírás' =>"Igen",
+            'Leírás' =>"nem",
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -123,6 +123,16 @@ return new class extends Migration
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+        DB::table('eteleink')->insert([
+            'Elnevezes' => 'Tyúkhúsleves',
+            'Etelkategoria' => 'Leves', 
+            'Ar' => 950,
+            'Leírás' =>"Ez az étel nemcsak ízletes és tápláló, hanem az otthon melegét is az étterem asztalára varázsolja.", 
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+       
+
         $this->generateRandomData();
     }
     function generateRandomData() {
@@ -136,7 +146,6 @@ return new class extends Migration
     
         $foods = [
             'Leves' => [
-                ['Név' => 'Tyúkhúsleves', 'Ár' => 950],
                 ['Név' => 'Gombaleves', 'Ár' => 850],
                 ['Név' => 'Zöldségleves', 'Ár' => 750],
                 ['Név' => 'Bableves', 'Ár' => 950],

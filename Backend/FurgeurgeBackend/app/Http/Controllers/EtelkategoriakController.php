@@ -7,8 +7,11 @@ use Illuminate\Http\Request;
 class EtelkategoriakController extends Controller
 {
     public function kategoria()
-    {
-        $Kategoriak = Etelkategoriak::orderBy('Azon', 'desc')->get(); // Retrieve all records ordered by 'Azon' in descending order
-        return response()->json($Kategoriak); // Return the records as JSON
-    }
+{
+    $Kategoriak = Etelkategoriak::where('Kategoria', '!=', 'Törölt')
+        ->orderBy('Azon', 'desc')
+        ->get();
+
+    return response()->json($Kategoriak);
+}
 }

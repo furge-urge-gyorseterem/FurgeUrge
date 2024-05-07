@@ -10,46 +10,53 @@ class EteleinkController extends Controller
 {
     public function index()
     {
-        $eteleinks = Eteleink::all(); // Retrieve all records
-        return response()->json($eteleinks); // Return the records as JSON
+        $eteleinks = Eteleink::all(); 
+        return response()->json($eteleinks); 
     }
     public function delete($index)
-    {
-        // Keressük meg a megfelelő modellt az adott ID alapján.
-        $item = Eteleink::find($index);
-    
-        // Ha a modell létezik, töröljük és térjünk vissza valamilyen válasszal.
-        if ($item) {
-            $item->delete();
-            return response()->json(['success' => 'Elem sikeresen törölve.'], 200);
-        }
-    
-        // Ha a modell nem található, térjünk vissza hibaüzenettel.
-        return response()->json(['error' => 'Elem nem található.'], 404);
+{
+    // Keresse meg az elemet az adott index alapján.
+    $item = Eteleink::find($index);
+
+    // Ha megtalálta az elemet, frissítse a kategóriát "Törölt"-re.
+    if ($item) {
+        $item->Etelkategoria = 'Törölt';
+        $item->save();  // Mentsük az adatbázisba a módosításokat.
+        return response()->json(['success' => 'Elem kategóriája sikeresen átállítva töröltre.'], 200);
     }
-    public function eteleKategoria()
-    {
-        $kategoriaiEtelek = Etelkategoriak::with(['etelek' => function($query) {
-            $query->select('Etelkategoria', 'Elnevezes', 'Ar', 'Etel_Azon');
-        }])->orderBy('Azon') // Rendezés az id alapján
+
+    // Ha az elem nem található, térjen vissza hibával.
+    return response()->json(['error' => 'Elem nem található.'], 404);
+}
+
+public function eteleKategoria()
+{
+   
+    $kategoriaiEtelek = Etelkategoriak::where('Kategoria', '!=', 'Törölt')
+        ->with(['etelek' => function ($query) {
+            $query->select('Etelkategoria', 'Elnevezes', 'Ar', 'Etel_Azon', 'Leírás');
+        }])
+        ->orderBy('Azon')
         ->get();
 
-        // Az adatok átalakítása, hogy csak a szükséges információt tartalmazzák
-        $eredmeny = $kategoriaiEtelek->map(function($kategoria) {
-            return [
-                'Kategoria' => $kategoria->Kategoria,
-                'Etelek' => $kategoria->etelek->map(function($etel) {
-                    return [
-                        'Elnevezes' => $etel->Elnevezes,
-                        'Ar' => $etel->Ar,
-                        'Etel_Azon' =>$etel -> Etel_Azon,
-                    ];
-                }),
-            ];
-        });
+   
+    $eredmeny = $kategoriaiEtelek->map(function ($kategoria) {
+        return [
+            'Kategoria' => $kategoria->Kategoria,
+            'Etelek' => $kategoria->etelek->map(function ($etel) {
+                return [
+                    'Elnevezes' => $etel->Elnevezes,
+                    'Ar' => $etel->Ar,
+                    'Etel_Azon' => $etel->Etel_Azon,
+                    'Leírás' => $etel->Leírás,
+                ];
+            }),
+        ];
+    });
 
-        return response()->json($eredmeny); // Visszatérés a feldolgozott adatokkal
-    }
+    return response()->json($eredmeny);
+}
+
     public function store(Request $request)
 {
 
@@ -73,10 +80,10 @@ class EteleinkController extends Controller
 
 public function update(Request $request, $index)
 {
-    // Keressük meg a modellt az adott ID alapján.
+
     $item = Eteleink::find($index);
 
-    // Ha a modell létezik, frissítsük és térjünk vissza valamilyen válasszal.
+
     if ($item) {
         $item->Elnevezes = $request->Elnevezes ?? $item->Elnevezes;
         $item->Etelkategoria = $request->Etelkategoria ?? $item->Etelkategoria;
@@ -87,7 +94,7 @@ public function update(Request $request, $index)
         return response()->json(['success' => 'Elem sikeresen frissítve.'], 200);
     }
 
-    // Ha a modell nem található, térjünk vissza hibaüzenettel.
+
     return response()->json(['error' => 'Elem nem található.'], 404);
 }
 

@@ -37,7 +37,7 @@ header h1 {
     color: white;
     text-align: center;
     font-size: 300%;
-    /* Adjust as needed */
+
     font-weight: bold;
 }
 
@@ -59,23 +59,23 @@ navigation {
     width: 100%;
     height: 50px;
     display: block;
-    /* Ha flexbox-ot használsz, akkor ezt 'flex'-re változtasd */
+
     justify-content: space-between;
     justify-content: center;
-    /* Középre igazítja a flex elemeket vízszintesen */
+
     align-items: center;
 }
 
 .navigation-left,
 .navigation-right {
     float: left;
-    /* A '.navigation-left' elemet balra igazítja */
+
     list-style: none;
-    /* Eltávolítja a lista jelölőket */
+
     padding: 0;
-    /* Eltávolítja az alapértelmezett paddingot */
+
     margin: 0;
-    /* Eltávolítja az alapértelmezett margót */
+
     padding-top: 10px;
 }
 
@@ -98,7 +98,7 @@ ul li a {
 
 ul li a:hover {
     background-color: #FFD700;
-    /* Changes background color on hover */
+
 }
 
 
@@ -143,19 +143,18 @@ article h4 {
     width: 5px;
   }
   
-  /* Track */
+
   ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px grey; 
     border-radius: 10px;
   }
-   
-  /* Handle */
+
   ::-webkit-scrollbar-thumb {
     background: #FFD700; 
     border-radius: 10px;
   }
   
-  /* Handle on hover */
+
   ::-webkit-scrollbar-thumb:hover {
     background: #FFD700
   }

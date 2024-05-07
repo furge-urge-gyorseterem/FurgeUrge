@@ -25,17 +25,17 @@ return new class extends Migration
             $table->text('Lakcím')->nullable();
             $table->string('Státusz')->default('vendég');
             $table->foreign('Státusz')->references('FelhasználóStátusz')->on('felhasznalostatuszs'); 
-            $table->string('api_token', 60)->nullable(); // specify the length also
+            $table->string('api_token', 60)->nullable(); 
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes(); 
         });
         DB::table('users')->insert([
-            'email' => 'Pelda@email',
+            'email' => 'doma@email.com',
             'password' => Hash::make('ASD123'),
             'Telefonszám' => '41423412',
             'Lakcím' => 'Pest',
-            'name' => 'PéldaGéza',
+            'name' => 'Dominik',
             'Státusz' => 'vásárló',
             'api_token' => Str::random(60),
         ]);
@@ -65,8 +65,17 @@ return new class extends Migration
             'password' => Hash::make('asd123'),
             'Telefonszám' => '4541332334',
             'Lakcím' => 'Pest',
-            'name' => 'Rixi',
+            'name' => 'Ricsi',
             'Státusz' => 'Admin',
+            'api_token' => Str::random(60), 
+        ]);
+        DB::table('users')->insert([
+            'email' => 'rixi2@email.com',
+            'password' => Hash::make('asd123'),
+            'Telefonszám' => '4541332334',
+            'Lakcím' => 'Pest',
+            'name' => 'Ricsi',
+            'Státusz' => 'Futár',
             'api_token' => Str::random(60), 
         ]);
 

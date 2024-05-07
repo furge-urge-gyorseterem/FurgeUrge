@@ -11,7 +11,7 @@ function AOrder(props) {
 	const [RendeltTetelek,setRendTetelek]=useState([]);
 	console.log(props.rendeles)
 
-	const { getrendop, statuszmodosit, getAdminAdat } = useMealApi();
+	const { getrendop, statuszmodosit, RendelésFelvétel } = useMealApi();
 
 	useEffect(() => {
 		const fetchOptions = async () => {
@@ -45,20 +45,33 @@ function AOrder(props) {
 			const response = await statuszmodosit(props.rendeles.Rendeles_Azon, 'Kiszállítva');
 		
 			console.log('Státusz frissítve:', response.data);
-			props.fetch();
+			
 		} catch (error) {
 			console.error('Hiba a státusz frissítésekor:', error);
 		}
+		finally{
+			props.fetch();
+		}
 	};
 	const handleSelectFuttarButtonClickFel = async () => {
-		props.rendeles.Státusz='Futárnál'
+		props.rendeles.Státusz = 'Futárnál';
+		var id=props.id
+		if(props.realRank=='Admin'){
+			id=5
+		}
 		try {
-			
-			const response = await statuszmodosit(props.rendeles.Rendeles_Azon, 'Futárnál');
-			console.log('Státusz frissítve:', response.data);
+		
+			const statusResponse = await statuszmodosit(props.rendeles.Rendeles_Azon, 'Futárnál');
+			console.log('Státusz frissítve:', statusResponse.data);
+	
+		
 			props.fetch();
+	
+			const rendelésResponse = await RendelésFelvétel(props.rendeles.Rendeles_Azon, id);
+			console.log('Rendelés frissítve:', rendelésResponse.data);
+	
 		} catch (error) {
-			console.error('Hiba a státusz frissítésekor:', error);
+			console.error('Hiba a státusz frissítésekor vagy a rendelés felvételekor:', error);
 		}
 	};
 
@@ -88,7 +101,7 @@ function AOrder(props) {
 					<div className="RData">
 						<div className="azonosító">Rendelés Azonosítója: {props.rendeles.Rendeles_Azon}</div>
 						<div className="Megrendelo">Megrendelő: {props.rendeles.MegrendelőNév}</div>
-						<div className="Futár">Név: {props.rendeles.FutárNév}</div>
+						<div className="Futár">Futár: {props.rendeles.FutárNév}</div>
 					</div>
 
 					<div className="ROptions">

@@ -23,7 +23,7 @@ function Meal(props) {
 		try {
 			setLoading(true);
 			await props.destroy(props.food.Etel_Azon);
-			// Optional: Display success feedback
+		
 		} catch (err) {
 			setError('Failed to delete meal.');
 		} finally {
@@ -37,7 +37,7 @@ function Meal(props) {
 			setLoading(true);
 			const adat = { Elnevezes: Name, Ar: Cost, Etelategoria: Category };
 			await valtoztat(props.food.Etel_Azon, adat);
-			// Optional: Display success feedback
+		
 			setShow(false);
 		} catch (err) {
 			setError('Failed to update meal.');
@@ -59,8 +59,8 @@ function Meal(props) {
 				<div className="Cost ColorBox">{Cost} FT</div>
 			</div>
 			<div className="Options">
-				<div className="edit" onClick={edit}></div>
-				<div className="delete" onClick={destroy}></div>
+				<div className="edit" onClick={edit}>✏️</div>
+				<div className="delete" onClick={destroy}>❌</div>
 			</div>
 			{error && <Toast>{error}</Toast>}
 			<Offcanvas show={show} onHide={() => setShow(false)} style={{ backgroundColor: '#258037' }}>

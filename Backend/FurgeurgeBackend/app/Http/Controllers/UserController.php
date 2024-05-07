@@ -37,7 +37,6 @@ class UserController extends Controller
                     'Etel_Azon' => $megrendelt->etel->Etel_Azon,
                     'Elnevezes' => $megrendelt->etel->Elnevezes,
                     'Mennyiseg' => $megrendelt->mennyiseg,
-           
                 ];
             }),
         ];

@@ -65,7 +65,7 @@ Route::get('undelivered-orders/{id}', [SzallitasController::class, 'showUndelive
 
 Route::patch('/Epatch/{id}',[EteleinkController::class,'update']);
 Route::post('/Epost', [EteleinkController::class, 'store']);
-//orders rész inentöl megy lets go baby
+
 Route::get('/rendstats', [RendelesStatuszController::class, 'index']);
 Route::get('/szallitas', [SzallitasController::class, 'index']);
 
@@ -76,6 +76,6 @@ Route::get('/SzAdat', [Controller::class, 'getDeliveriesWithTotalItems']);
 
 Route::get('/user/{id}', [UserController::class, 'getUserById']);
 Route::get('/COST', [UserController::class, 'getCustomers']);
-
+Route::put('/updateFutar/{rendelesAzon}/{futarazon}', [SzallitasController::class, 'updateFutar']);
 
 Route::put('/usersM/{id}', [UserController::class, 'update']);
