@@ -9,8 +9,8 @@ function Costumers() {
     const [customerKeys, setCustomerKeys] = useState([]);
     const [editingCustomer, setEditingCustomer] = useState(null);
     const [showEditCustomer, setShowEditCustomer] = useState(false);
-    const fields = ['name', 'Telefonszám', 'Lakcím']; // Státusz mezőt nem jelenítjük meg
-    const { getcostumers, updateCustomer } = useMealApi(); // updateCustomer hozzáadása a MealApi-ból
+    const fields = ['name', 'Telefonszám', 'Lakcím']; 
+    const { getcostumers, updateCustomer } = useMealApi(); 
 
     const fetchCustomers = async () => {
         try {
@@ -33,9 +33,9 @@ function Costumers() {
 
     const handleSave = async () => {
         try {
-            await updateCustomer(editingCustomer); // Elküldjük a módosított vásárló adatait a backend-re
+            await updateCustomer(editingCustomer); 
             setShowEditCustomer(false);
-            fetchCustomers(); // Frissítjük a vásárlók listáját
+            fetchCustomers(); 
         } catch (error) {
             console.log(error);
         }

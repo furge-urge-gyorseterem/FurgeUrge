@@ -24,7 +24,7 @@ const OrderManagmentTool = (props) => {
 		}
 	};
 
-	//efectek
+
 
 	useEffect(() => {
 		fetchOrders();

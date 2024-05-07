@@ -6,8 +6,7 @@
 	background-repeat: repeat;
 	background-size: auto;
 	position: sticky;
-	top: 0; /* Hozzáadva */
-}
+	top: 0; 
 .logo{width: 50%;}
 
 .ProfPic {
@@ -70,4 +69,5 @@ label {
 	text-decoration: none;
 	color: black;
 	font-size: 20px;
+}
 }

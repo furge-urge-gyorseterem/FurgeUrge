@@ -23,7 +23,7 @@ function VNBAR({ name, userStatus }) {
 		]
 	};
 
-	const userLinks = links[userStatus] || [{ to: "/", text: "Irányítópult" }]; // Default link if userStatus is undefined or not found
+	const userLinks = links[userStatus] || [{ to: "/", text: "Irányítópult" }]; 
 
 	return (
 		<div className="VNBAR">

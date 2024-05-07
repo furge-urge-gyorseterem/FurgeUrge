@@ -1,0 +1,306 @@
+{
+	"info": {
+		"_postman_id": "34f0ec4e-d767-4235-a697-7ff89eac2abc",
+		"name": "FürgeÜrge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33952272",
+		"_collection_link": "https://solar-flare-883780.postman.co/workspace/My-Workspace~c6e12671-4b4b-4cc5-8df0-625ee6181925/collection/33952272-34f0ec4e-d767-4235-a697-7ff89eac2abc?action=share&source=collection_link&creator=33952272"
+	},
+	"item": [
+		{
+			"name": "Futár betüzése",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"http://localhost:3000/api/updateFutar/3/5 "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/updateFutar/3/5 ",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"updateFutar",
+						"3",
+						"5 "
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "konkrétUser",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/user/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Etlek",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SzAdat",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/SzAdat",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"SzAdat"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UndeliveredOrders",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/undelivered-orders/{1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"undelivered-orders",
+						"{1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Kedvenc törölve",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/kedvencek/1/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"kedvencek",
+						"1",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Worker",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/Worker",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"Worker"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "etel szerkeszt",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/Epatch/{id}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"Epatch",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "adott rendelés státusza",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/orders/kész/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"orders",
+						"kész",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Vásárlók",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/COST",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"COST"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Szálítás max azon",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/szallitas/maxazon",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"szallitas",
+						"maxazon"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Szálítás",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rendelés státuszai",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "felhasználó kedvencei",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/kedvencek/{felhasznaloAzon}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"kedvencek",
+						"{felhasznaloAzon}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "meg rendelt ételek",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/api/ordered-foods/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"ordered-foods",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

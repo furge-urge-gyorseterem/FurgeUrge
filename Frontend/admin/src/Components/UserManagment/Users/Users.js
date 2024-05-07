@@ -8,7 +8,7 @@ function Users() {
     const [workers, setWorkers] = useState([]);
     const [workerKeys, setWorkerKeys] = useState([]);
     const [editingWorker, setEditingWorker] = useState(null);
-    const [formState, setFormState] = useState({}); // Hold form state
+    const [formState, setFormState] = useState({}); 
     const [showEditUser, setShowEditUser] = useState(false);
     const szures = ['name', 'Telefonszám', 'Lakcím', 'Státusz'];
     const { getWorkers } = useMealApi();
@@ -16,10 +16,10 @@ function Users() {
     const fetchWorkers = async () => {
         try {
             const { data } = await getWorkers();
-            // Filter out workers with "Admin" status
+        
             const filteredWorkers = data.filter((worker) => worker.Státusz !== 'Admin');
             setWorkers(filteredWorkers);
-            // Update worker keys while excluding any fields you don't want
+           
             setWorkerKeys(Object.keys(filteredWorkers[0]).filter((key) => szures.includes(key)));
         } catch (error) {
             console.log(error);
@@ -32,7 +32,7 @@ function Users() {
 
     const handleEdit = (worker) => {
         setEditingWorker(worker);
-        setFormState(worker); // Initialize form state with the worker's data
+        setFormState(worker); 
         setShowEditUser(true);
     };
 

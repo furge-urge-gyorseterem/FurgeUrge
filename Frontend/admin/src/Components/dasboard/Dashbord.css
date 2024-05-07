@@ -1,4 +1,4 @@
-/* Dashboard main container */
+
 .Db {
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
     width: 70%;
@@ -6,7 +6,7 @@
     padding: 20px;
 }
 
-/* Admin section styles */
+
 .admin-section {
     text-align: center;
     margin-bottom: 20px;
@@ -29,8 +29,8 @@
     background-color: hsla(67, 22%, 23%, 0.766);
 }
 
-/* Knowledge base section container */
 .KK {
+
     padding-top: 20px;
     padding-bottom: 20px;
     background-color: rgba(67, 70, 45, 0.566);
@@ -39,7 +39,7 @@
     font-size: 30px;
 }
 
-/* Individual sub-sections within the knowledge base */
+
 .KK h2,
 .KK h3 {
     color: white;
